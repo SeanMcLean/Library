@@ -69,26 +69,26 @@
     <Compile Include="Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MyDataModel.Context.cs">
+    <Compile Include="LibraryDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MyDataModel.Context.tt</DependentUpon>
+      <DependentUpon>LibraryDataModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="MyDataModel.cs">
+    <Compile Include="LibraryDataModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MyDataModel.tt</DependentUpon>
+      <DependentUpon>LibraryDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MyDataModel.Designer.cs">
+    <Compile Include="LibraryDataModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MyDataModel.edmx</DependentUpon>
+      <DependentUpon>LibraryDataModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>MyDataModel.tt</DependentUpon>
+      <DependentUpon>LibraryDataModel.tt</DependentUpon>
     </Compile>
     <Page Include="Dashboard.xaml">
       <SubType>Designer</SubType>
@@ -129,12 +129,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="MyDataModel.edmx">
+    <EntityDeploy Include="LibraryDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MyDataModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>LibraryDataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="MyDataModel.edmx.diagram">
-      <DependentUpon>MyDataModel.edmx</DependentUpon>
+    <None Include="LibraryDataModel.edmx.diagram">
+      <DependentUpon>LibraryDataModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -150,15 +150,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MyDataModel.Context.tt">
+    <Content Include="LibraryDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MyDataModel.edmx</DependentUpon>
-      <LastGenOutput>MyDataModel.Context.cs</LastGenOutput>
+      <DependentUpon>LibraryDataModel.edmx</DependentUpon>
+      <LastGenOutput>LibraryDataModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="MyDataModel.tt">
+    <Content Include="LibraryDataModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MyDataModel.edmx</DependentUpon>
-      <LastGenOutput>MyDataModel.cs</LastGenOutput>
+      <DependentUpon>LibraryDataModel.edmx</DependentUpon>
+      <LastGenOutput>LibraryDataModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

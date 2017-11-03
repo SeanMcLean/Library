@@ -21,7 +21,7 @@ namespace Libary
     public partial class MainWindow : Window
     {
         //Create a new instance of SQL database connection
-        MyDBEntities db = new MyDBEntities();
+        DBEntities db = new DBEntities();
         //Global list used to contain all users
         List<User> userList = new List<User>();
 

@@ -13,10 +13,10 @@ namespace Libary
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MyDBEntities : DbContext
+    public partial class DBEntities : DbContext
     {
-        public MyDBEntities()
-            : base("name=MyDBEntities")
+        public DBEntities()
+            : base("name=DBEntities")
         {
         }
     
