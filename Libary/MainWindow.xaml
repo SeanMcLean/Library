@@ -1,0 +1,34 @@
+﻿<Window x:Class="Libary.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Libary"
+        mc:Ignorable="d"
+        Title="Library Login" Height="360" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Loaded="Window_Loaded">
+    <Grid>
+        <StackPanel  Margin="10,10">
+            <TextBlock x:Name="tblkDescription" TextWrapping="Wrap" Margin="0,0,-0.333,0" FontSize="16"><Run FontWeight="Bold" Text="Welcome to Library Operations, please enter your UserName "/><Run FontWeight="Bold" Text="and"/><Run FontWeight="Bold" Text=" "/><Run FontWeight="Bold" Text="Password"/><LineBreak/><LineBreak/><Run Text="If you are a first time user you are required to &quot;"/><Run FontWeight="Bold" Text="Register"/><Run Text="&quot;"/><LineBreak/><Run/></TextBlock>
+            <Grid Height="200">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="20*" />
+                    <ColumnDefinition Width="20*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25*" />
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="25*" />
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="25*" />
+                </Grid.RowDefinitions>
+                <Label x:Name="lblUserName" Content="UserName:" HorizontalAlignment="Center"  VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="14"/>
+                <Label x:Name="lblPassword" Content="Password:" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2" FontSize="14"/>
+                <TextBox x:Name="tbxUserName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Column="1" Grid.Row="0"/>
+                <Button x:Name="btnLogin" Content="Login" Margin="5" Grid.Column="2" Grid.Row="5" Click="btnLogin_Click"/>
+                <Button x:Name="btnRegister" Content="Register" Margin="5" Grid.Column="0" Grid.Row="5" Click="btnRegister_Click"/>
+                <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" VerticalAlignment="Center" Width="180" Height="23" Grid.Column="1" Grid.Row="2"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>
