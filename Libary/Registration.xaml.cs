@@ -35,37 +35,62 @@ namespace Libary
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            mtdAddUser();
-
-            MessageBox.Show("Your details have been Registered. You will be notified when registration is complete.");
-            mtdClearUserDetails();
-
+            if (passwordBox.Password == passwordBoxConfirm.Password)
+            {
+                mtdAddUser();
+                MessageBox.Show("Your details have been Registered. You will be notified when registration is complete.");
+                mtdClearUserDetails();
+            }
+            else
+            {
+                MessageBox.Show("Password Mismatch");
+            }
         }
 
         private void mtdAddUser()
         {
-            db.Configuration.AutoDetectChangesEnabled = false;
-            db.Configuration.ValidateOnSaveEnabled = false;
-            db.Entry(GetUserDetails()).State = System.Data.Entity.EntityState.Added;
+            try
+            {
+                db.Configuration.AutoDetectChangesEnabled = false;
+                db.Configuration.ValidateOnSaveEnabled = false;
+                db.Entry(GetUserDetails()).State = System.Data.Entity.EntityState.Added;
 
-            db.SaveChanges();
-            db.Configuration.AutoDetectChangesEnabled = true;
-            db.Configuration.ValidateOnSaveEnabled = true;
+                db.SaveChanges();
+                db.Configuration.AutoDetectChangesEnabled = true;
+                db.Configuration.ValidateOnSaveEnabled = true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Wrong Details");
+            }     
         }
  
         private User GetUserDetails ()
         {
             User tempUser = new User();
+            string password = passwordBox.Password;
+            string passwordConfirm = passwordBoxConfirm.Password;
 
             tempUser.UserId = Guid.NewGuid().ToString();
             tempUser.FirstName = tbxFirstName.Text.Trim();
             tempUser.LastName = tbxLastName.Text.Trim();
-            tempUser.Address = tbxAddress1.Text.Trim() + tbxAddress2.Text.Trim() + tbxAddress3.Text.Trim();
+            tempUser.Address = tbxAddress1.Text.Trim() + " " + tbxAddress2.Text.Trim() + " " + tbxAddress3.Text.Trim();
             tempUser.TelephoneNo = tbxTelephoneNo.Text.Trim();
             tempUser.Email = tbxEmailAddress.Text.Trim();
-            tempUser.Password = tbxPassword.Text.Trim();
+            tempUser.Password = password;
             tempUser.UserName = tbxUserName.Text.Trim();
             tempUser.AccessLevel = 1;
+
+            /* if (password == passwordConfirm)
+             {
+                 return tempUser;
+             }
+
+             else
+             {
+                 User emptyUser = new User();
+                 return emptyUser;
+             }*/
 
             return tempUser;
 
@@ -76,13 +101,18 @@ namespace Libary
             tbxFirstName.Text = "";
             tbxLastName.Text = "";
             tbxUserName.Text = "";
-            tbxPassword.Text = "";
-            tbxPasswordConfirm.Text = "";
+
+            passwordBox.Password = "";
+            passwordBoxConfirm.Password = "";
+
             tbxAddress1.Text = "";
             tbxAddress2.Text = "";
             tbxAddress3.Text = "";
             tbxTelephoneNo.Text = "";
             tbxEmailAddress.Text = "";
-        }        
+
+            /* tbxPassword.Text = "";
+             tbxPasswordConfirm.Text = "";*/
+        }
     }
 }
