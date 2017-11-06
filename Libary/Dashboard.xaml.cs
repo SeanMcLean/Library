@@ -27,17 +27,13 @@ namespace Libary
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            ShowButtons(currentUser.AccessLevel);
-        }
 
-        private void ShowButtons(int accessLevel)
-        {
-            if (accessLevel == 1)
-            {
-                btnAdmin.Visibility = Visibility.Visible;
-                btnNewItem.Visibility = Visibility.Visible;
-                btnNormalUser.Visibility = Visibility.Visible;
-            }
+            Libary.SeanDBDataSet seanDBDataSet = ((Libary.SeanDBDataSet)(this.FindResource("seanDBDataSet")));
+            // Load data into the table User. You can modify this code as needed.
+            Libary.SeanDBDataSetTableAdapters.UserTableAdapter seanDBDataSetUserTableAdapter = new Libary.SeanDBDataSetTableAdapters.UserTableAdapter();
+            seanDBDataSetUserTableAdapter.Fill(seanDBDataSet.User);
+            System.Windows.Data.CollectionViewSource userViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("userViewSource")));
+            userViewSource.View.MoveCurrentToFirst();
         }
     }
 }

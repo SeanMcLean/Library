@@ -5,11 +5,61 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Libary"
         mc:Ignorable="d"
-        Title="Dashboard" Height="300" Width="300" WindowState="Maximized" Loaded="Window_Loaded">
+        Title="Dashboard" Height="800" Width="900" WindowState="Maximized" Loaded="Window_Loaded" >
+    <Window.Resources>
+        <local:SeanDBDataSet x:Key="seanDBDataSet"/>
+        <CollectionViewSource x:Key="userViewSource" Source="{Binding User, Source={StaticResource seanDBDataSet}}"/>
+    </Window.Resources>
     <Grid>
-        <Button x:Name="btnAdmin" Content="Admin" Visibility="Collapsed" HorizontalAlignment="Left" Margin="25,10,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btnNewItem" Visibility="Hidden" Content="New item" HorizontalAlignment="Left" Margin="117,10,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btnNormalUser" Visibility="Visible" Content="Normal user" HorizontalAlignment="Left" Margin="207,10,0,0" VerticalAlignment="Top" Width="75"/>
+        <TabControl x:Name="tabControl" Margin="10" >
+            <TabItem Header="Search">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="135*"/>
+                        <ColumnDefinition Width="82*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Margin="5,5,5.333,4.667" DataContext="{StaticResource userViewSource}" Grid.ColumnSpan="2">
+                        <TextBlock x:Name="tblk" HorizontalAlignment="Left" Margin="5" TextWrapping="Wrap" Text="Search using item keyword" VerticalAlignment="Top"/>
+                        <Grid Height="60">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10*" />
+                                <ColumnDefinition Width="15*" />
+                                <ColumnDefinition Width="10*" />
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btnSearch" Content="Search" Margin="15" Grid.Column="2" Grid.Row="0"/>
+                            <Label x:Name="lblSearch" Content="Password:" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="14"/>
+                            <TextBox x:Name="tbxSearch" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Column="1" Grid.Row="0"/>
+                        </Grid>
+                        <StackPanel Margin="0,0,0.333,0" Orientation="Vertical">
+                            <DataGrid x:Name="userDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="0,0,0.333,0" RowDetailsVisibilityMode="VisibleWhenSelected">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn x:Name="userIdColumn" Binding="{Binding UserId}" Header="User Id" Width="SizeToHeader"/>
+                                    <DataGridTextColumn x:Name="userNameColumn" Binding="{Binding UserName}" Header="User Name" Width="SizeToHeader"/>
+                                    <DataGridTextColumn x:Name="firstNameColumn" Binding="{Binding FirstName}" Header="First Name" Width="SizeToHeader"/>
+                                    <DataGridTextColumn x:Name="lastNameColumn" Binding="{Binding LastName}" Header="Last Name" Width="SizeToHeader"/>
+                                    <DataGridTextColumn x:Name="addressColumn" Binding="{Binding Address}" Header="Address" Width="SizeToHeader"/>
+                                    <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Email}" Header="Email" Width="SizeToHeader"/>
+                                    <DataGridTextColumn x:Name="telephoneNoColumn" Binding="{Binding TelephoneNo}" Header="Telephone No" Width="SizeToHeader"/>
+                                    <DataGridTextColumn x:Name="passwordColumn" Binding="{Binding Password}" Header="Password" Width="SizeToHeader"/>
+                                    <DataGridTextColumn x:Name="accessLevelColumn" Binding="{Binding AccessLevel}" Header="Access Level" Width="SizeToHeader"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </StackPanel>
+
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Employee">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Publisher">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Browse">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
 
     </Grid>
 </Window>
