@@ -20,6 +20,9 @@ namespace Libary
     public partial class Dashboard : Window
     {
         public User currentUser;
+
+        System.Data.OleDb.OleDbDataAdapter dataAdapter;
+
         public Dashboard()
         {
             InitializeComponent();
@@ -34,6 +37,27 @@ namespace Libary
             seanDBDataSetUserTableAdapter.Fill(seanDBDataSet.User);
             System.Windows.Data.CollectionViewSource userViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("userViewSource")));
             userViewSource.View.MoveCurrentToFirst();
+
+            Libary.SeanDBDataSet1 seanDBDataSet1 = ((Libary.SeanDBDataSet1)(this.FindResource("seanDBDataSet1")));
+            // Load data into the table Item. You can modify this code as needed.
+            Libary.SeanDBDataSet1TableAdapters.ItemTableAdapter seanDBDataSet1ItemTableAdapter = new Libary.SeanDBDataSet1TableAdapters.ItemTableAdapter();
+            seanDBDataSet1ItemTableAdapter.Fill(seanDBDataSet1.Item);
+            System.Windows.Data.CollectionViewSource itemViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("itemViewSource")));
+            itemViewSource.View.MoveCurrentToFirst();
+
+
+            Libary.SeanDBDataSetPublisher seanDBDataSetPublisher = ((Libary.SeanDBDataSetPublisher)(this.FindResource("seanDBDataSetPublisher")));
+            // Load data into the table Publisher. You can modify this code as needed.
+            Libary.SeanDBDataSetPublisherTableAdapters.PublisherTableAdapter seanDBDataSetPublisherPublisherTableAdapter = new Libary.SeanDBDataSetPublisherTableAdapters.PublisherTableAdapter();
+            seanDBDataSetPublisherPublisherTableAdapter.Fill(seanDBDataSetPublisher.Publisher);
+            System.Windows.Data.CollectionViewSource publisherViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("publisherViewSource")));
+            publisherViewSource.View.MoveCurrentToFirst();
+        }
+
+        private void btnEditItem_Click(object sender, RoutedEventArgs e)
+        {
+ 
+
         }
     }
 }

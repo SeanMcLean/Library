@@ -92,6 +92,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SeanDBDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="SeanDBDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SeanDBDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SeanDBDataSetPublisher.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SeanDBDataSetPublisher.xsd</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>LibraryDataModel.tt</DependentUpon>
     </Compile>
@@ -157,6 +167,28 @@
     </None>
     <None Include="SeanDBDataSet.xss">
       <DependentUpon>SeanDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="SeanDBDataSet1.xsc">
+      <DependentUpon>SeanDBDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="SeanDBDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SeanDBDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SeanDBDataSet1.xss">
+      <DependentUpon>SeanDBDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="SeanDBDataSetPublisher.xsc">
+      <DependentUpon>SeanDBDataSetPublisher.xsd</DependentUpon>
+    </None>
+    <None Include="SeanDBDataSetPublisher.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SeanDBDataSetPublisher.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SeanDBDataSetPublisher.xss">
+      <DependentUpon>SeanDBDataSetPublisher.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
