@@ -25,6 +25,8 @@ namespace Libary
         //Global list used to contain all users
         List<User> userList = new List<User>();
 
+        User currentUser = new User();
+
         public MainWindow()
         {
             InitializeComponent();

@@ -40,13 +40,13 @@
 
                             <Button x:Name="btnReserve" Content="Reserve" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" Width="81" Grid.Column="0" Grid.Row="1" Height="35" />
                             <Button x:Name="btnEditItem" Content="Submit" HorizontalAlignment="Left" Margin="4.667,5,0,0" VerticalAlignment="Top" Width="85" Grid.Column="1" Grid.Row="1"  Click="btnEditItem_Click" Height="35"/>
-                            <Button x:Name="btnDeleteItem" Content="Delete" HorizontalAlignment="Left" Margin="5.333,5,0,0" VerticalAlignment="Top" Width="94" Grid.Column="2" Grid.Row="1" Height="35"/>
+                            <Button x:Name="btnDeleteItem" Content="Delete" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top" Width="75" Grid.Column="2" Grid.Row="1"/>
 
                         </Grid>
                         <StackPanel Margin="0,0,0.333,0" Orientation="Vertical"/>
-                        <DataGrid x:Name="itemDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource itemViewSource}}" Margin="5" RowDetailsVisibilityMode="VisibleWhenSelected">
+                        <DataGrid x:Name="itemDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource itemViewSource}}" Margin="5" RowDetailsVisibilityMode="VisibleWhenSelected"  CanUserSortColumns="True">
                             <DataGrid.Columns>
-                                <DataGridTextColumn x:Name="itemIdColumn" Binding="{Binding ItemId}" Header="Item Id" Width="SizeToHeader"/>
+                                <DataGridTextColumn x:Name="itemIdColumn" Binding="{Binding ItemId}" Header="Item Id" Width="SizeToHeader" IsReadOnly="True"/>
                                 <DataGridTextColumn x:Name="iSBNColumn" Binding="{Binding ISBN}" Header="ISBN" Width="SizeToHeader"/>
                                 <DataGridTextColumn x:Name="titleColumn" Binding="{Binding Title}" Header="Title" Width="SizeToHeader"/>
                                 <DataGridTextColumn x:Name="genreColumn" Binding="{Binding Genre}" Header="Genre" Width="SizeToHeader"/>
@@ -54,10 +54,17 @@
                                 <DataGridTextColumn x:Name="publisherColumn" Binding="{Binding Publisher}" Header="Publisher" Width="SizeToHeader"/>
                                 <DataGridTextColumn x:Name="copiesAvailableColumn" Binding="{Binding CopiesAvailable}" Header="Copies Available" Width="SizeToHeader"/>
                                 <DataGridTextColumn x:Name="copieOnLoanColumn" Binding="{Binding CopieOnLoan}" Header="Copie On Loan" Width="SizeToHeader"/>
-                                <DataGridTemplateColumn x:Name="publicationDateColumn" Header="Publication Date" Width="SizeToHeader">
+                                <DataGridTemplateColumn>
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <DatePicker SelectedDate="{Binding PublicationDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                            <Button Content="Edit" Click="Search_Button_Click_Edit" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Delete" Click="Search_Button_Click_Delete" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -95,17 +102,32 @@
                             <Button x:Name="btnDeleteItemEmp" Content="Delete" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top" Width="75" Grid.Column="2" Grid.Row="1"/>
 
                         </Grid>
-                        <StackPanel Margin="0,0,0.333,0" Orientation="Vertical">
-                            <DataGrid x:Name="userDataGridEmp" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected">
+                        <StackPanel  Margin="0,0,0.333,0" >
+                            <DataGrid Name="DatagridEmployee" HorizontalAlignment="Left" AutoGenerateColumns="False" Height="183">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn x:Name="userNameColumnEmp" Binding="{Binding UserName}" Header="User Name" Width="SizeToHeader"/>
-                                    <DataGridTextColumn x:Name="firstNameColumnEmp" Binding="{Binding FirstName}" Header="First Name" Width="SizeToHeader"/>
-                                    <DataGridTextColumn x:Name="lastNameColumnEmp" Binding="{Binding LastName}" Header="Last Name" Width="SizeToHeader"/>
+                                    <DataGridTextColumn x:Name="userIdColumn" Binding="{Binding UserId}" Header="User Id" Width="SizeToHeader"/>
+                                    <DataGridTextColumn x:Name="userNameColumn" Binding="{Binding UserName}" Header="User Name" Width="SizeToHeader"/>
+                                    <DataGridTextColumn x:Name="firstNameColumn" Binding="{Binding FirstName}" Header="First Name" Width="SizeToHeader"/>
+                                    <DataGridTextColumn x:Name="lastNameColumn" Binding="{Binding LastName}" Header="Last Name" Width="SizeToHeader"/>
                                     <DataGridTextColumn x:Name="addressColumnEmp" Binding="{Binding Address}" Header="Address" Width="SizeToHeader"/>
                                     <DataGridTextColumn x:Name="emailColumnEmp" Binding="{Binding Email}" Header="Email" Width="SizeToHeader"/>
                                     <DataGridTextColumn x:Name="telephoneNoColumnEmp" Binding="{Binding TelephoneNo}" Header="Telephone No" Width="SizeToHeader"/>
-                                    <DataGridTextColumn x:Name="passwordColumnEmp" Binding="{Binding Password}" Header="Password" Width="SizeToHeader"/>
-                                    <DataGridTextColumn x:Name="accessLevelColumnEmp" Binding="{Binding AccessLevel}" Header="Access Level" Width="SizeToHeader"/>
+                                    <DataGridTextColumn x:Name="passwordColumn" Binding="{Binding Password}" Header="Password" Width="SizeToHeader"/>
+                                    <DataGridTextColumn x:Name="accessLevelColumn" Binding="{Binding AccessLevel}" Header="Access Level" Width="SizeToHeader" />
+                                    <DataGridTemplateColumn>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Content="Edit" Click="Employee_Button_Click_Edit" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Content="Delete" Click="Employee_Button_Click_Delete" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </StackPanel>
@@ -141,17 +163,37 @@
 
                         </Grid>
                         <StackPanel Margin="5"/>
-                        <DataGrid x:Name="publisherDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={ DynamicResource.}}" Margin="5" RowDetailsVisibilityMode="VisibleWhenSelected">
+                        <DataGrid x:Name="publisherDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource publisherViewSource}}" Margin="5" RowDetailsVisibilityMode="VisibleWhenSelected">
                             <DataGrid.Columns>
-                                <DataGridTextColumn x:Name="publisherIdColumn" Binding="{Binding PublisherId}" Header="Publisher Id" Width="SizeToHeader"/>
+                                <DataGridTextColumn x:Name="publisherIdColumn" Binding="{Binding PublisherId}" Header="Publisher Id" Width="SizeToHeader" IsReadOnly="True"/>
                                 <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
                                 <DataGridTextColumn x:Name="addressColumn" Binding="{Binding Address}" Header="Address" Width="SizeToHeader"/>
                                 <DataGridTextColumn x:Name="telephoneNoColumn" Binding="{Binding TelephoneNo}" Header="Telephone No" Width="SizeToHeader"/>
                                 <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Email}" Header="Email" Width="SizeToHeader"/>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Edit" Click="Publisher_Button_Click_Edit" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Delete" Click="Publisher_Button_Click_Delete" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
                     </StackPanel>
                 </Grid>
+            </TabItem>
+            <TabItem Header="Author">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Member">
+                <Grid Background="#FFE5E5E5"/>
             </TabItem>
             <TabItem Header="Browse">
                 <Grid Background="#FFE5E5E5"/>

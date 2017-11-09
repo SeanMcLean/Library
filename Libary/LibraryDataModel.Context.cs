@@ -26,5 +26,7 @@ namespace Libary
         }
     
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Item> Items { get; set; }
+        public virtual DbSet<Publisher> Publishers { get; set; }
     }
 }
