@@ -48,7 +48,7 @@ namespace Libary
                 dashboard.Owner = this;
                 dashboard.currentUser = user;
                 dashboard.ShowDialog();
-                this.Hide();
+                this.Close();
             }
             else
             {

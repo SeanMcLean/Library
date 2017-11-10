@@ -19,7 +19,7 @@ namespace Libary
     /// </summary>
     public partial class Dashboard : Window
     {
-      //  DBEntities userDB;
+        //  DBEntities userDB;
         DBEntities itemsDB;
         DBEntities EmployeeDB;
         DBEntities PublisherDB;
@@ -61,7 +61,7 @@ namespace Libary
         /// 
         /// Author Methods & Events
         /// 
-        private void Author_Button_Click_Edit(object sender, RoutedEventArgs e)
+        private void Author_Button_Click_Delete(object sender, RoutedEventArgs e)
         {
             AuthorDB = new DBEntities();
             Author item = authorDataGrid.SelectedItem as Author;
@@ -81,7 +81,7 @@ namespace Libary
                 MessageBox.Show(ex.Message);
             }
         }
-        private void Author_Button_Click_Delete(object sender, RoutedEventArgs e)
+        private void Author_Button_Click_Edit(object sender, RoutedEventArgs e)
         {
             AuthorDB = new DBEntities();
             Author item = authorDataGrid.SelectedItem as Author;
@@ -111,22 +111,10 @@ namespace Libary
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
         /// 
         /// Member Methods & Events
         /// 
-        private void Member_Button_Click_Edit(object sender, RoutedEventArgs e)
+        private void Member_Button_Click_Delete(object sender, RoutedEventArgs e)
         {
             MemberDB = new DBEntities();
             Member item = MemberDataGrid.SelectedItem as Member;
@@ -147,7 +135,7 @@ namespace Libary
             }
         }
 
-        private void Member_Button_Click_Delete(object sender, RoutedEventArgs e)
+        private void Member_Button_Click_Edit(object sender, RoutedEventArgs e)
         {
             MemberDB = new DBEntities();
             Member item = MemberDataGrid.SelectedItem as Member;
@@ -180,19 +168,6 @@ namespace Libary
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         /// 
         /// Item Methods & Events
         /// 
@@ -205,14 +180,14 @@ namespace Libary
 
             if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you wish to Update", "Confirm", MessageBoxButton.YesNo))
             {
-                itemTemp.ISBN = (itemDataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
-                itemTemp.Title = (itemDataGrid.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
-                itemTemp.Genre = (itemDataGrid.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
-                itemTemp.Author = (itemDataGrid.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
-                itemTemp.Publisher = (itemDataGrid.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text;
-                itemTemp.CopiesAvailable = int.Parse((itemDataGrid.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text);
-                itemTemp.CopieOnLoan = int.Parse((itemDataGrid.SelectedCells[7].Column.GetCellContent(item) as TextBlock).Text);
-                itemTemp.PublicationDate = Convert.ToDateTime((publisherDataGrid.SelectedCells[8].Column.GetCellContent(item) as TextBlock).Text);
+                itemTemp.ISBN = (itemDataGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                itemTemp.Title = (itemDataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+                itemTemp.Genre = (itemDataGrid.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
+                itemTemp.Author = (itemDataGrid.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
+                itemTemp.Publisher = (itemDataGrid.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
+                itemTemp.CopiesAvailable = int.Parse((itemDataGrid.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text);
+                itemTemp.CopieOnLoan = int.Parse((itemDataGrid.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text);
+             //   itemTemp.PublicationDate = Convert.ToDateTime((publisherDataGrid.SelectedCells[7].Column.GetCellContent(item) as TextBlock).Text);
 
                 try
                 {
@@ -257,14 +232,6 @@ namespace Libary
             DatagridEmployee.Items.Refresh();
         }
 
-
-
-
-
-
-
-
-
         /// 
         /// Publisher Methods & Events
         /// 
@@ -299,7 +266,7 @@ namespace Libary
             Publisher item = publisherDataGrid.SelectedItem as Publisher;
             Publisher Publisher1 = PublisherDB.Publishers.Where(b => b.PublisherId == item.PublisherId).Single();
 
-            if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you wish to Delete", "Confirm", MessageBoxButton.YesNo))
+            if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you wish to Update", "Confirm", MessageBoxButton.YesNo))
             {
                 Publisher1.Name = (publisherDataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
                 Publisher1.Address = (publisherDataGrid.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
@@ -323,16 +290,6 @@ namespace Libary
             publisherDataGrid.ItemsSource = PublisherDB.Publishers.ToList();
             publisherDataGrid.Items.Refresh();
         }
-
-
-
-
-
-
-
-
-
-
 
 
         /// 
@@ -383,16 +340,16 @@ namespace Libary
                 try
                 {
                     EmployeeDB.SaveChanges();
-            }
-            catch (Exception ex)
-            {
+                }
+                catch (Exception ex)
+                {
 
-                MessageBox.Show(ex.Message);
-            }
+                    MessageBox.Show(ex.Message);
+                }
             }
 
         }
-    
+
 
         private void refresEmployeeGrid()
         {

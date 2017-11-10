@@ -7,12 +7,6 @@
         mc:Ignorable="d"
         Title="Dashboard" Height="800" Width="900" Loaded="Window_Loaded" >
     <Window.Resources>
-        <local:SeanDBDataSet x:Key="seanDBDataSet"/>
-        <CollectionViewSource x:Key="userViewSource" Source="{Binding User, Source={StaticResource seanDBDataSet}}"/>
-        <local:SeanDBDataSet1 x:Key="seanDBDataSet1"/>
-        <CollectionViewSource x:Key="itemViewSource" Source="{Binding Item, Source={StaticResource seanDBDataSet1}}"/>
-        <local:SeanDBDataSetPublisher x:Key="seanDBDataSetPublisher"/>
-        <CollectionViewSource x:Key="publisherViewSource" Source="{Binding Publisher, Source={StaticResource seanDBDataSetPublisher}}"/>
     </Window.Resources>
     <Grid>
         <TabControl x:Name="tabControl" Margin="10" >
@@ -23,7 +17,7 @@
                         <ColumnDefinition Width="445*"/>
                         <ColumnDefinition Width="328*"/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel Margin="5,5,5.333,4.667" DataContext="{StaticResource userViewSource}" Grid.ColumnSpan="3">
+                    <StackPanel Margin="5,5,5.333,4.667"  Grid.ColumnSpan="3">
                         <TextBlock x:Name="tblk" HorizontalAlignment="Left" Margin="5" TextWrapping="Wrap" Text="Search using item keyword" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
                         <Grid Height="100">
                             <Grid.ColumnDefinitions>
@@ -43,7 +37,6 @@
                         <StackPanel Margin="0,0,0.333,0" Orientation="Vertical"/>
                         <DataGrid x:Name="itemDataGrid" AutoGenerateColumns="False" RowDetailsVisibilityMode="VisibleWhenSelected" HorizontalAlignment="Left">
                             <DataGrid.Columns>
-                                <DataGridTextColumn x:Name="itemIdColumn" Binding="{Binding ItemId}" Header="Item Id" Width="SizeToHeader" IsReadOnly="True"/>
                                 <DataGridTextColumn x:Name="iSBNColumn" Binding="{Binding ISBN}" Header="ISBN" Width="SizeToHeader"/>
                                 <DataGridTextColumn x:Name="titleColumn" Binding="{Binding Title}" Header="Title" Width="SizeToHeader"/>
                                 <DataGridTextColumn x:Name="genreColumn" Binding="{Binding Genre}" Header="Genre" Width="SizeToHeader"/>
@@ -53,11 +46,11 @@
                                 <DataGridTextColumn x:Name="copieOnLoanColumn" Binding="{Binding CopieOnLoan}" Header="Copie On Loan" Width="SizeToHeader"/>
                                 <DataGridTemplateColumn>
                                     <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Button Content="Reserve"  />
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
+                                        <DataTemplate>
+                                            <Button Content="Reserve"  />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
                                 <DataGridTemplateColumn>
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
