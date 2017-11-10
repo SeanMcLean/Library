@@ -19,10 +19,13 @@ namespace Libary
     /// </summary>
     public partial class Dashboard : Window
     {
-        DBEntities userDB;
-        DBEntities itemsDB = new DBEntities();
-        DBEntities EmployeeDB = new DBEntities();
+      //  DBEntities userDB;
+        DBEntities itemsDB;
+        DBEntities EmployeeDB;
         DBEntities PublisherDB;
+        DBEntities MemberDB;
+        DBEntities AuthorDB;
+
 
         public User currentUser = new User();
 
@@ -33,69 +36,238 @@ namespace Libary
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            userDB = new DBEntities();
-            DatagridEmployee.ItemsSource = userDB.Users.ToList();
+            itemsDB = new DBEntities();
+            itemDataGrid.ItemsSource = itemsDB.Items.ToList();
 
-            /* Default Generated Code
-             * Libary.SeanDBDataSet seanDBDataSet = ((Libary.SeanDBDataSet)(this.FindResource("seanDBDataSet")));
-             // Load data into the table User. You can modify this code as needed.
-             Libary.SeanDBDataSetTableAdapters.UserTableAdapter seanDBDataSetUserTableAdapter = new Libary.SeanDBDataSetTableAdapters.UserTableAdapter();
-             seanDBDataSetUserTableAdapter.Fill(seanDBDataSet.User);
-             System.Windows.Data.CollectionViewSource userViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("userViewSource")));
-             userViewSource.View.MoveCurrentToFirst();*/
-
+            EmployeeDB = new DBEntities();
+            DatagridEmployee.ItemsSource = EmployeeDB.Employees.ToList();
 
             PublisherDB = new DBEntities();
             publisherDataGrid.ItemsSource = PublisherDB.Publishers.ToList();
 
-             
-            /*
-            Libary.SeanDBDataSet1 seanDBDataSet1 = ((Libary.SeanDBDataSet1)(this.FindResource("seanDBDataSet1")));
-            // Load data into the table Item. You can modify this code as needed.
-            Libary.SeanDBDataSet1TableAdapters.ItemTableAdapter seanDBDataSet1ItemTableAdapter = new Libary.SeanDBDataSet1TableAdapters.ItemTableAdapter();
-            seanDBDataSet1ItemTableAdapter.Fill(seanDBDataSet1.Item);
-            System.Windows.Data.CollectionViewSource itemViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("itemViewSource")));
-            itemViewSource.View.MoveCurrentToFirst();
-            */
+            AuthorDB = new DBEntities();
+            authorDataGrid.ItemsSource = AuthorDB.Authors.ToList();
 
-            Libary.SeanDBDataSetPublisher seanDBDataSetPublisher = ((Libary.SeanDBDataSetPublisher)(this.FindResource("seanDBDataSetPublisher")));
-            // Load data into the table Publisher. You can modify this code as needed.
-            Libary.SeanDBDataSetPublisherTableAdapters.PublisherTableAdapter seanDBDataSetPublisherPublisherTableAdapter = new Libary.SeanDBDataSetPublisherTableAdapters.PublisherTableAdapter();
-            seanDBDataSetPublisherPublisherTableAdapter.Fill(seanDBDataSetPublisher.Publisher);
-            System.Windows.Data.CollectionViewSource publisherViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("publisherViewSource")));
-            publisherViewSource.View.MoveCurrentToFirst();
+            MemberDB = new DBEntities();
+            MemberDataGrid.ItemsSource = MemberDB.Members.ToList();
+
         }
 
         /// 
         /// Click Event Triggers 
         /// 
 
-        private void btnEditItem_Click(object sender, RoutedEventArgs e)
+
+        /// 
+        /// Author Methods & Events
+        /// 
+        private void Author_Button_Click_Edit(object sender, RoutedEventArgs e)
         {
-               currentUser = new User();
-           // currentUser.FirstName = .Text.Trim();
+            AuthorDB = new DBEntities();
+            Author item = authorDataGrid.SelectedItem as Author;
+
+            try
+            {
+                Author author = AuthorDB.Authors.Where(b => b.AuthorId == item.AuthorId).Single();
+                if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you wish to Delete", "Confirm", MessageBoxButton.YesNo))
+                {
+                    AuthorDB.Authors.Remove(author);
+                    AuthorDB.SaveChanges();
+                    refresAuthorGrid();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void Author_Button_Click_Delete(object sender, RoutedEventArgs e)
+        {
+            AuthorDB = new DBEntities();
+            Author item = authorDataGrid.SelectedItem as Author;
+
+            Author authorTemp = AuthorDB.Authors.Where(b => b.AuthorId == item.AuthorId).Single();
+
+            if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you wish to Update", "Confirm", MessageBoxButton.YesNo))
+            {
+                authorTemp.AuthorName = (authorDataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+
+                try
+                {
+                    AuthorDB.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
+        private void refresAuthorGrid()
+        {
+            authorDataGrid.ItemsSource = AuthorDB.Authors.ToList();
+            authorDataGrid.Items.Refresh();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /// 
+        /// Member Methods & Events
+        /// 
+        private void Member_Button_Click_Edit(object sender, RoutedEventArgs e)
+        {
+            MemberDB = new DBEntities();
+            Member item = MemberDataGrid.SelectedItem as Member;
+
+            try
+            {
+                Member member1 = MemberDB.Members.Where(b => b.MemberId == item.MemberId).Single();
+                if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you wish to Delete", "Confirm", MessageBoxButton.YesNo))
+                {
+                    MemberDB.Members.Remove(member1);
+                    MemberDB.SaveChanges();
+                    refresItemGrid();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Member_Button_Click_Delete(object sender, RoutedEventArgs e)
+        {
+            MemberDB = new DBEntities();
+            Member item = MemberDataGrid.SelectedItem as Member;
+
+            Member memberTemp = MemberDB.Members.Where(b => b.MemberId == item.MemberId).Single();
+
+            if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you wish to Update", "Confirm", MessageBoxButton.YesNo))
+            {
+                memberTemp.FirstName = (MemberDataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+                memberTemp.LastName = (MemberDataGrid.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
+                memberTemp.Address = (MemberDataGrid.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
+                memberTemp.Classification = (MemberDataGrid.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
+                memberTemp.TransactionHistoryTotal = decimal.Parse((MemberDataGrid.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text);
+                try
+                {
+                    MemberDB.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void refresMemberGrid()
+        {
+            MemberDataGrid.ItemsSource = MemberDB.Members.ToList();
+            MemberDataGrid.Items.Refresh();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /// 
+        /// Item Methods & Events
+        /// 
         private void Item_Button_Click_Edit(object sender, RoutedEventArgs e)
         {
+            itemsDB = new DBEntities();
+            Item item = itemDataGrid.SelectedItem as Item;
 
+            Item itemTemp = itemsDB.Items.Where(b => b.ItemId == item.ItemId).Single();
+
+            if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you wish to Update", "Confirm", MessageBoxButton.YesNo))
+            {
+                itemTemp.ISBN = (itemDataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+                itemTemp.Title = (itemDataGrid.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
+                itemTemp.Genre = (itemDataGrid.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
+                itemTemp.Author = (itemDataGrid.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
+                itemTemp.Publisher = (itemDataGrid.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text;
+                itemTemp.CopiesAvailable = int.Parse((itemDataGrid.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text);
+                itemTemp.CopieOnLoan = int.Parse((itemDataGrid.SelectedCells[7].Column.GetCellContent(item) as TextBlock).Text);
+                itemTemp.PublicationDate = Convert.ToDateTime((publisherDataGrid.SelectedCells[8].Column.GetCellContent(item) as TextBlock).Text);
+
+                try
+                {
+                    itemsDB.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         private void Item_Button_Click_Delete(object sender, RoutedEventArgs e)
         {
+            itemsDB = new DBEntities();
 
+            Item item = itemDataGrid.SelectedItem as Item;
+
+            try
+            {
+                Item item1 = itemsDB.Items.Where(b => b.ItemId == item.ItemId).Single();
+                if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you wish to Delete", "Confirm", MessageBoxButton.YesNo))
+                {
+                    itemsDB.Items.Remove(item1);
+                    itemsDB.SaveChanges();
+                    refresItemGrid();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
         }
 
-        private void Search_Button_Click_Delete(object sender, RoutedEventArgs e)
+        private void refresItemGrid()
         {
-
+            DatagridEmployee.ItemsSource = itemsDB.Users.ToList();
+            DatagridEmployee.Items.Refresh();
         }
 
-        private void Search_Button_Click_Edit(object sender, RoutedEventArgs e)
-        {
 
-        }
 
+
+
+
+
+
+
+        /// 
+        /// Publisher Methods & Events
+        /// 
         private void Publisher_Button_Click_Delete(object sender, RoutedEventArgs e)
         {
             PublisherDB = new DBEntities();
@@ -109,7 +281,7 @@ namespace Libary
                 {
                     PublisherDB.Publishers.Remove(publisher1);
                     PublisherDB.SaveChanges();
-                    refresEmployeehGrid();
+                    refresPublisherGrid();
                 }
 
 
@@ -146,20 +318,39 @@ namespace Libary
 
         }
 
+        private void refresPublisherGrid()
+        {
+            publisherDataGrid.ItemsSource = PublisherDB.Publishers.ToList();
+            publisherDataGrid.Items.Refresh();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        /// 
+        /// Employee Methods & Events
+        /// 
         private void Employee_Button_Click_Delete(object sender, RoutedEventArgs e)
         {
-            userDB = new DBEntities();
-
-            User item = DatagridEmployee.SelectedItem as User;
+            EmployeeDB = new DBEntities();
+            Employee item = DatagridEmployee.SelectedItem as Employee;
 
             try
             {
-                User user1 = userDB.Users.Where(b => b.UserId == item.UserId).Single();
+                Employee employee = EmployeeDB.Employees.Where(b => b.EmployeeId == item.EmployeeId).Single();
                 if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you wish to Delete", "Confirm", MessageBoxButton.YesNo))
                 {
-                    userDB.Users.Remove(user1);
-                    userDB.SaveChanges();
-                    refresEmployeehGrid();
+                    EmployeeDB.Employees.Remove(employee);
+                    EmployeeDB.SaveChanges();
+                    refresEmployeeGrid();
                 }
 
 
@@ -173,26 +364,25 @@ namespace Libary
 
         private void Employee_Button_Click_Edit(object sender, RoutedEventArgs e)
         {
-            userDB = new DBEntities();
-            User item = DatagridEmployee.SelectedItem as User;
-            User user1 = userDB.Users.Where(b => b.UserId == item.UserId).Single();
+            EmployeeDB = new DBEntities();
+            Employee item = DatagridEmployee.SelectedItem as Employee;
+            Employee employee = EmployeeDB.Employees.Where(b => b.EmployeeId == item.EmployeeId).Single();
 
             if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you wish to Update Data", "Confirm", MessageBoxButton.YesNo))
             {
-                // user1.UserId = (DatagridEmployee.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+                employee.FirstName = (DatagridEmployee.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+                employee.LastName = (DatagridEmployee.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
+                employee.Address = (DatagridEmployee.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
+                employee.TelephoneNo = int.Parse((DatagridEmployee.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text);
+                employee.Email = (DatagridEmployee.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text;
+                employee.Role = (DatagridEmployee.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text;
+                employee.HireDate = Convert.ToDateTime((DatagridEmployee.SelectedCells[7].Column.GetCellContent(item) as TextBlock).Text);
+                employee.Salary = decimal.Parse((DatagridEmployee.SelectedCells[8].Column.GetCellContent(item) as TextBlock).Text);
 
-                user1.UserName = (DatagridEmployee.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
-                user1.FirstName = (DatagridEmployee.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
-                user1.LastName = (DatagridEmployee.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
-                user1.Address = (DatagridEmployee.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
-                user1.Email = (DatagridEmployee.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text;
-                user1.TelephoneNo = (DatagridEmployee.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text;
-                user1.Password = (DatagridEmployee.SelectedCells[7].Column.GetCellContent(item) as TextBlock).Text;
-                user1.AccessLevel = int.Parse((DatagridEmployee.SelectedCells[8].Column.GetCellContent(item) as TextBlock).Text);
 
-                            try
-            {
-                userDB.SaveChanges();
+                try
+                {
+                    EmployeeDB.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -202,25 +392,16 @@ namespace Libary
             }
 
         }
+    
 
-        /// 
-        /// Custom Methods 
-        /// 
-
-        private void refresEmployeehGrid()
+        private void refresEmployeeGrid()
         {
-            DatagridEmployee.ItemsSource = userDB.Users.ToList();
+            DatagridEmployee.ItemsSource = EmployeeDB.Employees.ToList();
             DatagridEmployee.Items.Refresh();
         }
-        private void refresPublisherGrid()
-        {
-            publisherDataGrid.ItemsSource = userDB.Users.ToList();
-            publisherDataGrid.Items.Refresh();
-        }
-        private void refresItemhGrid()
-        {
-            DatagridEmployee.ItemsSource = userDB.Users.ToList();
-            DatagridEmployee.Items.Refresh();
-        }
+
+        /// 
+        /// Methods 
+        /// 
     }
 }

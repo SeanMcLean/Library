@@ -28,5 +28,10 @@ namespace Libary
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<Publisher> Publishers { get; set; }
+        public virtual DbSet<Author> Authors { get; set; }
+        public virtual DbSet<Member> Members { get; set; }
+        public virtual DbSet<MemberHistory> MemberHistories { get; set; }
+        public virtual DbSet<Transaction> Transactions { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
     }
 }

@@ -66,8 +66,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Author.cs">
+      <DependentUpon>LibraryDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Employee.cs">
+      <DependentUpon>LibraryDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Item.cs">
       <DependentUpon>LibraryDataModel.tt</DependentUpon>
@@ -86,6 +92,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LibraryDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Member.cs">
+      <DependentUpon>LibraryDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MemberHistory.cs">
+      <DependentUpon>LibraryDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Publisher.cs">
       <DependentUpon>LibraryDataModel.tt</DependentUpon>
@@ -107,6 +119,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SeanDBDataSetPublisher.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction.cs">
+      <DependentUpon>LibraryDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
       <DependentUpon>LibraryDataModel.tt</DependentUpon>

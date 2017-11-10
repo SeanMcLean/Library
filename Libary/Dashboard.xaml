@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Libary"
         mc:Ignorable="d"
-        Title="Dashboard" Height="800" Width="900" WindowState="Maximized" Loaded="Window_Loaded" >
+        Title="Dashboard" Height="800" Width="900" Loaded="Window_Loaded" >
     <Window.Resources>
         <local:SeanDBDataSet x:Key="seanDBDataSet"/>
         <CollectionViewSource x:Key="userViewSource" Source="{Binding User, Source={StaticResource seanDBDataSet}}"/>
@@ -19,11 +19,12 @@
             <TabItem Header="Search">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="135*"/>
-                        <ColumnDefinition Width="82*"/>
+                        <ColumnDefinition Width="94*"/>
+                        <ColumnDefinition Width="445*"/>
+                        <ColumnDefinition Width="328*"/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel Margin="5,5,5.333,4.667" DataContext="{StaticResource userViewSource}" Grid.ColumnSpan="2">
-                        <TextBlock x:Name="tblk" HorizontalAlignment="Left" Margin="5" TextWrapping="Wrap" Text="Search using item keyword" VerticalAlignment="Top"/>
+                    <StackPanel Margin="5,5,5.333,4.667" DataContext="{StaticResource userViewSource}" Grid.ColumnSpan="3">
+                        <TextBlock x:Name="tblk" HorizontalAlignment="Left" Margin="5" TextWrapping="Wrap" Text="Search using item keyword" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
                         <Grid Height="100">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="10*" />
@@ -34,17 +35,13 @@
                                 <RowDefinition Height="50"/>
                                 <RowDefinition Height="50"/>
                             </Grid.RowDefinitions>
-                            <Button x:Name="btnSearch" Content="Search" Margin="15" Grid.Column="2" Grid.Row="0"/>
-                            <Label x:Name="lblSearch" Content="Search:" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="14"/>
-                            <TextBox x:Name="tbxSearch" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Column="1" Grid.Row="0"/>
-
-                            <Button x:Name="btnReserve" Content="Reserve" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" Width="81" Grid.Column="0" Grid.Row="1" Height="35" />
-                            <Button x:Name="btnEditItem" Content="Submit" HorizontalAlignment="Left" Margin="4.667,5,0,0" VerticalAlignment="Top" Width="85" Grid.Column="1" Grid.Row="1"  Click="btnEditItem_Click" Height="35"/>
-                            <Button x:Name="btnDeleteItem" Content="Delete" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top" Width="75" Grid.Column="2" Grid.Row="1"/>
+                            <Button x:Name="btnSearch" Content="Search" Margin="10.333,10" Grid.Column="2" Grid.Row="0" FontSize="16" FontWeight="Bold"/>
+                            <Label x:Name="lblSearch" Content="Search:" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="18" FontWeight="Bold"/>
+                            <TextBox x:Name="tbxSearch" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Column="1" Grid.Row="0" FontSize="16"/>
 
                         </Grid>
                         <StackPanel Margin="0,0,0.333,0" Orientation="Vertical"/>
-                        <DataGrid x:Name="itemDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource itemViewSource}}" Margin="5" RowDetailsVisibilityMode="VisibleWhenSelected"  CanUserSortColumns="True">
+                        <DataGrid x:Name="itemDataGrid" AutoGenerateColumns="False" RowDetailsVisibilityMode="VisibleWhenSelected" HorizontalAlignment="Left">
                             <DataGrid.Columns>
                                 <DataGridTextColumn x:Name="itemIdColumn" Binding="{Binding ItemId}" Header="Item Id" Width="SizeToHeader" IsReadOnly="True"/>
                                 <DataGridTextColumn x:Name="iSBNColumn" Binding="{Binding ISBN}" Header="ISBN" Width="SizeToHeader"/>
@@ -56,15 +53,22 @@
                                 <DataGridTextColumn x:Name="copieOnLoanColumn" Binding="{Binding CopieOnLoan}" Header="Copie On Loan" Width="SizeToHeader"/>
                                 <DataGridTemplateColumn>
                                     <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Content="Reserve"  />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Content="Edit" Click="Search_Button_Click_Edit" />
+                                            <Button Content="Update" Click="Item_Button_Click_Edit" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
                                 <DataGridTemplateColumn>
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Content="Delete" Click="Search_Button_Click_Delete" />
+                                            <Button Content="Delete" Click="Item_Button_Click_Delete" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -78,11 +82,12 @@
             <TabItem Header="Employee">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="135*"/>
-                        <ColumnDefinition Width="82*"/>
+                        <ColumnDefinition Width="143*"/>
+                        <ColumnDefinition Width="397*"/>
+                        <ColumnDefinition Width="328*"/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel Margin="5,5,5.333,4.667" DataContext="{StaticResource userViewSource}" Grid.ColumnSpan="2">
-                        <TextBlock x:Name="tblkEmp" HorizontalAlignment="Left" Margin="5" TextWrapping="Wrap" Text="Search using item keyword" VerticalAlignment="Top"/>
+                    <StackPanel Margin="5,5,5.334,4.667" Grid.ColumnSpan="3">
+                        <TextBlock x:Name="tblkEmp" HorizontalAlignment="Left" Margin="5" TextWrapping="Wrap" Text="Search Employee" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
                         <Grid Height="100">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="10*" />
@@ -94,30 +99,27 @@
                                 <RowDefinition Height="50"/>
                             </Grid.RowDefinitions>
                             <Button x:Name="btnSearchEmp" Content="Search" Margin="15" Grid.Column="2" Grid.Row="0"/>
-                            <Label x:Name="lblSearchEmp" Content="Search:" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="14"/>
+                            <Label x:Name="lblSearchEmp" Content="Search:" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="18" FontWeight="Bold"/>
                             <TextBox x:Name="tbxSearchEmp" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Column="1" Grid.Row="0"/>
-
-                            <Button x:Name="btnReserveEmp" Content="Reserve" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top" Width="75" Grid.Column="0" Grid.Row="1" />
-                            <Button x:Name="btnEditItemEmp" Content="Submit" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top" Width="75" Grid.Column="1" Grid.Row="1"  Click="btnEditItem_Click"/>
-                            <Button x:Name="btnDeleteItemEmp" Content="Delete" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top" Width="75" Grid.Column="2" Grid.Row="1"/>
 
                         </Grid>
                         <StackPanel  Margin="0,0,0.333,0" >
-                            <DataGrid Name="DatagridEmployee" HorizontalAlignment="Left" AutoGenerateColumns="False" Height="183">
+                            <DataGrid Name="DatagridEmployee" HorizontalAlignment="Left" AutoGenerateColumns="False" RowDetailsVisibilityMode="VisibleWhenSelected" Height="183">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn x:Name="userIdColumn" Binding="{Binding UserId}" Header="User Id" Width="SizeToHeader"/>
-                                    <DataGridTextColumn x:Name="userNameColumn" Binding="{Binding UserName}" Header="User Name" Width="SizeToHeader"/>
-                                    <DataGridTextColumn x:Name="firstNameColumn" Binding="{Binding FirstName}" Header="First Name" Width="SizeToHeader"/>
-                                    <DataGridTextColumn x:Name="lastNameColumn" Binding="{Binding LastName}" Header="Last Name" Width="SizeToHeader"/>
-                                    <DataGridTextColumn x:Name="addressColumnEmp" Binding="{Binding Address}" Header="Address" Width="SizeToHeader"/>
-                                    <DataGridTextColumn x:Name="emailColumnEmp" Binding="{Binding Email}" Header="Email" Width="SizeToHeader"/>
-                                    <DataGridTextColumn x:Name="telephoneNoColumnEmp" Binding="{Binding TelephoneNo}" Header="Telephone No" Width="SizeToHeader"/>
-                                    <DataGridTextColumn x:Name="passwordColumn" Binding="{Binding Password}" Header="Password" Width="SizeToHeader"/>
-                                    <DataGridTextColumn x:Name="accessLevelColumn" Binding="{Binding AccessLevel}" Header="Access Level" Width="SizeToHeader" />
+                                    <DataGridTextColumn x:Name="employeeIdColumnEmployee" Binding="{Binding EmployeeId}" Header="Employee Id" Width="SizeToHeader" IsReadOnly="True"/>
+                                    <DataGridTextColumn x:Name="firstNameColumnEmployee" Binding="{Binding FirstName}" Header="First Name" Width="SizeToHeader"/>
+                                    <DataGridTextColumn x:Name="lastNameColumnEmployee" Binding="{Binding LastName}" Header="Last Name" Width="SizeToHeader"/>
+                                    <DataGridTextColumn x:Name="addressColumnEmployee" Binding="{Binding Address}" Header="Address" Width="SizeToHeader"/>
+                                    <DataGridTextColumn x:Name="telephoneNoColumnEmployee" Binding="{Binding TelephoneNo}" Header="Telephone No" Width="SizeToHeader"/>
+                                    <DataGridTextColumn x:Name="emailColumnEmployee" Binding="{Binding Email}" Header="Email" Width="SizeToHeader"/>
+                                    <DataGridTextColumn x:Name="roleColumnEmployee" Binding="{Binding Role}" Header="Job" Width="SizeToHeader"/>
+                                    <DataGridTextColumn x:Name="hireDateColumnEmployee" Binding="{Binding HireDate}" Header="Hire Date" Width="SizeToHeader" />
+                                    <DataGridTextColumn x:Name="salaryColumnEmployee" Binding="{Binding Salary}" Header="Salary" Width="SizeToHeader" />
+
                                     <DataGridTemplateColumn>
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Button Content="Edit" Click="Employee_Button_Click_Edit" />
+                                                <Button Content="Update" Click="Employee_Button_Click_Edit" />
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>
                                     </DataGridTemplateColumn>
@@ -141,8 +143,8 @@
                         <ColumnDefinition Width="135*"/>
                         <ColumnDefinition Width="82*"/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel Margin="5,5,5.333,4.667" DataContext="{StaticResource userViewSource}" Grid.ColumnSpan="2">
-                        <TextBlock x:Name="tblkPub" HorizontalAlignment="Left" Margin="5" TextWrapping="Wrap" Text="Search using item keyword" VerticalAlignment="Top"/>
+                    <StackPanel Margin="5,5,5.333,4.667" Grid.ColumnSpan="2">
+                        <TextBlock x:Name="tblkPub" HorizontalAlignment="Left" Margin="5" TextWrapping="Wrap" Text="Search Publisher" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" FontStyle="Italic"/>
                         <Grid Height="100">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="10*" />
@@ -154,16 +156,12 @@
                                 <RowDefinition Height="50"/>
                             </Grid.RowDefinitions>
                             <Button x:Name="btnSearchPub" Content="Search" Margin="15" Grid.Column="2" Grid.Row="0"/>
-                            <Label x:Name="lblSearchPub" Content="Search:" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="14"/>
+                            <Label x:Name="lblSearchPub" Content="Search:" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="18" FontWeight="Bold"/>
                             <TextBox x:Name="tbxSearchPub" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Column="1" Grid.Row="0"/>
-
-                            <Button x:Name="btnReservePub" Content="Reserve" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top" Width="75" Grid.Column="0" Grid.Row="1" />
-                            <Button x:Name="btnEditItemPub" Content="Submit" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top" Width="75" Grid.Column="1" Grid.Row="1"  Click="btnEditItem_Click"/>
-                            <Button x:Name="btnDeleteItemPub" Content="Delete" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top" Width="75" Grid.Column="2" Grid.Row="1"/>
 
                         </Grid>
                         <StackPanel Margin="5"/>
-                        <DataGrid x:Name="publisherDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource publisherViewSource}}" Margin="5" RowDetailsVisibilityMode="VisibleWhenSelected">
+                        <DataGrid x:Name="publisherDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" RowDetailsVisibilityMode="VisibleWhenSelected">
                             <DataGrid.Columns>
                                 <DataGridTextColumn x:Name="publisherIdColumn" Binding="{Binding PublisherId}" Header="Publisher Id" Width="SizeToHeader" IsReadOnly="True"/>
                                 <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
@@ -173,7 +171,7 @@
                                 <DataGridTemplateColumn>
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Content="Edit" Click="Publisher_Button_Click_Edit" />
+                                            <Button Content="Update" Click="Publisher_Button_Click_Edit" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -190,10 +188,103 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Author">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="135*"/>
+                        <ColumnDefinition Width="82*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Margin="5,5,5.333,4.667" Grid.ColumnSpan="2">
+                        <TextBlock x:Name="tblkAuth" HorizontalAlignment="Left" Margin="5" TextWrapping="Wrap" Text="Search Publisher" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" FontStyle="Italic"/>
+                        <Grid Height="100">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10*" />
+                                <ColumnDefinition Width="15*" />
+                                <ColumnDefinition Width="10*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+                            <Button x:Name="btnSearchAuth" Content="Search" Margin="15" Grid.Column="2" Grid.Row="0"/>
+                            <Label x:Name="lblSearchAuth" Content="Search:" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="18" FontWeight="Bold"/>
+                            <TextBox x:Name="tbxSearchAuth" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Column="1" Grid.Row="0"/>
+
+                        </Grid>
+                        <StackPanel Margin="5"/>
+                        <DataGrid x:Name="authorDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" RowDetailsVisibilityMode="VisibleWhenSelected">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn x:Name="IdColumnAuth" Binding="{Binding AuthorId}" Header="Author Id" Width="SizeToHeader" IsReadOnly="True"/>
+                                <DataGridTextColumn x:Name="nameColumnAuth" Binding="{Binding AuthorName}" Header="Author Name" Width="SizeToHeader"/>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Update" Click="Author_Button_Click_Edit" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Delete" Click="Author_Button_Click_Delete" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Grid>
+
             </TabItem>
             <TabItem Header="Member">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="135*"/>
+                        <ColumnDefinition Width="82*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Margin="5,5,5.333,4.667" Grid.ColumnSpan="2">
+                        <TextBlock x:Name="tblkMember" HorizontalAlignment="Left" Margin="5" TextWrapping="Wrap" Text="Search Publisher" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" FontStyle="Italic"/>
+                        <Grid Height="100">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10*" />
+                                <ColumnDefinition Width="15*" />
+                                <ColumnDefinition Width="10*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+                            <Button x:Name="btnSearchMember" Content="Search" Margin="15" Grid.Column="2" Grid.Row="0"/>
+                            <Label x:Name="lblSearchMember" Content="Search:" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="18" FontWeight="Bold"/>
+                            <TextBox x:Name="tbxSearchMember" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Column="1" Grid.Row="0"/>
+
+                        </Grid>
+                        <StackPanel Margin="5"/>
+                        <DataGrid x:Name="MemberDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" RowDetailsVisibilityMode="VisibleWhenSelected">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn x:Name="IdColumnMember" Binding="{Binding MemberId}" Header="Member Id" Width="SizeToHeader" IsReadOnly="True"/>
+                                <DataGridTextColumn x:Name="firstNameColumnMember" Binding="{Binding FirstName}" Header="First Name" Width="SizeToHeader"/>
+                                <DataGridTextColumn x:Name="lastNameColumnMember" Binding="{Binding LastName}" Header="Last Name" Width="SizeToHeader"/>
+                                <DataGridTextColumn x:Name="addressColumnMember" Binding="{Binding Address}" Header="Address" Width="SizeToHeader"/>
+                                <DataGridTextColumn x:Name="classificationColumnMember" Binding="{Binding Classification}" Header="Classification" Width="SizeToHeader"/>
+                                <DataGridTextColumn x:Name="transactionHistoryColumnMember" Binding="{Binding TransactionHistoryTotal}" Header="Transactions Total" Width="SizeToHeader"/>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Update" Click="Member_Button_Click_Edit" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Delete" Click="Member_Button_Click_Delete" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Grid>
             </TabItem>
             <TabItem Header="Browse">
                 <Grid Background="#FFE5E5E5"/>
