@@ -99,6 +99,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LibraryDataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="LibraryMethods.cs" />
     <Compile Include="Member.cs">
       <DependentUpon>LibraryDataModel.tt</DependentUpon>
     </Compile>

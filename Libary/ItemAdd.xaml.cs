@@ -21,6 +21,7 @@ namespace Libary
     public partial class ItemAdd : Page
     {
         DBEntities db = new DBEntities();
+        Dashboard dash = new Dashboard();
 
         public ItemAdd()
         {
@@ -33,7 +34,7 @@ namespace Libary
                 MessageBox.Show("New Item Added");
                 mtdClearItemDetails();
 
-            
+          //  dash.refresItemGrid();
 
         }
 

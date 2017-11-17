@@ -20,18 +20,20 @@ namespace Libary
     public partial class Dashboard : Window
     {
         //  DBEntities userDB;
+       
         DBEntities itemsDB;
         DBEntities EmployeeDB;
         DBEntities PublisherDB;
         DBEntities MemberDB;
         DBEntities AuthorDB;
 
-
+        LibraryMethods lm = new LibraryMethods();
         public User currentUser = new User();
 
         public Dashboard()
         {
             InitializeComponent();
+            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -61,6 +63,39 @@ namespace Libary
         /// 
         /// Author Methods & Events
         /// 
+        private void Item_Button_Click_Reserve(object sender, RoutedEventArgs e)
+        {
+            itemsDB = new DBEntities();
+            Item item = itemDataGrid.SelectedItem as Item;
+
+            Item itemTemp = itemsDB.Items.Where(b => b.ItemId == item.ItemId).Single();
+
+            if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you wish to Reserve", "Confirm", MessageBoxButton.YesNo))
+            {
+                if (itemTemp.CopiesAvailable == 0)
+                {
+                    MessageBox.Show("No copies available");
+                }
+                else
+                {
+                    itemTemp.CopiesAvailable--;
+                    itemTemp.CopieOnLoan++;
+                    refresItemGrid();
+                }
+            
+                try
+                {
+                    itemsDB.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+        }
+
         private void Author_Button_Click_Delete(object sender, RoutedEventArgs e)
         {
             AuthorDB = new DBEntities();
@@ -126,7 +161,7 @@ namespace Libary
                 {
                     MemberDB.Members.Remove(member1);
                     MemberDB.SaveChanges();
-                    refresItemGrid();
+                    refresMemberGrid();
                 }
             }
             catch (Exception ex)
@@ -228,8 +263,8 @@ namespace Libary
 
         public void refresItemGrid()
         {
-            DatagridEmployee.ItemsSource = itemsDB.Users.ToList();
-            DatagridEmployee.Items.Refresh();
+            itemDataGrid.ItemsSource = itemsDB.Items.ToList();
+            itemDataGrid.Items.Refresh();
         }
 
         /// 
@@ -375,6 +410,7 @@ namespace Libary
             frAuthor.Content = new AuthorAdd();
 
         }
+
 
         /// 
         /// Methods 
