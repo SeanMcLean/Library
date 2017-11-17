@@ -30,7 +30,7 @@ namespace Libary
 
             MainWindow win = new MainWindow();
             win.Show();
-            this.Close();
+            Close();
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)

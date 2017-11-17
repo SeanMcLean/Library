@@ -7,12 +7,12 @@
       <Diagram DiagramId="b4e230edbf78474b90b9ab2e60b34953" Name="Diagram1">
         <EntityTypeShape EntityType="SeanDBModel.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SeanDBModel.Item" Width="1.5" PointX="3.75" PointY="0.75" />
-        <EntityTypeShape EntityType="SeanDBModel.Publisher" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="SeanDBModel.Author" Width="1.5" PointX="3.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SeanDBModel.Publisher" Width="1.5" PointX="7.5" PointY="4.75" />
+        <EntityTypeShape EntityType="SeanDBModel.Author" Width="1.5" PointX="9.125" PointY="4.75" />
         <EntityTypeShape EntityType="SeanDBModel.Member" Width="1.5" PointX="5.75" PointY="4.75" />
         <EntityTypeShape EntityType="SeanDBModel.MemberHistory" Width="1.5" PointX="6.75" PointY="0.75" />
         <EntityTypeShape EntityType="SeanDBModel.Transaction" Width="1.5" PointX="0.75" PointY="7.75" />
-        <EntityTypeShape EntityType="SeanDBModel.Employee" Width="1.5" PointX="3.375" PointY="7.75" />
+        <EntityTypeShape EntityType="SeanDBModel.Employee" Width="1.5" PointX="4" PointY="4.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

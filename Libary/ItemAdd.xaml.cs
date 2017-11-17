@@ -20,9 +20,70 @@ namespace Libary
     /// </summary>
     public partial class ItemAdd : Page
     {
+        DBEntities db = new DBEntities();
+
         public ItemAdd()
         {
             InitializeComponent();
+        }
+
+        private void btnAddItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void mtdAddItem()
+        {
+            try
+            {
+                db.Configuration.AutoDetectChangesEnabled = false;
+                db.Configuration.ValidateOnSaveEnabled = false;
+                db.Entry(GetUserDetails()).State = System.Data.Entity.EntityState.Added;
+
+                db.SaveChanges();
+                db.Configuration.AutoDetectChangesEnabled = true;
+                db.Configuration.ValidateOnSaveEnabled = true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Wrong Details");
+            }
+        }
+
+        private Item GetUserDetails()
+        {
+            Item tempItem = new Item();
+
+            tempItem.ItemId = Guid.NewGuid().ToString();
+            tempItem.ISBN = txtISBN.Text.Trim();
+            tempItem.Title = txtTitle.Text.Trim();
+            tempItem.Genre = txtGenre.Text.Trim();
+            tempItem.Author = txtAuthor.Text.Trim();
+         //   tempItem.CopiesAvailable = txtCopiesAv.Text.Trim();
+            tempItem.CopieOnLoan = 0;
+         //   tempItem.PublicationDate = txtPublicationDate.Text.Trim();
+            tempItem.Publisher = "NA";
+
+            return tempItem;
+            
+                                          
+                                                        
+                                                                      
+
+        }
+
+        private void mtdClearItemDetails()
+        {
+            txtISBN.Text = "";
+            txtTitle.Text = "";
+            txtGenre.Text = "";
+
+            txtAuthor.Text = "";
+            txtCopiesAv.Text = "";
+       //     tbxAddress3.Text = "";
+       //     tbxTelephoneNo.Text = "";
+        //    tbxEmailAddress.Text = "";
+
         }
     }
 }

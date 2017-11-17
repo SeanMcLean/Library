@@ -360,6 +360,21 @@ namespace Libary
         private void btnItemAdd_Click(object sender, RoutedEventArgs e)
         {
             frItem.Content = new ItemAdd();
+            frItem.Visibility = Visibility.Visible;
+            btnItemAdd.Visibility = Visibility.Hidden;
+            btnItemClose.Visibility = Visibility.Visible;
+
+        }
+        private void btnItemClose_Click(object sender, RoutedEventArgs e)
+        {
+            btnItemAdd.Visibility = Visibility.Visible;
+            btnItemClose.Visibility = Visibility.Hidden;
+            frItem.Visibility = Visibility.Hidden;
+        }
+        private void btnAuthorAdd_Click(object sender, RoutedEventArgs e)
+        {
+            frAuthor.Content = new AuthorAdd();
+
         }
 
         /// 

@@ -23,8 +23,7 @@
         <TextBox x:Name="txtCopiesAv"  HorizontalAlignment="Left" Grid.Column="1" Grid.Row="5" FontSize="14" Margin="5" Width="40"/>
         <TextBox x:Name="txtPublicationDate"  HorizontalAlignment="Left" Grid.Column="4" Grid.Row="5" FontSize="14" Margin="5" Width="40"/>
 
-        <Button x:Name="btnCancel" Content="Cancel" Margin="5" Grid.Column="1" Grid.Row="21" FontSize="12"  />
-        <Button x:Name="btnAddItem" Content="Add" Margin="5" Grid.Column="4" Grid.Row="7" FontSize="12" Grid.ColumnSpan="2" />
+        <Button x:Name="btnAddItem" Content="Add" Margin="5" Grid.Column="4" Grid.Row="7" FontSize="12" Grid.ColumnSpan="2" Click="btnAddItem_Click" />
 
         <Grid.RowDefinitions>
             <RowDefinition Height="85*"/>
