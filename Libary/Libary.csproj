@@ -78,6 +78,9 @@
     <Compile Include="Item.cs">
       <DependentUpon>LibraryDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ItemAdd.xaml.cs">
+      <DependentUpon>ItemAdd.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LibraryDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -127,6 +130,10 @@
       <DependentUpon>LibraryDataModel.tt</DependentUpon>
     </Compile>
     <Page Include="Dashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ItemAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -81,17 +81,6 @@ namespace Libary
             tempUser.UserName = tbxUserName.Text.Trim();
             tempUser.AccessLevel = 1;
 
-            /* if (password == passwordConfirm)
-             {
-                 return tempUser;
-             }
-
-             else
-             {
-                 User emptyUser = new User();
-                 return emptyUser;
-             }*/
-
             return tempUser;
 
         }
@@ -111,8 +100,6 @@ namespace Libary
             tbxTelephoneNo.Text = "";
             tbxEmailAddress.Text = "";
 
-            /* tbxPassword.Text = "";
-             tbxPasswordConfirm.Text = "";*/
         }
     }
 }

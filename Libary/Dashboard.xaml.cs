@@ -357,6 +357,11 @@ namespace Libary
             DatagridEmployee.Items.Refresh();
         }
 
+        private void btnItemAdd_Click(object sender, RoutedEventArgs e)
+        {
+            frItem.Content = new ItemAdd();
+        }
+
         /// 
         /// Methods 
         /// 
