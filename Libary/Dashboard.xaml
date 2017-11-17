@@ -112,9 +112,8 @@
                                     <DataGridTextColumn x:Name="telephoneNoColumnEmployee" Binding="{Binding TelephoneNo}" Header="Telephone No" Width="SizeToHeader"/>
                                     <DataGridTextColumn x:Name="emailColumnEmployee" Binding="{Binding Email}" Header="Email" Width="SizeToHeader"/>
                                     <DataGridTextColumn x:Name="roleColumnEmployee" Binding="{Binding Role}" Header="Job" Width="SizeToHeader"/>
-                                    <DataGridTextColumn x:Name="hireDateColumnEmployee" Binding="{Binding HireDate}" Header="Hire Date" Width="SizeToHeader" />
+                                    <DataGridTextColumn x:Name="hireDateColumnEmployee" Binding="{Binding HireDate}" Header="Hire Date" Width="SizeToHeader" IsReadOnly="True"/>
                                     <DataGridTextColumn x:Name="salaryColumnEmployee" Binding="{Binding Salary}" Header="Salary" Width="SizeToHeader" />
-
                                     <DataGridTemplateColumn>
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>

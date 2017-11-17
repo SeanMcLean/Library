@@ -29,6 +29,11 @@ namespace Libary
 
         private void btnAddItem_Click(object sender, RoutedEventArgs e)
         {
+                mtdAddItem();
+                MessageBox.Show("New Item Added");
+                mtdClearItemDetails();
+
+            
 
         }
 
@@ -59,17 +64,12 @@ namespace Libary
             tempItem.Title = txtTitle.Text.Trim();
             tempItem.Genre = txtGenre.Text.Trim();
             tempItem.Author = txtAuthor.Text.Trim();
-         //   tempItem.CopiesAvailable = txtCopiesAv.Text.Trim();
+            tempItem.CopiesAvailable = Convert.ToInt32(txtCopiesAv.Text.Trim());
             tempItem.CopieOnLoan = 0;
-         //   tempItem.PublicationDate = txtPublicationDate.Text.Trim();
+            tempItem.PublicationDate = Convert.ToDateTime(dpPublicationDate.SelectedDate.Value.Date.ToShortDateString());
             tempItem.Publisher = "NA";
 
             return tempItem;
-            
-                                          
-                                                        
-                                                                      
-
         }
 
         private void mtdClearItemDetails()
@@ -77,13 +77,11 @@ namespace Libary
             txtISBN.Text = "";
             txtTitle.Text = "";
             txtGenre.Text = "";
-
+            txtCopiesAv.Text = "";
             txtAuthor.Text = "";
             txtCopiesAv.Text = "";
-       //     tbxAddress3.Text = "";
-       //     tbxTelephoneNo.Text = "";
-        //    tbxEmailAddress.Text = "";
-
+            dpPublicationDate.Text = "" ;
         }
+
     }
 }

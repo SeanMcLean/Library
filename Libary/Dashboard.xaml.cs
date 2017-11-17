@@ -226,7 +226,7 @@ namespace Libary
             }
         }
 
-        private void refresItemGrid()
+        public void refresItemGrid()
         {
             DatagridEmployee.ItemsSource = itemsDB.Users.ToList();
             DatagridEmployee.Items.Refresh();
@@ -332,10 +332,8 @@ namespace Libary
                 employee.Address = (DatagridEmployee.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
                 employee.TelephoneNo = int.Parse((DatagridEmployee.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text);
                 employee.Email = (DatagridEmployee.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text;
-                employee.Role = (DatagridEmployee.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text;
-                employee.HireDate = Convert.ToDateTime((DatagridEmployee.SelectedCells[7].Column.GetCellContent(item) as TextBlock).Text);
+                employee.Role = (DatagridEmployee.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text;           
                 employee.Salary = decimal.Parse((DatagridEmployee.SelectedCells[8].Column.GetCellContent(item) as TextBlock).Text);
-
 
                 try
                 {
@@ -370,6 +368,7 @@ namespace Libary
             btnItemAdd.Visibility = Visibility.Visible;
             btnItemClose.Visibility = Visibility.Hidden;
             frItem.Visibility = Visibility.Hidden;
+            refresItemGrid();
         }
         private void btnAuthorAdd_Click(object sender, RoutedEventArgs e)
         {
