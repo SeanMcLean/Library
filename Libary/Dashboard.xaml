@@ -54,14 +54,14 @@
                                 <DataGridTemplateColumn>
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Content="Update" Click="Item_Button_Click_Edit" />
+                                            <Button x:Name="btnUpdateItem" Content="Update" Click="Item_Button_Click_Edit" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
                                 <DataGridTemplateColumn>
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Content="Delete" Click="Item_Button_Click_Delete" />
+                                            <Button x:Name="btnDeleteItem" Content="Delete" Click="Item_Button_Click_Delete" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>

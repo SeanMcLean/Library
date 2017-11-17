@@ -20,7 +20,9 @@ namespace Libary
     public partial class Dashboard : Window
     {
         //  DBEntities userDB;
-       
+
+        DBEntities databaseEntity;
+
         DBEntities itemsDB;
         DBEntities EmployeeDB;
         DBEntities PublisherDB;
@@ -407,36 +409,41 @@ namespace Libary
         {
             if (accessLevel == 0)
             {
-                itemsDB = new DBEntities();
+                databaseEntity = new DBEntities();
                 itemDataGrid.ItemsSource = itemsDB.Items.ToList();
 
+                //hide the update and delete buttons of the datagrid by calling column IDs
+                itemDataGrid.Columns[8].Visibility = Visibility.Collapsed;
+                itemDataGrid.Columns[9].Visibility = Visibility.Collapsed;
+
+                //hide the tabs the student should not have access to
                 BrowseTab.Visibility = Visibility.Hidden;
                 MemberTab.Visibility = Visibility.Hidden;
                 EmployeeTab.Visibility = Visibility.Hidden;
                 AuthorTab.Visibility = Visibility.Hidden;
                 PublisherTab.Visibility = Visibility.Hidden;
 
+                //hide buttons student should not have access to
                 btnItemAdd.Visibility = Visibility.Hidden;
                 btnItemClose.Visibility = Visibility.Hidden;
+
 
 
             }
             if (accessLevel == 1)
             {
-                itemsDB = new DBEntities();
-                itemDataGrid.ItemsSource = itemsDB.Items.ToList();
+                databaseEntity = new DBEntities();
 
-                EmployeeDB = new DBEntities();
-                DatagridEmployee.ItemsSource = EmployeeDB.Employees.ToList();
+                itemDataGrid.ItemsSource = databaseEntity.Items.ToList();
 
-                PublisherDB = new DBEntities();
-                publisherDataGrid.ItemsSource = PublisherDB.Publishers.ToList();
+ 
+                DatagridEmployee.ItemsSource = databaseEntity.Employees.ToList();
 
-                AuthorDB = new DBEntities();
-                authorDataGrid.ItemsSource = AuthorDB.Authors.ToList();
+                publisherDataGrid.ItemsSource = databaseEntity.Publishers.ToList();
 
-                MemberDB = new DBEntities();
-                MemberDataGrid.ItemsSource = MemberDB.Members.ToList();
+                authorDataGrid.ItemsSource = databaseEntity.Authors.ToList();
+
+                MemberDataGrid.ItemsSource = databaseEntity.Members.ToList();
             }
         }
     }
