@@ -35,26 +35,34 @@ namespace Libary
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            User user = new User();
-            string username = tbxUserName.Text.Trim();
-            //Password box is accessed using different commands to textbox
-            string password = passwordBox.Password;
-            //Check if inoutted credentials are in SQL database        
-            user = VerifyUserDetails(username, password);
-            if (user.AccessLevel > 0) //user exists
+            try
             {
-                //create a new instance of the Dashboard window
-                Dashboard dashboard = new Dashboard();
-                dashboard.Owner = this;
-                dashboard.currentUser = user;
-                this.Hide();
-                dashboard.ShowDialog();
-                this.Close();
+                User user = new User();
+                string username = tbxUserName.Text.Trim();
+                //Password box is accessed using different commands to textbox
+                string password = passwordBox.Password;
+                //Check if inoutted credentials are in SQL database        
+                user = VerifyUserDetails(username, password);
+                if (user.AccessLevel <= 1) //user exists
+                {
+                    //create a new instance of the Dashboard window
+                    Dashboard dashboard = new Dashboard();
+                    dashboard.Owner = this;
+                    dashboard.currentUser = user;
+                    this.Hide();
+                    dashboard.ShowDialog();
+                    this.Close();
+                }
+                else
+                {
+                    //User does not exist
+                    MessageBox.Show("Invalid user");
+                }
             }
-            else
+            catch (Exception)
             {
-                //User does not exist
-                MessageBox.Show("Invalid user");
+
+                MessageBox.Show("Conection Issues");
             }
         }
 
@@ -104,5 +112,8 @@ namespace Libary
             reg2.Show();
             this.Close();
         }
+
+
     }
+ 
 }

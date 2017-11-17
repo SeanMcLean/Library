@@ -38,21 +38,8 @@ namespace Libary
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            itemsDB = new DBEntities();
-            itemDataGrid.ItemsSource = itemsDB.Items.ToList();
 
-            EmployeeDB = new DBEntities();
-            DatagridEmployee.ItemsSource = EmployeeDB.Employees.ToList();
-
-            PublisherDB = new DBEntities();
-            publisherDataGrid.ItemsSource = PublisherDB.Publishers.ToList();
-
-            AuthorDB = new DBEntities();
-            authorDataGrid.ItemsSource = AuthorDB.Authors.ToList();
-
-            MemberDB = new DBEntities();
-            MemberDataGrid.ItemsSource = MemberDB.Members.ToList();
-
+            ShowDashboard(currentUser.AccessLevel);
         }
 
         /// 
@@ -415,5 +402,44 @@ namespace Libary
         /// 
         /// Methods 
         /// 
+
+        private void ShowDashboard(int accessLevel)
+        {
+            if (accessLevel == 0)
+            {
+                itemsDB = new DBEntities();
+                itemDataGrid.ItemsSource = itemsDB.Items.ToList();
+
+                BrowseTab.Visibility = Visibility.Hidden;
+                MemberTab.Visibility = Visibility.Hidden;
+                EmployeeTab.Visibility = Visibility.Hidden;
+                AuthorTab.Visibility = Visibility.Hidden;
+                PublisherTab.Visibility = Visibility.Hidden;
+
+                btnItemAdd.Visibility = Visibility.Hidden;
+                btnItemClose.Visibility = Visibility.Hidden;
+
+
+            }
+            if (accessLevel == 1)
+            {
+                itemsDB = new DBEntities();
+                itemDataGrid.ItemsSource = itemsDB.Items.ToList();
+
+                EmployeeDB = new DBEntities();
+                DatagridEmployee.ItemsSource = EmployeeDB.Employees.ToList();
+
+                PublisherDB = new DBEntities();
+                publisherDataGrid.ItemsSource = PublisherDB.Publishers.ToList();
+
+                AuthorDB = new DBEntities();
+                authorDataGrid.ItemsSource = AuthorDB.Authors.ToList();
+
+                MemberDB = new DBEntities();
+                MemberDataGrid.ItemsSource = MemberDB.Members.ToList();
+            }
+        }
     }
 }
+
+

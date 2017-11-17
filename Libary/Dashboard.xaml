@@ -10,7 +10,7 @@
     </Window.Resources>
     <Grid>
         <TabControl x:Name="tabControl" Margin="10" >
-            <TabItem Header="Search">
+            <TabItem x:Name="ItemsTab" Header="Search">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="94*"/>
@@ -77,7 +77,7 @@
                 </Grid>
 
             </TabItem>
-            <TabItem Header="Employee">
+            <TabItem x:Name="EmployeeTab" Header="Employee">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="11*"/>
@@ -142,7 +142,7 @@
                 </Grid>
 
             </TabItem>
-            <TabItem Header="Publisher">
+            <TabItem  x:Name="PublisherTab" Header="Publisher" >
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="135*"/>
@@ -199,7 +199,7 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Author">
+            <TabItem x:Name="AuthorTab" Header="Author">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="32*"/>
@@ -254,7 +254,7 @@
                 </Grid>
 
             </TabItem>
-            <TabItem Header="Member">
+            <TabItem x:Name="MemberTab" Header="Member">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="135*"/>
@@ -310,7 +310,7 @@
                     <Frame x:Name="frMember" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="275" Margin="10,438,0,0" VerticalAlignment="Top" Width="814" NavigationUIVisibility="Hidden"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Browse">
+            <TabItem x:Name="BrowseTab" Header="Browse">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
