@@ -43,7 +43,7 @@ namespace Libary
                 string password = passwordBox.Password;
                 //Check if inoutted credentials are in SQL database        
                 user = VerifyUserDetails(username, password);
-                if (user.AccessLevel > 0) //user exists
+                if (user.AccessLevel >= 0) //user exists
                 {
                     //create a new instance of the Dashboard window
                     Dashboard dashboard = new Dashboard();

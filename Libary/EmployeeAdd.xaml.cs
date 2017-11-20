@@ -63,6 +63,8 @@ namespace Libary
             tempEmployee.Address = txtAddress1.Text.Trim() + " " + txtAddress2.Text.Trim() + " " + txtAddress3.Text.Trim();
             tempEmployee.Email = txtEmail.Text.Trim();
             tempEmployee.Role = txtRole.Text.Trim();
+            tempEmployee.Salary = decimal.Parse(txtSalary.Text.Trim());
+            tempEmployee.HireDate = Convert.ToDateTime(dpHireDate.SelectedDate.Value.Date.ToShortDateString());
 
             return tempEmployee;
         }
@@ -76,6 +78,7 @@ namespace Libary
             txtAddress2.Text = "";
             txtAddress3.Text = "";
             txtEmail.Text = "";
+            txtSalary.Text = "";
             txtRole.Text = "";
         }
     }

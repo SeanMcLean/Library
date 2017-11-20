@@ -69,7 +69,7 @@ namespace Libary
             tempItem.Title = txtTitle.Text.Trim();
             tempItem.Genre = txtGenre.Text.Trim();
             tempItem.AuthorId = cbAuthor.SelectedValue.ToString();
-            tempItem.PublisherId = cbPublisher.SelectionBoxItem.ToString();
+            tempItem.PublisherId = cbPublisher.SelectedValue.ToString();
             tempItem.CopiesAvailable = Convert.ToInt32(txtCopiesAv.Text.Trim());
             tempItem.CopieOnLoan = 0;
             tempItem.PublicationDate = Convert.ToDateTime(dpPublicationDate.SelectedDate.Value.Date.ToShortDateString());

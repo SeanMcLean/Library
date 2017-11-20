@@ -61,7 +61,7 @@ namespace Libary
             tempMember.LastName = txtLastName.Text.Trim();
             tempMember.Classification = txtClassification.Text.Trim();
             tempMember.Address = txtAddress1.Text.Trim() + " " + txtAddress2.Text.Trim() + " " + txtAddress3.Text.Trim();
-
+            tempMember.TransactionHistoryTotal = 0;
             return tempMember;
         }
 

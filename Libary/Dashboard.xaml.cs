@@ -21,7 +21,7 @@ namespace Libary
     {
         //  DBEntities userDB;
         DBEntities databaseEntity;
-
+        DBEntities userDB;
         DBEntities itemsDB;
         DBEntities EmployeeDB;
         DBEntities PublisherDB;
@@ -40,17 +40,13 @@ namespace Libary
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
             ShowDashboard(currentUser.AccessLevel);
         }
 
-        /// 
-        /// Click Event Triggers 
-        /// 
 
 
         ///////////////////////////////////////////////////////////////////////////////////////////// 
-        /// Author Methods & Events                                                               ///
+        /// AuthorTab Methods & Events                                                               ///
         ///////////////////////////////////////////////////////////////////////////////////////////// 
         private void Author_Button_Click_Delete(object sender, RoutedEventArgs e)
         {
@@ -89,8 +85,11 @@ namespace Libary
                 }
                 catch (Exception ex)
                 {
-
                     MessageBox.Show(ex.Message);
+                    if ((authorDataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text == " ")
+                    {
+                        MessageBox.Show("Please Enter Name");
+                    }
                 }
             }
         }
@@ -123,7 +122,7 @@ namespace Libary
             authorDataGrid.ItemsSource = AuthorDB.Authors.Where(b => b.AuthorName.Contains(tbxSearchAuth.Text)).ToList();
         }
         ///////////////////////////////////////////////////////////////////////////////////////////// 
-        /// Member Methods & Events                                                               ///
+        /// MemberTab Methods & Events                                                               ///
         ///////////////////////////////////////////////////////////////////////////////////////////// 
         private void Member_Button_Click_Delete(object sender, RoutedEventArgs e)
         {
@@ -155,11 +154,11 @@ namespace Libary
 
             if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you wish to Update", "Confirm", MessageBoxButton.YesNo))
             {
-                memberTemp.FirstName = (MemberDataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
-                memberTemp.LastName = (MemberDataGrid.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
-                memberTemp.Address = (MemberDataGrid.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
-                memberTemp.Classification = (MemberDataGrid.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
-                memberTemp.TransactionHistoryTotal = decimal.Parse((MemberDataGrid.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text);
+                memberTemp.FirstName = (MemberDataGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                memberTemp.LastName = (MemberDataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+                memberTemp.Address = (MemberDataGrid.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
+                memberTemp.Classification = (MemberDataGrid.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
+                memberTemp.TransactionHistoryTotal = decimal.Parse((MemberDataGrid.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text);
                 try
                 {
                     MemberDB.SaveChanges();
@@ -200,7 +199,7 @@ namespace Libary
             MemberDataGrid.ItemsSource = MemberDB.Members.Where(b => b.FirstName.Contains(tbxSearchMember.Text) || b.LastName.Contains(tbxSearchMember.Text)).ToList();
         }
         ///////////////////////////////////////////////////////////////////////////////////////////// 
-        /// Item Methods & Events                                                                 ///
+        /// SearchTab/Item Methods & Events                                                                 ///
         ///////////////////////////////////////////////////////////////////////////////////////////// 
 
         private void tbxSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -319,7 +318,7 @@ namespace Libary
             refresItemGrid();
         }
         ///////////////////////////////////////////////////////////////////////////////////////////// 
-        /// Publisher Methods & Events                                                            ///
+        /// PublisherTab Methods & Events                                                            ///
         ///////////////////////////////////////////////////////////////////////////////////////////// 
         private void Publisher_Button_Click_Delete(object sender, RoutedEventArgs e)
         {
@@ -354,10 +353,10 @@ namespace Libary
 
             if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you wish to Update", "Confirm", MessageBoxButton.YesNo))
             {
-                Publisher1.Name = (publisherDataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
-                Publisher1.Address = (publisherDataGrid.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
-                Publisher1.TelephoneNo = int.Parse((publisherDataGrid.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text);
-                Publisher1.Email = (publisherDataGrid.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
+                Publisher1.Name = (publisherDataGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                Publisher1.Address = (publisherDataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+                Publisher1.TelephoneNo = int.Parse((publisherDataGrid.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text);
+                Publisher1.Email = (publisherDataGrid.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
                 try
                 {
                     PublisherDB.SaveChanges();
@@ -398,7 +397,7 @@ namespace Libary
             publisherDataGrid.ItemsSource = PublisherDB.Publishers.Where(b => b.Name.Contains(tbxSearchPub.Text)).ToList();
         }
         ///////////////////////////////////////////////////////////////////////////////////////////// 
-        /// Employee Methods & Events                                                             ///
+        /// EmployeeTab Methods & Events                                                             ///
         ///////////////////////////////////////////////////////////////////////////////////////////// 
         private void Employee_Button_Click_Delete(object sender, RoutedEventArgs e)
         {
@@ -432,13 +431,18 @@ namespace Libary
 
             if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you wish to Update Data", "Confirm", MessageBoxButton.YesNo))
             {
-                employee.FirstName = (DatagridEmployee.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
-                employee.LastName = (DatagridEmployee.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
-                employee.Address = (DatagridEmployee.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
-                employee.TelephoneNo = int.Parse((DatagridEmployee.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text);
-                employee.Email = (DatagridEmployee.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text;
-                employee.Role = (DatagridEmployee.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text;           
-                employee.Salary = decimal.Parse((DatagridEmployee.SelectedCells[8].Column.GetCellContent(item) as TextBlock).Text);
+                // var hireStr = "";
+
+               // hireStr = (DatagridEmployee.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text;
+
+                employee.FirstName = (DatagridEmployee.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                employee.LastName = (DatagridEmployee.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+                employee.Address = (DatagridEmployee.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
+                employee.TelephoneNo = int.Parse((DatagridEmployee.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text);
+                employee.Email = (DatagridEmployee.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
+                employee.Role = (DatagridEmployee.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text;
+            //    employee.HireDate = (DatagridEmployee.SelectedCells[6].Column.GetCellContent(item) as TextBlock).DisplayDate;
+                employee.Salary = decimal.Parse((DatagridEmployee.SelectedCells[7].Column.GetCellContent(item) as TextBlock).Text);
 
                 try
                 {
@@ -483,6 +487,75 @@ namespace Libary
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////// 
+        /// AdminTab Methods & Events                                                             ///
+        ///////////////////////////////////////////////////////////////////////////////////////////// 
+        private void User_Button_Click_Delete(object sender, RoutedEventArgs e)
+        {
+            userDB = new DBEntities();
+            User item = userDataGrid.SelectedItem as User;
+
+            try
+            {
+                User tempUser = userDB.Users.Where(b => b.UserId == item.UserId).Single();
+                if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you wish to Delete", "Confirm", MessageBoxButton.YesNo))
+                {
+                    userDB.Users.Remove(tempUser);
+                    userDB.SaveChanges();
+                    refresUserGrid();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void User_Button_Click_Edit(object sender, RoutedEventArgs e)
+        {
+            userDB = new DBEntities();
+            User item = userDataGrid.SelectedItem as User;
+            User tempUser = userDB.Users.Where(b => b.UserId == item.UserId).Single();
+
+            if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you wish to Update Data", "Confirm", MessageBoxButton.YesNo))
+            {
+                tempUser.FirstName = (userDataGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                tempUser.LastName = (userDataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+                tempUser.Address = (userDataGrid.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
+                tempUser.TelephoneNo = (userDataGrid.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
+                tempUser.Email = (userDataGrid.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
+                tempUser.Password = (userDataGrid.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text;
+                tempUser.AccessLevel = int.Parse((userDataGrid.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text);
+
+                try
+                {
+                    userDB.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+        }
+
+
+        private void refresUserGrid()
+        {
+            userDataGrid.ItemsSource = userDB.Users.ToList();
+            userDataGrid.Items.Refresh();
+        }
+        private void tbxSearchUser_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            userDB = new DBEntities();
+            userDataGrid.ItemsSource = userDB.Users.Where(b => b.FirstName.Contains(tbxSearchUser.Text) || b.LastName.Contains(tbxSearchUser.Text)).ToList();
+
+        }
+        ///////////////////////////////////////////////////////////////////////////////////////////// 
         /// Methods                                                                               ///
         ///////////////////////////////////////////////////////////////////////////////////////////// 
 
@@ -503,7 +576,6 @@ namespace Libary
                 itemDataGrid.Columns[9].Visibility = Visibility.Collapsed;
 
                 //hide the tabs the student should not have access to
-                //BrowseTab.Visibility = Visibility.Hidden;
                 MemberTab.Visibility = Visibility.Hidden;
                 EmployeeTab.Visibility = Visibility.Hidden;
                 AuthorTab.Visibility = Visibility.Hidden;
@@ -517,7 +589,7 @@ namespace Libary
 
             }
             //show all controls for admin access
-            if (accessLevel == 2)
+            if (accessLevel == 0)
             {
                 //create new entity instances for data connection
                 itemsDB  = new DBEntities();
@@ -525,6 +597,7 @@ namespace Libary
                 PublisherDB = new DBEntities();
                 AuthorDB = new DBEntities();
                 MemberDB = new DBEntities();
+                userDB = new DBEntities();
 
                 //initialse and populate items grid
                 itemDataGrid.ItemsSource = itemsDB.Items.ToList();
@@ -543,8 +616,10 @@ namespace Libary
                 //initialse and populate Member grid
                 MemberDataGrid.ItemsSource = MemberDB.Members.ToList();
 
+                userDataGrid.ItemsSource = userDB.Users.ToList();
             }
         }
+
     }
 }
 
