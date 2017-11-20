@@ -29,6 +29,7 @@ namespace Libary
         {
 
             MainWindow win = new MainWindow();
+            this.Hide();
             win.Show();
             Close();
         }

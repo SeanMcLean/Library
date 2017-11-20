@@ -226,6 +226,13 @@
     <Resource Include="Images\585573-200.png" />
     <Resource Include="Images\reg.png" />
     <Resource Include="Images\back.png" />
+    <Resource Include="Images\29302.png" />
+    <Resource Include="Images\close_4-512.png" />
+    <Resource Include="Images\27825.png" />
+    <Resource Include="Images\white-pen-512.png" />
+    <Resource Include="Images\pen.png" />
+    <Resource Include="Images\auth.jpg" />
+    <Resource Include="Images\sd.png" />
     <Content Include="LibraryDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>LibraryDataModel.edmx</DependentUpon>

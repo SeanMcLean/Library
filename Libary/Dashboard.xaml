@@ -71,9 +71,19 @@
                         </DataGrid>
                     </StackPanel>
                     <StackPanel Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="31" Margin="5" VerticalAlignment="Top" Width="141"/>
-                    <Button x:Name="btnItemAdd" Content="Add Items" HorizontalAlignment="Left" Margin="10,402,0,0" VerticalAlignment="Top" Width="141" Grid.ColumnSpan="2" Height="31" Click="btnItemAdd_Click"/>
-                    <Button x:Name="btnItemClose" Content="Close" HorizontalAlignment="Left" Margin="10,402,0,0" VerticalAlignment="Top" Width="141" Height="31" Grid.ColumnSpan="2" Visibility="Hidden" Click="btnItemClose_Click"/>
+                    <Button x:Name="btnItemAdd" HorizontalAlignment="Left" Margin="10,402,0,0" VerticalAlignment="Top" Width="141" Grid.ColumnSpan="2" Height="36" Click="btnItemAdd_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Padding="10" Height="43" Width="77">Add Items</Label>
+                            <Image Source="Images/29302.png"/>
+                        </StackPanel>
 
+                    </Button>
+                    <Button x:Name="btnItemClose" HorizontalAlignment="Left" Margin="10,402,0,0" VerticalAlignment="Top" Width="141" Height="36" Grid.ColumnSpan="2" Visibility="Hidden" Click="btnItemClose_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Padding="10" Height="43" Width="77" Content="Close"/>
+                            <Image Source="Images/close_4-512.png"/>
+                        </StackPanel>
+                    </Button>
                     <Frame x:Name="frItem" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="10,438,0,0" VerticalAlignment="Top" NavigationUIVisibility="Hidden" />
 
                 </Grid>
@@ -147,8 +157,19 @@
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="31" Margin="10,402,0,0" VerticalAlignment="Top" Width="141"/>
-                    <Button x:Name="btnEmployeeAdd" Content="Add Employee" HorizontalAlignment="Left" Margin="10,402,0,0" VerticalAlignment="Top" Width="141" Grid.ColumnSpan="3" Height="31" Click="btnEmployeeAdd_Click"/>
-                    <Button x:Name="btnEmployeeClose" Content="Close" HorizontalAlignment="Left" Margin="10,402,0,0" VerticalAlignment="Top" Width="141" Grid.ColumnSpan="3" Height="31" Visibility="Hidden" Click="btnEmployeeClose_Click"/>
+                    <Button x:Name="btnEmployeeAdd" HorizontalAlignment="Left" Margin="10,402,0,0" VerticalAlignment="Top" Width="141" Grid.ColumnSpan="3" Height="36" Click="btnEmployeeAdd_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Padding="10" Height="43" Width="101" Content="Add Employee"/>
+                            <Image Source="Images/27825.png"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="btnEmployeeClose" HorizontalAlignment="Left" Margin="10,402,0,0" VerticalAlignment="Top" Width="141" Grid.ColumnSpan="3" Height="36" Visibility="Hidden" Click="btnEmployeeClose_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Padding="10" Height="43" Width="77" Content="Close"/>
+                            <Image Source="Images/close_4-512.png"/>
+                        </StackPanel>
+                    </Button>
 
                     <Frame x:Name="frEmployee" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="10,438,0,0" VerticalAlignment="Top" NavigationUIVisibility="Hidden"/>
 
@@ -206,11 +227,21 @@
                         </DataGrid>
                     </StackPanel>
                     <StackPanel Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="31" Margin="10,402,0,0" VerticalAlignment="Top" Width="141"/>
-                    <Button x:Name="btnPublisherAdd" Content="Add Publisher" HorizontalAlignment="Left" Margin="10,412,0,0" VerticalAlignment="Top" Width="141" Height="31" Click="btnPublisherAdd_Click"/>
-                    <Button x:Name="btnPublisherClose" Content="Close" HorizontalAlignment="Left" Margin="10,412,0,0" VerticalAlignment="Top" Width="141" Height="31"  Visibility="Hidden" Click="btnPublisherClose_Click"/>
+                    <Button x:Name="btnPublisherAdd" HorizontalAlignment="Left" Margin="10,412,0,0" VerticalAlignment="Top" Width="141" Height="36" Click="btnPublisherAdd_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Padding="10" Height="43" Width="105">Add Publisher</Label>
+                            <Image Source="Images/pen.png"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btnPublisherClose"  HorizontalAlignment="Left" Margin="10,412,0,0" VerticalAlignment="Top" Width="141" Height="36"  Visibility="Hidden" Click="btnPublisherClose_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Padding="10" Height="43" Width="77">Close</Label>
+                            <Image Source="Images/close_4-512.png"/>
+                        </StackPanel>
 
+                    </Button>
                     <Frame x:Name="frPublisher" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="275" Margin="10,438,0,0" VerticalAlignment="Top" Width="814" NavigationUIVisibility="Hidden"/>
-
+                    
 
                 </Grid>
             </TabItem>
@@ -262,9 +293,18 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </StackPanel>
-                    <Button x:Name="btnAuthorAdd" Content="Add Author" HorizontalAlignment="Left" Margin="10,412,0,0" VerticalAlignment="Top" Width="141" Height="31"  Click="btnAuthorAdd_Click"/>
-                    <Button x:Name="btnAuthorClose" Content="Close" HorizontalAlignment="Left" Margin="10,412,0,0" VerticalAlignment="Top" Width="141" Height="31" Visibility="Hidden" Click="btnAuthorClose_Click"/>
-
+                    <Button x:Name="btnAuthorAdd" HorizontalAlignment="Left" Margin="10,412,0,0" VerticalAlignment="Top" Width="141" Height="36"  Click="btnAuthorAdd_Click">
+                    <StackPanel Orientation="Horizontal">
+                            <Label Padding="10" Height="43" Width="82" Content="Add Author"/>
+                        <Image Source="Images/auth.jpg"/>
+                    </StackPanel>
+                    </Button>
+                    <Button x:Name="btnAuthorClose"  HorizontalAlignment="Left" Margin="10,412,0,0" VerticalAlignment="Top" Width="141" Height="36" Visibility="Hidden" Click="btnAuthorClose_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Padding="10" Height="43" Width="77" Content="Close"/>
+                        <Image Source="Images/close_4-512.png"/>
+                    </StackPanel>
+                    </Button>
                     <Frame x:Name="frAuthor" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="275" Margin="10,438,0,0" VerticalAlignment="Top" Width="814" NavigationUIVisibility="Hidden" Foreground="#FF9B2222"/>
 
 
@@ -322,8 +362,18 @@
                         </DataGrid>
                     </StackPanel>
                     <StackPanel Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="31" Margin="10,402,0,0" VerticalAlignment="Top" Width="141"/>
-                    <Button x:Name="btnMemberAdd" Content="Add Member" HorizontalAlignment="Left" Margin="10,412,0,0" VerticalAlignment="Top" Width="141" Height="31" Click="btnMemberAdd_Click"/>
-                    <Button x:Name="btnMemberClose" Content="Close" HorizontalAlignment="Left" Margin="10,412,0,0" VerticalAlignment="Top" Width="141" Height="31" Visibility="Hidden" Click="btnMemberClose_Click"/>
+                    <Button x:Name="btnMemberAdd"  HorizontalAlignment="Left" Margin="10,412,0,0" VerticalAlignment="Top" Width="141" Height="36" Click="btnMemberAdd_Click">
+                    <StackPanel Orientation="Horizontal">
+                            <Label Padding="10" Height="43" Width="89" Content="Add Member"/>
+                        <Image Source="Images/sd.png"/>
+                    </StackPanel>
+                    </Button>
+                    <Button x:Name="btnMemberClose" HorizontalAlignment="Left" Margin="10,412,0,0" VerticalAlignment="Top" Width="141" Height="36" Visibility="Hidden" Click="btnMemberClose_Click">
+                    <StackPanel Orientation="Horizontal">
+                            <Label Padding="10" Height="43" Width="82" Content="Close"/>
+                            <Image Source="Images/close_4-512.png"/>
+                    </StackPanel>
+                    </Button>
 
                     <Frame x:Name="frMember" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="275" Margin="10,438,0,0" VerticalAlignment="Top" Width="814" NavigationUIVisibility="Hidden"/>
                 </Grid>
