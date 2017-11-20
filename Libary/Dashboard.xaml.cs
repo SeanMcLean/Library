@@ -580,6 +580,7 @@ namespace Libary
                 EmployeeTab.Visibility = Visibility.Hidden;
                 AuthorTab.Visibility = Visibility.Hidden;
                 PublisherTab.Visibility = Visibility.Hidden;
+                AdminTab.Visibility = Visibility.Hidden;
 
                 //hide buttons student should not have access to
                 btnItemAdd.Visibility = Visibility.Hidden;
@@ -589,7 +590,7 @@ namespace Libary
 
             }
             //show all controls for admin access
-            if (accessLevel == 0)
+            if (accessLevel == 2)
             {
                 //create new entity instances for data connection
                 itemsDB  = new DBEntities();

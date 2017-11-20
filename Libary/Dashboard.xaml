@@ -119,10 +119,10 @@
                         <StackPanel  Margin="0,0,0.333,0" >
                             <DataGrid Name="DatagridEmployee" HorizontalAlignment="Left" AutoGenerateColumns="False" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" Height="250">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn x:Name="firstNameColumnEmployee" Binding="{Binding FirstName}" Header="First Name" Width="SizeToCells"/>
-                                    <DataGridTextColumn x:Name="lastNameColumnEmployee" Binding="{Binding LastName}" Header="Last Name" Width="SizeToCells"/>
+                                    <DataGridTextColumn x:Name="firstNameColumnEmployee" Binding="{Binding FirstName}" Header="First Name" Width="auto"/>
+                                    <DataGridTextColumn x:Name="lastNameColumnEmployee" Binding="{Binding LastName}" Header="Last Name" Width="auto"/>
                                     <DataGridTextColumn x:Name="addressColumnEmployee" Binding="{Binding Address}" Header="Address" Width="SizeToCells"/>
-                                    <DataGridTextColumn x:Name="telephoneNoColumnEmployee" Binding="{Binding TelephoneNo}" Header="Telephone No" Width="SizeToCells"/>
+                                    <DataGridTextColumn x:Name="telephoneNoColumnEmployee" Binding="{Binding TelephoneNo}" Header="Telephone No" Width="auto"/>
                                     <DataGridTextColumn x:Name="emailColumnEmployee" Binding="{Binding Email}" Header="Email" Width="SizeToCells"/>
                                     <DataGridTextColumn x:Name="roleColumnEmployee" Binding="{Binding Role}" Header="Job" Width="SizeToCells"/>
                                     <DataGridTemplateColumn x:Name="hiredate" Header="Hire Date" IsReadOnly="True">
@@ -173,7 +173,6 @@
 
                     <Frame x:Name="frEmployee" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="10,438,0,0" VerticalAlignment="Top" NavigationUIVisibility="Hidden"/>
 
-
                 </Grid>
 
             </TabItem>
@@ -205,9 +204,9 @@
                         <StackPanel Margin="5"/>
                         <DataGrid x:Name="publisherDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" Height="250">
                             <DataGrid.Columns>
-                                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToCells"/>
+                                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="auto"/>
                                 <DataGridTextColumn x:Name="addressColumn" Binding="{Binding Address}" Header="Address" Width="SizeToCells"/>
-                                <DataGridTextColumn x:Name="telephoneNoColumn" Binding="{Binding TelephoneNo}" Header="Telephone No" Width="SizeToCells"/>
+                                <DataGridTextColumn x:Name="telephoneNoColumn" Binding="{Binding TelephoneNo}" Header="Telephone No" Width="auto"/>
                                 <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Email}" Header="Email" Width="SizeToCells"/>
                                 <DataGridTemplateColumn>
                                     <DataGridTemplateColumn.CellTemplate>
@@ -275,7 +274,7 @@
                         <DataGrid x:Name="authorDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" Height="250">
                             <DataGrid.Columns>
                                 <DataGridTextColumn x:Name="IdColumnAuth" Binding="{Binding AuthorId}" Header="Author Id" Width="SizeToCells" IsReadOnly="True"/>
-                                <DataGridTextColumn x:Name="nameColumnAuth" Binding="{Binding AuthorName}" Header="Author Name" Width="SizeToCells"/>
+                                <DataGridTextColumn x:Name="nameColumnAuth" Binding="{Binding AuthorName}" Header="Author Name" Width="auto"/>
                                 <DataGridTemplateColumn>
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -339,11 +338,11 @@
                         <StackPanel Margin="5"/>
                         <DataGrid x:Name="MemberDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" Height="250">
                             <DataGrid.Columns>
-                                <DataGridTextColumn x:Name="firstNameColumnMember" Binding="{Binding FirstName}" Header="First Name" Width="SizeToCells"/>
-                                <DataGridTextColumn x:Name="lastNameColumnMember" Binding="{Binding LastName}" Header="Last Name" Width="SizeToCells"/>
+                                <DataGridTextColumn x:Name="firstNameColumnMember" Binding="{Binding FirstName}" Header="First Name" Width="auto"/>
+                                <DataGridTextColumn x:Name="lastNameColumnMember" Binding="{Binding LastName}" Header="Last Name" Width="auto"/>
                                 <DataGridTextColumn x:Name="addressColumnMember" Binding="{Binding Address}" Header="Address" Width="SizeToCells"/>
-                                <DataGridTextColumn x:Name="classificationColumnMember" Binding="{Binding Classification}" Header="Classification" Width="SizeToCells"/>
-                                <DataGridTextColumn x:Name="transactionHistoryColumnMember" Binding="{Binding TransactionHistoryTotal}" Header="Transactions Total" Width="SizeToCells"/>
+                                <DataGridTextColumn x:Name="classificationColumnMember" Binding="{Binding Classification}" Header="Classification" Width="auto"/>
+                                <DataGridTextColumn x:Name="transactionHistoryColumnMember" Binding="{Binding TransactionHistoryTotal}" Header="Transactions Total" Width="auto"/>
                                 <DataGridTemplateColumn>
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -406,13 +405,13 @@
                         <StackPanel Margin="5"/>
                         <DataGrid x:Name="userDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" Height="250">
                             <DataGrid.Columns>
-                                <DataGridTextColumn x:Name="firstNameColumnUser" Binding="{Binding FirstName}" Header="First Name" Width="SizeToCells"/>
-                                <DataGridTextColumn x:Name="lastNameColumnUser" Binding="{Binding LastName}" Header="Last Name" Width="SizeToCells"/>
+                                <DataGridTextColumn x:Name="firstNameColumnUser" Binding="{Binding FirstName}" Header="First Name" Width="auto"/>
+                                <DataGridTextColumn x:Name="lastNameColumnUser" Binding="{Binding LastName}" Header="Last Name" Width="auto"/>
                                 <DataGridTextColumn x:Name="addressColumnUser" Binding="{Binding Address}" Header="Address" Width="SizeToCells"/>
-                                <DataGridTextColumn x:Name="TelephoneColumnUser" Binding="{Binding TelephoneNo}" Header="Telephone" Width="SizeToCells"/>
+                                <DataGridTextColumn x:Name="TelephoneColumnUser" Binding="{Binding TelephoneNo}" Header="Telephone" Width="auto"/>
                                 <DataGridTextColumn x:Name="emailColumnUser" Binding="{Binding Email}" Header="Email" Width="SizeToCells"/>
                                 <DataGridTextColumn x:Name="passwordColumnUser" Binding="{Binding Password}" Header="Password" Width="SizeToCells"/>
-                                <DataGridTextColumn x:Name="AccesslevelColumnUser" Binding="{Binding AccessLevel}" Header="Access Level" Width="SizeToCells"/>
+                                <DataGridTextColumn x:Name="AccesslevelColumnUser" Binding="{Binding AccessLevel}" Header="Access Level" Width="auto"/>
                                 <DataGridTemplateColumn>
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
