@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Libary"
         mc:Ignorable="d"
-        Title="Library Login" Height="360" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Loaded="Window_Loaded">
+        Title="Library Login" Height="360" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Loaded="Window_Loaded" FontFamily="Yu Gothic UI" Foreground="Black">
+    <Window.Background>
+        <SolidColorBrush Color="#FF3AB2FF"/>
+    </Window.Background>
     <Grid>
         <StackPanel  Margin="10,10">
             <TextBlock x:Name="tblkDescription" TextWrapping="Wrap" Margin="0,0,-0.333,0" FontSize="16"><Run FontWeight="Bold" Text="Welcome to Library Operations, please enter your UserName "/><Run FontWeight="Bold" Text="and"/><Run FontWeight="Bold" Text=" "/><Run FontWeight="Bold" Text="Password"/><LineBreak/><LineBreak/><Run Text="If you are a first time user you are required to &quot;"/><Run FontWeight="Bold" Text="Register"/><Run Text="&quot;"/><LineBreak/><Run/></TextBlock>

@@ -197,7 +197,7 @@ namespace Libary
         private void tbxSearchMember_TextChanged(object sender, TextChangedEventArgs e)
         {
             MemberDB = new DBEntities();
-            authorDataGrid.ItemsSource = MemberDB.Members.Where(b => b.FirstName.Contains(tbxSearchMember.Text) || b.LastName.Contains(tbxSearchMember.Text)).ToList();
+            MemberDataGrid.ItemsSource = MemberDB.Members.Where(b => b.FirstName.Contains(tbxSearchMember.Text) || b.LastName.Contains(tbxSearchMember.Text)).ToList();
         }
         ///////////////////////////////////////////////////////////////////////////////////////////// 
         /// Item Methods & Events                                                                 ///
@@ -490,7 +490,7 @@ namespace Libary
         private void ShowDashboard(int accessLevel)
         {
             //only show items tab for student and hide additional functionality
-            if (accessLevel == 0)
+            if (accessLevel == 1)
             {
                 //create new entity instances for data connection
                 databaseEntity = new DBEntities();
@@ -517,7 +517,7 @@ namespace Libary
 
             }
             //show all controls for admin access
-            if (accessLevel == 1)
+            if (accessLevel == 2)
             {
                 //create new entity instances for data connection
                 itemsDB  = new DBEntities();

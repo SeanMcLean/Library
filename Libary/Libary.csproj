@@ -121,6 +121,11 @@
     <Compile Include="Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SeanDBDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SeanDBDataSet2.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Transaction.cs">
       <DependentUpon>LibraryDataModel.tt</DependentUpon>
     </Compile>
@@ -199,6 +204,17 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="SeanDBDataSet2.xsc">
+      <DependentUpon>SeanDBDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="SeanDBDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SeanDBDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SeanDBDataSet2.xss">
+      <DependentUpon>SeanDBDataSet2.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

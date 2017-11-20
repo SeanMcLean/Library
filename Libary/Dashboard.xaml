@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Libary"
         mc:Ignorable="d"
-        Title="Dashboard" Height="800" Width="900" Loaded="Window_Loaded"  WindowStartupLocation="CenterScreen" WindowState="Maximized" >
+        Title="Dashboard" Height="800" Width="900" Loaded="Window_Loaded"  WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="ThreeDBorderWindow" FontFamily="Yu Gothic UI" Background="#FC3AB2FF" >
     <Window.Resources>
     </Window.Resources>
     <Grid>
@@ -39,9 +39,9 @@
                         <StackPanel Margin="0,0,0.333,0" Orientation="Vertical"/>
                         <DataGrid x:Name="itemDataGrid" AutoGenerateColumns="False" RowDetailsVisibilityMode="VisibleWhenSelected" HorizontalAlignment="Left" CanUserAddRows="False" Height="250">
                             <DataGrid.Columns>
-                                <DataGridTextColumn x:Name="iSBNColumn" Binding="{Binding ISBN}" Header="ISBN" Width="SizeToHeader" />
-                                <DataGridTextColumn x:Name="titleColumn" Binding="{Binding Title}" Header="Title" Width="SizeToHeader"/>
-                                <DataGridTextColumn x:Name="genreColumn" Binding="{Binding Genre}" Header="Genre" Width="SizeToHeader" />
+                                <DataGridTextColumn x:Name="iSBNColumn" Binding="{Binding ISBN}" Header="ISBN" Width="SizeToCells" />
+                                <DataGridTextColumn x:Name="titleColumn" Binding="{Binding Title}" Header="Title" Width="SizeToCells"/>
+                                <DataGridTextColumn x:Name="genreColumn" Binding="{Binding Genre}" Header="Genre" Width="SizeToCells" />
                                 <DataGridTextColumn x:Name="authorColumn" Binding="{Binding AuthorId}" Header="AuthorId"  Width="SizeToHeader"  IsReadOnly="True" />
                                 <DataGridTextColumn x:Name="publisherColumn" Binding="{Binding PublisherId}"  Header="PublisherId" Width="SizeToHeader" IsReadOnly="True" />
                                 <DataGridTextColumn x:Name="copiesAvailableColumn" Binding="{Binding CopiesAvailable}" Header="Copies Available" Width="SizeToHeader"/>
@@ -109,14 +109,14 @@
                         <StackPanel  Margin="0,0,0.333,0" >
                             <DataGrid Name="DatagridEmployee" HorizontalAlignment="Left" AutoGenerateColumns="False" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" Height="250">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn x:Name="firstNameColumnEmployee" Binding="{Binding FirstName}" Header="First Name" Width="SizeToHeader"/>
-                                    <DataGridTextColumn x:Name="lastNameColumnEmployee" Binding="{Binding LastName}" Header="Last Name" Width="SizeToHeader"/>
-                                    <DataGridTextColumn x:Name="addressColumnEmployee" Binding="{Binding Address}" Header="Address" Width="SizeToHeader"/>
-                                    <DataGridTextColumn x:Name="telephoneNoColumnEmployee" Binding="{Binding TelephoneNo}" Header="Telephone No" Width="SizeToHeader"/>
-                                    <DataGridTextColumn x:Name="emailColumnEmployee" Binding="{Binding Email}" Header="Email" Width="SizeToHeader"/>
-                                    <DataGridTextColumn x:Name="roleColumnEmployee" Binding="{Binding Role}" Header="Job" Width="SizeToHeader"/>
-                                    <DataGridTextColumn x:Name="hireDateColumnEmployee" Binding="{Binding HireDate}" Header="Hire Date" Width="SizeToHeader" IsReadOnly="True"/>
-                                    <DataGridTextColumn x:Name="salaryColumnEmployee" Binding="{Binding Salary}" Header="Salary" Width="SizeToHeader" />
+                                    <DataGridTextColumn x:Name="firstNameColumnEmployee" Binding="{Binding FirstName}" Header="First Name" Width="SizeToCells"/>
+                                    <DataGridTextColumn x:Name="lastNameColumnEmployee" Binding="{Binding LastName}" Header="Last Name" Width="SizeToCells"/>
+                                    <DataGridTextColumn x:Name="addressColumnEmployee" Binding="{Binding Address}" Header="Address" Width="SizeToCells"/>
+                                    <DataGridTextColumn x:Name="telephoneNoColumnEmployee" Binding="{Binding TelephoneNo}" Header="Telephone No" Width="SizeToCells"/>
+                                    <DataGridTextColumn x:Name="emailColumnEmployee" Binding="{Binding Email}" Header="Email" Width="SizeToCells"/>
+                                    <DataGridTextColumn x:Name="roleColumnEmployee" Binding="{Binding Role}" Header="Job" Width="SizeToCells"/>
+                                    <DataGridTextColumn x:Name="hireDateColumnEmployee" Binding="{Binding HireDate}" Header="Hire Date" Width="SizeToCells" IsReadOnly="True"/>
+                                    <DataGridTextColumn x:Name="salaryColumnEmployee" Binding="{Binding Salary}" Header="Salary" Width="SizeToCells" />
                                     <DataGridTemplateColumn>
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
@@ -173,10 +173,10 @@
                         <StackPanel Margin="5"/>
                         <DataGrid x:Name="publisherDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" Height="250">
                             <DataGrid.Columns>
-                                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
-                                <DataGridTextColumn x:Name="addressColumn" Binding="{Binding Address}" Header="Address" Width="SizeToHeader"/>
-                                <DataGridTextColumn x:Name="telephoneNoColumn" Binding="{Binding TelephoneNo}" Header="Telephone No" Width="SizeToHeader"/>
-                                <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Email}" Header="Email" Width="SizeToHeader"/>
+                                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToCells"/>
+                                <DataGridTextColumn x:Name="addressColumn" Binding="{Binding Address}" Header="Address" Width="SizeToCells"/>
+                                <DataGridTextColumn x:Name="telephoneNoColumn" Binding="{Binding TelephoneNo}" Header="Telephone No" Width="SizeToCells"/>
+                                <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Email}" Header="Email" Width="SizeToCells"/>
                                 <DataGridTemplateColumn>
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -232,8 +232,8 @@
                         <StackPanel Margin="5"/>
                         <DataGrid x:Name="authorDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" Height="250">
                             <DataGrid.Columns>
-                                <DataGridTextColumn x:Name="IdColumnAuth" Binding="{Binding AuthorId}" Header="Author Id" Width="SizeToHeader" IsReadOnly="True"/>
-                                <DataGridTextColumn x:Name="nameColumnAuth" Binding="{Binding AuthorName}" Header="Author Name" Width="SizeToHeader"/>
+                                <DataGridTextColumn x:Name="IdColumnAuth" Binding="{Binding AuthorId}" Header="Author Id" Width="SizeToCells" IsReadOnly="True"/>
+                                <DataGridTextColumn x:Name="nameColumnAuth" Binding="{Binding AuthorName}" Header="Author Name" Width="SizeToCells"/>
                                 <DataGridTemplateColumn>
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -254,7 +254,7 @@
                     <Button x:Name="btnAuthorAdd" Content="Add Author" HorizontalAlignment="Left" Margin="10,412,0,0" VerticalAlignment="Top" Width="141" Height="31"  Click="btnAuthorAdd_Click"/>
                     <Button x:Name="btnAuthorClose" Content="Close" HorizontalAlignment="Left" Margin="10,412,0,0" VerticalAlignment="Top" Width="141" Height="31" Visibility="Hidden" Click="btnAuthorClose_Click"/>
 
-                    <Frame x:Name="frAuthor" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="275" Margin="10,438,0,0" VerticalAlignment="Top" Width="814" NavigationUIVisibility="Hidden"/>
+                    <Frame x:Name="frAuthor" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="275" Margin="10,438,0,0" VerticalAlignment="Top" Width="814" NavigationUIVisibility="Hidden" Foreground="#FF9B2222"/>
 
 
                 </Grid>
@@ -288,11 +288,11 @@
                         <StackPanel Margin="5"/>
                         <DataGrid x:Name="MemberDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" Height="250">
                             <DataGrid.Columns>
-                                <DataGridTextColumn x:Name="firstNameColumnMember" Binding="{Binding FirstName}" Header="First Name" Width="SizeToHeader"/>
-                                <DataGridTextColumn x:Name="lastNameColumnMember" Binding="{Binding LastName}" Header="Last Name" Width="SizeToHeader"/>
-                                <DataGridTextColumn x:Name="addressColumnMember" Binding="{Binding Address}" Header="Address" Width="SizeToHeader"/>
-                                <DataGridTextColumn x:Name="classificationColumnMember" Binding="{Binding Classification}" Header="Classification" Width="SizeToHeader"/>
-                                <DataGridTextColumn x:Name="transactionHistoryColumnMember" Binding="{Binding TransactionHistoryTotal}" Header="Transactions Total" Width="SizeToHeader"/>
+                                <DataGridTextColumn x:Name="firstNameColumnMember" Binding="{Binding FirstName}" Header="First Name" Width="SizeToCells"/>
+                                <DataGridTextColumn x:Name="lastNameColumnMember" Binding="{Binding LastName}" Header="Last Name" Width="SizeToCells"/>
+                                <DataGridTextColumn x:Name="addressColumnMember" Binding="{Binding Address}" Header="Address" Width="SizeToCells"/>
+                                <DataGridTextColumn x:Name="classificationColumnMember" Binding="{Binding Classification}" Header="Classification" Width="SizeToCells"/>
+                                <DataGridTextColumn x:Name="transactionHistoryColumnMember" Binding="{Binding TransactionHistoryTotal}" Header="Transactions Total" Width="SizeToCells"/>
                                 <DataGridTemplateColumn>
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>

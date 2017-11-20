@@ -5,9 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Libary"
         mc:Ignorable="d"
-        Title="Registration" Height="800" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="Registration" Height="800" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Background="#FF3AB2FF" FontFamily="Yu Gothic UI" WindowStyle="ToolWindow">
+
     <Grid>
-        <StackPanel Margin="10,10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="287*"/>
+            <ColumnDefinition Width="208*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="10,10,9.666,10" Grid.ColumnSpan="2">
             <TextBlock x:Name="tblkDescription" TextWrapping="Wrap" Text="Please enter your details below:" FontSize="20" FontWeight="Bold"/>
             <Grid Height="710">
                 <Grid.ColumnDefinitions>
@@ -62,7 +67,7 @@
                 <TextBox x:Name="tbxTelephoneNo" Grid.Column="2" HorizontalAlignment="Left" Height="23"  Grid.Row="11" Grid.RowSpan="2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
                 <TextBox x:Name="tbxEmailAddress" Grid.Column="2" HorizontalAlignment="Left" Height="23"  Grid.Row="13" Grid.RowSpan="2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
                 <TextBox x:Name="tbxUserName" Grid.Column="2" HorizontalAlignment="Left" Height="23"  Grid.Row="15" Grid.RowSpan="2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-               
+
                 <PasswordBox x:Name="passwordBox" Width="120" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="17" VerticalAlignment="Top"/>
                 <PasswordBox x:Name="passwordBoxConfirm" Width="120" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="19" VerticalAlignment="Top"/>
             </Grid>
