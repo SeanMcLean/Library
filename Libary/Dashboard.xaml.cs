@@ -20,7 +20,6 @@ namespace Libary
     public partial class Dashboard : Window
     {
         //  DBEntities userDB;
-
         DBEntities databaseEntity;
 
         DBEntities itemsDB;
@@ -30,6 +29,7 @@ namespace Libary
         DBEntities AuthorDB;
 
         LibraryMethods lm = new LibraryMethods();
+
         public User currentUser = new User();
 
         public Dashboard()
@@ -49,42 +49,9 @@ namespace Libary
         /// 
 
 
-        /// 
-        /// Author Methods & Events
-        /// 
-        private void Item_Button_Click_Reserve(object sender, RoutedEventArgs e)
-        {
-            itemsDB = new DBEntities();
-            Item item = itemDataGrid.SelectedItem as Item;
-
-            Item itemTemp = itemsDB.Items.Where(b => b.ItemId == item.ItemId).Single();
-
-            if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you wish to Reserve", "Confirm", MessageBoxButton.YesNo))
-            {
-                if (itemTemp.CopiesAvailable == 0)
-                {
-                    MessageBox.Show("No copies available");
-                }
-                else
-                {
-                    itemTemp.CopiesAvailable--;
-                    itemTemp.CopieOnLoan++;
-                    refresItemGrid();
-                }
-            
-                try
-                {
-                    itemsDB.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-
-                    MessageBox.Show(ex.Message);
-                }
-            }
-
-        }
-
+        ///////////////////////////////////////////////////////////////////////////////////////////// 
+        /// Author Methods & Events                                                               ///
+        ///////////////////////////////////////////////////////////////////////////////////////////// 
         private void Author_Button_Click_Delete(object sender, RoutedEventArgs e)
         {
             AuthorDB = new DBEntities();
@@ -115,7 +82,7 @@ namespace Libary
             if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you wish to Update", "Confirm", MessageBoxButton.YesNo))
             {
                 authorTemp.AuthorName = (authorDataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
-
+                
                 try
                 {
                     AuthorDB.SaveChanges();
@@ -134,10 +101,30 @@ namespace Libary
             authorDataGrid.Items.Refresh();
         }
 
+        private void btnAuthorAdd_Click(object sender, RoutedEventArgs e)
+        {
+            frAuthor.Content = new AuthorAdd();
+            frAuthor.Visibility = Visibility.Visible;
+            btnAuthorAdd.Visibility = Visibility.Hidden;
+            btnAuthorClose.Visibility = Visibility.Visible;
+       
+        }
+        private void btnAuthorClose_Click(object sender, RoutedEventArgs e)
+        {
+            btnAuthorAdd.Visibility = Visibility.Visible;
+            btnAuthorClose.Visibility = Visibility.Hidden;
+            frAuthor.Visibility = Visibility.Hidden;
+            refresAuthorGrid();
+        }
 
-        /// 
-        /// Member Methods & Events
-        /// 
+        private void tbxSearchAuth_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            AuthorDB = new DBEntities();
+            authorDataGrid.ItemsSource = AuthorDB.Authors.Where(b => b.AuthorName.Contains(tbxSearchAuth.Text)).ToList();
+        }
+        ///////////////////////////////////////////////////////////////////////////////////////////// 
+        /// Member Methods & Events                                                               ///
+        ///////////////////////////////////////////////////////////////////////////////////////////// 
         private void Member_Button_Click_Delete(object sender, RoutedEventArgs e)
         {
             MemberDB = new DBEntities();
@@ -191,10 +178,30 @@ namespace Libary
             MemberDataGrid.Items.Refresh();
         }
 
+        private void btnMemberAdd_Click(object sender, RoutedEventArgs e)
+        {
+            frMember.Content = new MemberAdd();
+            frMember.Visibility = Visibility.Visible;
+            btnMemberAdd.Visibility = Visibility.Hidden;
+            btnMemberClose.Visibility = Visibility.Visible;
 
-        /// 
-        /// Item Methods & Events
-        /// 
+        }
+        private void btnMemberClose_Click(object sender, RoutedEventArgs e)
+        {
+            btnMemberAdd.Visibility = Visibility.Visible;
+            btnMemberClose.Visibility = Visibility.Hidden;
+            frMember.Visibility = Visibility.Hidden;
+            refresMemberGrid();
+        }
+
+        private void tbxSearchMember_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            MemberDB = new DBEntities();
+            authorDataGrid.ItemsSource = MemberDB.Members.Where(b => b.FirstName.Contains(tbxSearchMember.Text) || b.LastName.Contains(tbxSearchMember.Text)).ToList();
+        }
+        ///////////////////////////////////////////////////////////////////////////////////////////// 
+        /// Item Methods & Events                                                                 ///
+        ///////////////////////////////////////////////////////////////////////////////////////////// 
 
         private void tbxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -214,8 +221,8 @@ namespace Libary
                 itemTemp.ISBN = (itemDataGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                 itemTemp.Title = (itemDataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
                 itemTemp.Genre = (itemDataGrid.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
-                itemTemp.Author = (itemDataGrid.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
-                itemTemp.Publisher = (itemDataGrid.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
+                itemTemp.AuthorId = (itemDataGrid.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
+                itemTemp.PublisherId = (itemDataGrid.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
                 itemTemp.CopiesAvailable = int.Parse((itemDataGrid.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text);
                 itemTemp.CopieOnLoan = int.Parse((itemDataGrid.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text);
              //   itemTemp.PublicationDate = Convert.ToDateTime((publisherDataGrid.SelectedCells[7].Column.GetCellContent(item) as TextBlock).Text);
@@ -230,6 +237,39 @@ namespace Libary
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        private void Item_Button_Click_Reserve(object sender, RoutedEventArgs e)
+        {
+            itemsDB = new DBEntities();
+            Item item = itemDataGrid.SelectedItem as Item;
+
+            Item itemTemp = itemsDB.Items.Where(b => b.ItemId == item.ItemId).Single();
+
+            if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you wish to Reserve", "Confirm", MessageBoxButton.YesNo))
+            {
+                if (itemTemp.CopiesAvailable == 0)
+                {
+                    MessageBox.Show("No copies available");
+                }
+                else
+                {
+                    itemTemp.CopiesAvailable--;
+                    itemTemp.CopieOnLoan++;
+                    refresItemGrid();
+                }
+
+                try
+                {
+                    itemsDB.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
         }
 
         private void Item_Button_Click_Delete(object sender, RoutedEventArgs e)
@@ -263,9 +303,24 @@ namespace Libary
             itemDataGrid.Items.Refresh();
         }
 
-        /// 
-        /// Publisher Methods & Events
-        /// 
+        private void btnItemAdd_Click(object sender, RoutedEventArgs e)
+        {
+            frItem.Content = new ItemAdd();
+            frItem.Visibility = Visibility.Visible;
+            btnItemAdd.Visibility = Visibility.Hidden;
+            btnItemClose.Visibility = Visibility.Visible;
+
+        }
+        private void btnItemClose_Click(object sender, RoutedEventArgs e)
+        {
+            btnItemAdd.Visibility = Visibility.Visible;
+            btnItemClose.Visibility = Visibility.Hidden;
+            frItem.Visibility = Visibility.Hidden;
+            refresItemGrid();
+        }
+        ///////////////////////////////////////////////////////////////////////////////////////////// 
+        /// Publisher Methods & Events                                                            ///
+        ///////////////////////////////////////////////////////////////////////////////////////////// 
         private void Publisher_Button_Click_Delete(object sender, RoutedEventArgs e)
         {
             PublisherDB = new DBEntities();
@@ -322,10 +377,29 @@ namespace Libary
             publisherDataGrid.Items.Refresh();
         }
 
+        private void btnPublisherAdd_Click(object sender, RoutedEventArgs e)
+        {
+            frPublisher.Content = new PublisherAdd();
+            frPublisher.Visibility = Visibility.Visible;
+            btnPublisherAdd.Visibility = Visibility.Hidden;
+            btnPublisherClose.Visibility = Visibility.Visible;
 
-        /// 
-        /// Employee Methods & Events
-        /// 
+        }
+        private void btnPublisherClose_Click(object sender, RoutedEventArgs e)
+        {
+            btnPublisherAdd.Visibility = Visibility.Visible;
+            btnPublisherClose.Visibility = Visibility.Hidden;
+            frPublisher.Visibility = Visibility.Hidden;
+            refresPublisherGrid();
+        }
+        private void tbxSearchPub_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            PublisherDB = new DBEntities();
+            publisherDataGrid.ItemsSource = PublisherDB.Publishers.Where(b => b.Name.Contains(tbxSearchPub.Text)).ToList();
+        }
+        ///////////////////////////////////////////////////////////////////////////////////////////// 
+        /// Employee Methods & Events                                                             ///
+        ///////////////////////////////////////////////////////////////////////////////////////////// 
         private void Employee_Button_Click_Delete(object sender, RoutedEventArgs e)
         {
             EmployeeDB = new DBEntities();
@@ -386,37 +460,42 @@ namespace Libary
             DatagridEmployee.Items.Refresh();
         }
 
-        private void btnItemAdd_Click(object sender, RoutedEventArgs e)
+
+        private void btnEmployeeAdd_Click(object sender, RoutedEventArgs e)
         {
-            frItem.Content = new ItemAdd();
-            frItem.Visibility = Visibility.Visible;
-            btnItemAdd.Visibility = Visibility.Hidden;
-            btnItemClose.Visibility = Visibility.Visible;
+            frEmployee.Content = new EmployeeAdd();
+            frEmployee.Visibility = Visibility.Visible;
+            btnEmployeeAdd.Visibility = Visibility.Hidden;
+            btnEmployeeClose.Visibility = Visibility.Visible;
 
         }
-        private void btnItemClose_Click(object sender, RoutedEventArgs e)
+        private void btnEmployeeClose_Click(object sender, RoutedEventArgs e)
         {
-            btnItemAdd.Visibility = Visibility.Visible;
-            btnItemClose.Visibility = Visibility.Hidden;
-            frItem.Visibility = Visibility.Hidden;
-            refresItemGrid();
+            btnEmployeeAdd.Visibility = Visibility.Visible;
+            btnEmployeeClose.Visibility = Visibility.Hidden;
+            frEmployee.Visibility = Visibility.Hidden;
+            refresEmployeeGrid();
         }
-        private void btnAuthorAdd_Click(object sender, RoutedEventArgs e)
+        private void tbxSearchEmp_TextChanged(object sender, TextChangedEventArgs e)
         {
-            frAuthor.Content = new AuthorAdd();
-
+            EmployeeDB = new DBEntities();
+            DatagridEmployee.ItemsSource = EmployeeDB.Employees.Where(b => b.FirstName.Contains(tbxSearchEmp.Text) || b.LastName.Contains(tbxSearchEmp.Text)).ToList();
         }
 
+        ///////////////////////////////////////////////////////////////////////////////////////////// 
+        /// Methods                                                                               ///
+        ///////////////////////////////////////////////////////////////////////////////////////////// 
 
-        /// 
-        /// Methods 
-        /// 
-
+        //Method to display different functionality depending on user permission
         private void ShowDashboard(int accessLevel)
         {
+            //only show items tab for student and hide additional functionality
             if (accessLevel == 0)
             {
+                //create new entity instances for data connection
                 databaseEntity = new DBEntities();
+
+                //initialse and populate items grid
                 itemDataGrid.ItemsSource = databaseEntity.Items.ToList();
 
                 //hide the update and delete buttons of the datagrid by calling column IDs
@@ -424,7 +503,7 @@ namespace Libary
                 itemDataGrid.Columns[9].Visibility = Visibility.Collapsed;
 
                 //hide the tabs the student should not have access to
-                BrowseTab.Visibility = Visibility.Hidden;
+                //BrowseTab.Visibility = Visibility.Hidden;
                 MemberTab.Visibility = Visibility.Hidden;
                 EmployeeTab.Visibility = Visibility.Hidden;
                 AuthorTab.Visibility = Visibility.Hidden;
@@ -437,23 +516,35 @@ namespace Libary
 
 
             }
+            //show all controls for admin access
             if (accessLevel == 1)
             {
-                databaseEntity = new DBEntities();
+                //create new entity instances for data connection
+                itemsDB  = new DBEntities();
+                EmployeeDB = new DBEntities();
+                PublisherDB = new DBEntities();
+                AuthorDB = new DBEntities();
+                MemberDB = new DBEntities();
 
-                itemDataGrid.ItemsSource = databaseEntity.Items.ToList();
+                //initialse and populate items grid
+                itemDataGrid.ItemsSource = itemsDB.Items.ToList();
+              //  cbPublisher.ItemsSource = PublisherDB.Publishers.ToList();
+              //  cbAuthor.ItemsSource = AuthorDB.Authors.ToList();
 
- 
-                DatagridEmployee.ItemsSource = databaseEntity.Employees.ToList();
+                //initialse and populate Employee grid
+                DatagridEmployee.ItemsSource = EmployeeDB.Employees.ToList();
 
-                publisherDataGrid.ItemsSource = databaseEntity.Publishers.ToList();
+                //initialse and populate Publisher grid
+                publisherDataGrid.ItemsSource = PublisherDB.Publishers.ToList();
 
-                authorDataGrid.ItemsSource = databaseEntity.Authors.ToList();
+                //initialse and populate Author grid
+                authorDataGrid.ItemsSource = AuthorDB.Authors.ToList();
 
-                MemberDataGrid.ItemsSource = databaseEntity.Members.ToList();
+                //initialse and populate Member grid
+                MemberDataGrid.ItemsSource = MemberDB.Members.ToList();
+
             }
         }
-
     }
 }
 

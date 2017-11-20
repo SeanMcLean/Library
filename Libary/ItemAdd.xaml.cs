@@ -26,6 +26,10 @@ namespace Libary
         public ItemAdd()
         {
             InitializeComponent();
+
+            //initialse and populate items grid
+            cbAuthor.ItemsSource = db.Authors.ToList();
+            cbPublisher.ItemsSource = db.Publishers.ToList();
         }
 
         private void btnAddItem_Click(object sender, RoutedEventArgs e)
@@ -64,11 +68,11 @@ namespace Libary
             tempItem.ISBN = txtISBN.Text.Trim();
             tempItem.Title = txtTitle.Text.Trim();
             tempItem.Genre = txtGenre.Text.Trim();
-            tempItem.Author = txtAuthor.Text.Trim();
+            tempItem.AuthorId = cbAuthor.SelectedValue.ToString();
+            tempItem.PublisherId = cbPublisher.SelectionBoxItem.ToString();
             tempItem.CopiesAvailable = Convert.ToInt32(txtCopiesAv.Text.Trim());
             tempItem.CopieOnLoan = 0;
             tempItem.PublicationDate = Convert.ToDateTime(dpPublicationDate.SelectedDate.Value.Date.ToShortDateString());
-            tempItem.Publisher = "NA";
 
             return tempItem;
         }
@@ -79,10 +83,19 @@ namespace Libary
             txtTitle.Text = "";
             txtGenre.Text = "";
             txtCopiesAv.Text = "";
-            txtAuthor.Text = "";
+         //   txtAuthor.Text = "";
             txtCopiesAv.Text = "";
             dpPublicationDate.Text = "" ;
         }
 
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void cbPublisher_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

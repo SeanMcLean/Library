@@ -14,7 +14,16 @@ namespace Libary
     
     public partial class Author
     {
-        public int AuthorId { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Author()
+        {
+            this.Items = new HashSet<Item>();
+        }
+    
+        public string AuthorId { get; set; }
         public string AuthorName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Item> Items { get; set; }
     }
 }

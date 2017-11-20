@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Libary"
       mc:Ignorable="d" 
-      d:DesignHeight="400" d:DesignWidth="420"
+      d:DesignHeight="650" d:DesignWidth="500"
       Title="ItemAdd">
 
     <Grid x:Name="Items">
@@ -15,19 +15,20 @@
         <Label x:Name="lblAuthor" Content="Author:" HorizontalAlignment="Left" Grid.Column="3" Grid.Row="3" FontSize="12" />
         <Label x:Name="lblCopiesAv" Content="Copies Available:" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="5" FontSize="12"/>
         <Label x:Name="lblPublicationDate" Content="Publication Date:" HorizontalAlignment="Left" Grid.Column="3" Grid.Row="5" FontSize="12" />
+        <Label x:Name="lblPublisher" Content="Publisher:" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="7" FontSize="12" />
+
 
         <TextBox x:Name="txtISBN"  HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" FontSize="12" Margin="5,5,0,5" Width="85" Grid.ColumnSpan="2"  />
         <TextBox x:Name="txtTitle"  HorizontalAlignment="Left" Grid.Column="4" Grid.Row="1" FontSize="12" Margin="5,5,-4,5" Width="101" Grid.ColumnSpan="2"   />
         <TextBox x:Name="txtGenre"  HorizontalAlignment="Left" Grid.Column="1" Grid.Row="3" FontSize="12"  Margin="5,5,0,5" Width="85" Grid.ColumnSpan="2"  />
-        <TextBox x:Name="txtAuthor"  HorizontalAlignment="Left" Grid.Column="4" Grid.Row="3" FontSize="12" Margin="5,5,-4,5" Width="101" Grid.ColumnSpan="2"/>
         <TextBox x:Name="txtCopiesAv"  HorizontalAlignment="Left" Grid.Column="1" Grid.Row="5" FontSize="12" Margin="5,5,0,5" Width="85" Grid.ColumnSpan="2"/>
 
         <Button x:Name="btnAddItem" Content="Add" Margin="5" Grid.Column="4" Grid.Row="8" FontSize="12" Grid.ColumnSpan="2" Click="btnAddItem_Click" />
         <DatePicker x:Name="dpPublicationDate" HorizontalAlignment="Left" Margin="5,5,-4,0" Grid.Row="5" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="101" Height="25" Grid.Column="4"/>
+        <ComboBox x:Name="cbAuthor"  SelectedValuePath="{Binding AuthorId}" SelectedItem="{Binding AuthorName}" DisplayMemberPath="AuthorName" SelectionChanged="comboBox_SelectionChanged"  Grid.ColumnSpan="2" Grid.Column="4" HorizontalAlignment="Left" Margin="4.667,5,-3,0" Grid.Row="3" VerticalAlignment="Top" Width="101" Height="30" />
+        <ComboBox x:Name="cbPublisher"  SelectedValuePath="{Binding PublisherId}" SelectedItem="{Binding Name}" DisplayMemberPath="Name" SelectionChanged="cbPublisher_SelectionChanged"  Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Margin="4.667,5,-3,0" Grid.Row="7" VerticalAlignment="Top" Width="101" Height="30" />
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="85*"/>
-            <RowDefinition Height="85*"/>
             <RowDefinition Height="85*"/>
             <RowDefinition Height="85*"/>
             <RowDefinition Height="85*"/>

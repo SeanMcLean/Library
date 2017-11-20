@@ -4,19 +4,19 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SeanDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SeanDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Author">
           <Key>
             <PropertyRef Name="AuthorId" />
           </Key>
-          <Property Name="AuthorId" Type="int" Nullable="false" />
-          <Property Name="AuthorName" Type="varchar" MaxLength="50" />
+          <Property Name="AuthorId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AuthorName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="EmployeeId" />
           </Key>
-          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="EmployeeId" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" />
           <Property Name="LastName" Type="varchar" MaxLength="50" />
           <Property Name="Address" Type="nvarchar" MaxLength="50" />
@@ -34,8 +34,8 @@
           <Property Name="ISBN" Type="nvarchar" MaxLength="50" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" />
           <Property Name="Genre" Type="nvarchar" MaxLength="50" />
-          <Property Name="Author" Type="nvarchar" MaxLength="50" />
-          <Property Name="Publisher" Type="nvarchar" MaxLength="50" />
+          <Property Name="AuthorId" Type="nvarchar" MaxLength="50" />
+          <Property Name="PublisherId" Type="nvarchar" MaxLength="50" />
           <Property Name="CopiesAvailable" Type="int" />
           <Property Name="CopieOnLoan" Type="int" />
           <Property Name="PublicationDate" Type="date" />
@@ -44,7 +44,7 @@
           <Key>
             <PropertyRef Name="MemberId" />
           </Key>
-          <Property Name="MemberId" Type="int" Nullable="false" />
+          <Property Name="MemberId" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" />
           <Property Name="LastName" Type="varchar" MaxLength="50" />
           <Property Name="Address" Type="nvarchar" MaxLength="50" />
@@ -94,6 +94,30 @@
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="AccessLevel" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Item_Author">
+          <End Role="Author" Type="Self.Author" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="AuthorId" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_Publisher">
+          <End Role="Publisher" Type="Self.Publisher" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publisher">
+              <PropertyRef Name="PublisherId" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="PublisherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="SeanDBModelStoreContainer">
           <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
@@ -103,71 +127,63 @@
           <EntitySet Name="Publisher" EntityType="Self.Publisher" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Transaction" EntityType="Self.Transaction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Item_Author" Association="Self.FK_Item_Author">
+            <End Role="Author" EntitySet="Author" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_Publisher" Association="Self.FK_Item_Publisher">
+            <End Role="Publisher" EntitySet="Publisher" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SeanDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TelephoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AccessLevel" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <EntitySet Name="Items" EntityType="SeanDBModel.Item" />
-          <EntitySet Name="Publishers" EntityType="SeanDBModel.Publisher" />
-          <EntitySet Name="Authors" EntityType="SeanDBModel.Author" />
-          <EntitySet Name="Members" EntityType="SeanDBModel.Member" />
-          <EntitySet Name="MemberHistories" EntityType="SeanDBModel.MemberHistory" />
-          <EntitySet Name="Transactions" EntityType="SeanDBModel.Transaction" />
-          <EntitySet Name="Employees" EntityType="SeanDBModel.Employee" />
-        </EntityContainer>
-        <EntityType Name="Item">
-          <Key>
-            <PropertyRef Name="ItemId" />
-          </Key>
-          <Property Name="ItemId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ISBN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Genre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Publisher" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CopiesAvailable" Type="Int32" />
-          <Property Name="CopieOnLoan" Type="Int32" />
-          <Property Name="PublicationDate" Type="DateTime" Precision="0" />
-        </EntityType>
-        <EntityType Name="Publisher">
-          <Key>
-            <PropertyRef Name="PublisherId" />
-          </Key>
-          <Property Name="PublisherId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TelephoneNo" Type="Int32" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Author">
           <Key>
             <PropertyRef Name="AuthorId" />
           </Key>
-          <Property Name="AuthorId" Type="Int32" Nullable="false" />
-          <Property Name="AuthorName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AuthorId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AuthorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Items" Relationship="Self.FK_Item_Author" FromRole="Author" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TelephoneNo" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HireDate" Type="DateTime" Precision="0" />
+          <Property Name="Salary" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ISBN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Genre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PublisherId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CopiesAvailable" Type="Int32" />
+          <Property Name="CopieOnLoan" Type="Int32" />
+          <Property Name="PublicationDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Author" Relationship="Self.FK_Item_Author" FromRole="Item" ToRole="Author" />
+          <NavigationProperty Name="Publisher" Relationship="Self.FK_Item_Publisher" FromRole="Item" ToRole="Publisher" />
         </EntityType>
         <EntityType Name="Member">
           <Key>
             <PropertyRef Name="MemberId" />
           </Key>
-          <Property Name="MemberId" Type="Int32" Nullable="false" />
+          <Property Name="MemberId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -184,6 +200,17 @@
           <Property Name="ReturnDate" Type="DateTime" Precision="0" />
           <Property Name="DueDate" Type="DateTime" Precision="0" />
         </EntityType>
+        <EntityType Name="Publisher">
+          <Key>
+            <PropertyRef Name="PublisherId" />
+          </Key>
+          <Property Name="PublisherId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TelephoneNo" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Items" Relationship="Self.FK_Item_Publisher" FromRole="Publisher" ToRole="Item" />
+        </EntityType>
         <EntityType Name="Transaction">
           <Key>
             <PropertyRef Name="TransactionId" />
@@ -193,26 +220,150 @@
           <Property Name="BorrowDate" Type="DateTime" Precision="0" />
           <Property Name="ReturnDate" Type="DateTime" Precision="0" />
         </EntityType>
-        <EntityType Name="Employee">
+        <EntityType Name="User">
           <Key>
-            <PropertyRef Name="EmployeeId" />
+            <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TelephoneNo" Type="Int32" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="HireDate" Type="DateTime" Precision="0" />
-          <Property Name="Salary" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TelephoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccessLevel" Type="Int32" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Item_Author">
+          <End Role="Author" Type="Self.Author" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="AuthorId" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_Publisher">
+          <End Role="Publisher" Type="Self.Publisher" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publisher">
+              <PropertyRef Name="PublisherId" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="PublisherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Authors" EntityType="Self.Author" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Items" EntityType="Self.Item" />
+          <EntitySet Name="Members" EntityType="Self.Member" />
+          <EntitySet Name="MemberHistories" EntityType="Self.MemberHistory" />
+          <EntitySet Name="Publishers" EntityType="Self.Publisher" />
+          <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Item_Author" Association="Self.FK_Item_Author">
+            <End Role="Author" EntitySet="Authors" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_Publisher" Association="Self.FK_Item_Publisher">
+            <End Role="Publisher" EntitySet="Publishers" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SeanDBModelStoreContainer" CdmEntityContainer="DBEntities">
+          <EntitySetMapping Name="Authors">
+            <EntityTypeMapping TypeName="SeanDBModel.Author">
+              <MappingFragment StoreEntitySet="Author">
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="SeanDBModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="SeanDBModel.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="PublisherId" ColumnName="PublisherId" />
+                <ScalarProperty Name="CopiesAvailable" ColumnName="CopiesAvailable" />
+                <ScalarProperty Name="CopieOnLoan" ColumnName="CopieOnLoan" />
+                <ScalarProperty Name="PublicationDate" ColumnName="PublicationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="SeanDBModel.Member">
+              <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Classification" ColumnName="Classification" />
+                <ScalarProperty Name="TransactionHistoryTotal" ColumnName="TransactionHistoryTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberHistories">
+            <EntityTypeMapping TypeName="SeanDBModel.MemberHistory">
+              <MappingFragment StoreEntitySet="MemberHistory">
+                <ScalarProperty Name="MemberHistoryId" ColumnName="MemberHistoryId" />
+                <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+                <ScalarProperty Name="BorrowDate" ColumnName="BorrowDate" />
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Publishers">
+            <EntityTypeMapping TypeName="SeanDBModel.Publisher">
+              <MappingFragment StoreEntitySet="Publisher">
+                <ScalarProperty Name="PublisherId" ColumnName="PublisherId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="SeanDBModel.Transaction">
+              <MappingFragment StoreEntitySet="Transaction">
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+                <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+                <ScalarProperty Name="BorrowDate" ColumnName="BorrowDate" />
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="SeanDBModel.User">
               <MappingFragment StoreEntitySet="User">
@@ -225,88 +376,6 @@
                 <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="AccessLevel" ColumnName="AccessLevel" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Items">
-            <EntityTypeMapping TypeName="SeanDBModel.Item">
-              <MappingFragment StoreEntitySet="Item">
-                <ScalarProperty Name="PublicationDate" ColumnName="PublicationDate" />
-                <ScalarProperty Name="CopieOnLoan" ColumnName="CopieOnLoan" />
-                <ScalarProperty Name="CopiesAvailable" ColumnName="CopiesAvailable" />
-                <ScalarProperty Name="Publisher" ColumnName="Publisher" />
-                <ScalarProperty Name="Author" ColumnName="Author" />
-                <ScalarProperty Name="Genre" ColumnName="Genre" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
-                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Publishers">
-            <EntityTypeMapping TypeName="SeanDBModel.Publisher">
-              <MappingFragment StoreEntitySet="Publisher">
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="PublisherId" ColumnName="PublisherId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Authors">
-            <EntityTypeMapping TypeName="SeanDBModel.Author">
-              <MappingFragment StoreEntitySet="Author">
-                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
-                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Members">
-            <EntityTypeMapping TypeName="SeanDBModel.Member">
-              <MappingFragment StoreEntitySet="Member">
-                <ScalarProperty Name="TransactionHistoryTotal" ColumnName="TransactionHistoryTotal" />
-                <ScalarProperty Name="Classification" ColumnName="Classification" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MemberHistories">
-            <EntityTypeMapping TypeName="SeanDBModel.MemberHistory">
-              <MappingFragment StoreEntitySet="MemberHistory">
-                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
-                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
-                <ScalarProperty Name="BorrowDate" ColumnName="BorrowDate" />
-                <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
-                <ScalarProperty Name="MemberHistoryId" ColumnName="MemberHistoryId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Transactions">
-            <EntityTypeMapping TypeName="SeanDBModel.Transaction">
-              <MappingFragment StoreEntitySet="Transaction">
-                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
-                <ScalarProperty Name="BorrowDate" ColumnName="BorrowDate" />
-                <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
-                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="SeanDBModel.Employee">
-              <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="Salary" ColumnName="Salary" />
-                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
-                <ScalarProperty Name="Role" ColumnName="Role" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

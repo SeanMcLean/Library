@@ -4,15 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b4e230edbf78474b90b9ab2e60b34953" Name="Diagram1">
-        <EntityTypeShape EntityType="SeanDBModel.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SeanDBModel.Item" Width="1.5" PointX="3.75" PointY="0.75" />
-        <EntityTypeShape EntityType="SeanDBModel.Publisher" Width="1.5" PointX="7.5" PointY="4.75" />
-        <EntityTypeShape EntityType="SeanDBModel.Author" Width="1.5" PointX="9.125" PointY="4.75" />
-        <EntityTypeShape EntityType="SeanDBModel.Member" Width="1.5" PointX="5.75" PointY="4.75" />
-        <EntityTypeShape EntityType="SeanDBModel.MemberHistory" Width="1.5" PointX="6.75" PointY="0.75" />
-        <EntityTypeShape EntityType="SeanDBModel.Transaction" Width="1.5" PointX="0.75" PointY="7.75" />
-        <EntityTypeShape EntityType="SeanDBModel.Employee" Width="1.5" PointX="4" PointY="4.625" />
+      <Diagram DiagramId="370ae7aa4dd3445f9beddcce3369de59" Name="Diagram1">
+        <EntityTypeShape EntityType="SeanDBModel.Author" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeanDBModel.Employee" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeanDBModel.Item" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeanDBModel.Member" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeanDBModel.MemberHistory" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeanDBModel.Publisher" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeanDBModel.Transaction" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeanDBModel.User" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="SeanDBModel.FK_Item_Author" ManuallyRouted="false" />
+        <AssociationConnector Association="SeanDBModel.FK_Item_Publisher" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

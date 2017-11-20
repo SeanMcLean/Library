@@ -16,25 +16,25 @@ using System.Windows.Shapes;
 namespace Libary
 {
     /// <summary>
-    /// Interaction logic for MemberAdd.xaml
+    /// Interaction logic for EmployeeAdd.xaml
     /// </summary>
-    public partial class MemberAdd : Page
+    public partial class EmployeeAdd : Page
     {
         DBEntities db = new DBEntities();
 
-        public MemberAdd()
+        public EmployeeAdd()
         {
             InitializeComponent();
         }
-        private void btnAddMember_Click(object sender, RoutedEventArgs e)
+        private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
         {
-            mtdAddMember();
-            MessageBox.Show("New Member Added");
-            mtdClearMemberDetails();
+            mtdAddEmployee();
+            MessageBox.Show("New Employee Added");
+            mtdClearEmployeeDetails();
 
         }
 
-        private void mtdAddMember()
+        private void mtdAddEmployee()
         {
             try
             {
@@ -52,27 +52,31 @@ namespace Libary
             }
         }
 
-        private Member GetUserDetails()
+        private Employee GetUserDetails()
         {
-            Member tempMember = new Member();
+            Employee tempEmployee = new Employee();
 
-            tempMember.MemberId = Guid.NewGuid().ToString();
-            tempMember.FirstName = txtFirstName.Text.Trim();
-            tempMember.LastName = txtLastName.Text.Trim();
-            tempMember.Classification = txtClassification.Text.Trim();
-            tempMember.Address = txtAddress1.Text.Trim() + " " + txtAddress2.Text.Trim() + " " + txtAddress3.Text.Trim();
+            tempEmployee.EmployeeId = Guid.NewGuid().ToString();
+            tempEmployee.FirstName = txtFirstName.Text.Trim();
+            tempEmployee.LastName = txtLastName.Text.Trim();
+            tempEmployee.TelephoneNo = int.Parse(txtTelephone.Text);
+            tempEmployee.Address = txtAddress1.Text.Trim() + " " + txtAddress2.Text.Trim() + " " + txtAddress3.Text.Trim();
+            tempEmployee.Email = txtEmail.Text.Trim();
+            tempEmployee.Role = txtRole.Text.Trim();
 
-            return tempMember;
+            return tempEmployee;
         }
 
-        private void mtdClearMemberDetails()
+        private void mtdClearEmployeeDetails()
         {
             txtFirstName.Text = "";
             txtLastName.Text = "";
-            txtClassification.Text = "";
+            txtTelephone.Text = "";
             txtAddress1.Text = "";
             txtAddress2.Text = "";
             txtAddress3.Text = "";
+            txtEmail.Text = "";
+            txtRole.Text = "";
         }
     }
 }

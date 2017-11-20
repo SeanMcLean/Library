@@ -18,10 +18,13 @@ namespace Libary
         public string ISBN { get; set; }
         public string Title { get; set; }
         public string Genre { get; set; }
-        public string Author { get; set; }
-        public string Publisher { get; set; }
+        public string AuthorId { get; set; }
+        public string PublisherId { get; set; }
         public Nullable<int> CopiesAvailable { get; set; }
         public Nullable<int> CopieOnLoan { get; set; }
         public Nullable<System.DateTime> PublicationDate { get; set; }
+    
+        public virtual Author Author { get; set; }
+        public virtual Publisher Publisher { get; set; }
     }
 }

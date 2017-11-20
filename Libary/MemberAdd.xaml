@@ -5,10 +5,44 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Libary"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="650" d:DesignWidth="500"
       Title="MemberAdd">
 
-    <Grid>
-        
+    <Grid x:Name="Items">
+        <Label x:Name="lblFirstName" Content="First Name:" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" FontSize="12"/>
+        <Label x:Name="lblLastName" Content="Last Name:" HorizontalAlignment="Left" Grid.Column="3" Grid.Row="1" FontSize="12" />
+        <Label x:Name="lblClassification" Content="Classification:" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="3" FontSize="12" />
+        <Label x:Name="lblAddress" Content="Address:" HorizontalAlignment="Left" Grid.Column="3" Grid.Row="3" FontSize="12" />
+
+        <TextBox x:Name="txtFirstName"  HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" FontSize="12" Margin="5,5,0,5" Width="85" Grid.ColumnSpan="2"  />
+        <TextBox x:Name="txtLastName"  HorizontalAlignment="Left" Grid.Column="4" Grid.Row="1" FontSize="12" Margin="5,5,-4,5" Width="101" Grid.ColumnSpan="2"   />
+        <TextBox x:Name="txtClassification"  HorizontalAlignment="Left" Grid.Column="1" Grid.Row="3" FontSize="12" Margin="4.667,5,0,4.667" Width="88" Grid.ColumnSpan="2"   />
+        <TextBox x:Name="txtAddress1"  HorizontalAlignment="Left" Grid.Column="4" Grid.Row="3" FontSize="12" Margin="4.667,5,-3,4.667" Width="101" Grid.ColumnSpan="2"  />
+        <TextBox x:Name="txtAddress2"  HorizontalAlignment="Left" Grid.Column="4" Grid.Row="4" FontSize="12" Margin="4.667,5.333,0,5.333" Width="98" Grid.ColumnSpan="2"  />
+        <TextBox x:Name="txtAddress3"  HorizontalAlignment="Left" Grid.Column="4" Grid.Row="5" FontSize="12" Margin="4.667,4.667,0,5" Width="98" Grid.ColumnSpan="2"  />
+
+        <Button x:Name="btnAddItem" Content="Add" Margin="5" Grid.Column="4" Grid.Row="12" FontSize="12" Grid.ColumnSpan="2" Click="btnAddMember_Click" />
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="85*"/>
+            <RowDefinition Height="85*"/>
+            <RowDefinition Height="85*"/>
+            <RowDefinition Height="85*"/>
+            <RowDefinition Height="85*"/>
+            <RowDefinition Height="85*"/>
+            <RowDefinition Height="85*"/>
+            <RowDefinition Height="85*"/>
+
+
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
     </Grid>
 </Page>
