@@ -29,9 +29,8 @@
                                 <RowDefinition Height="50"/>
                                 <RowDefinition Height="50"/>
                             </Grid.RowDefinitions>
-                            <Button x:Name="btnSearch" Content="Search" Margin="10.333,10" Grid.Column="2" Grid.Row="0" FontSize="16" FontWeight="Bold"/>
                             <Label x:Name="lblSearch" Content="Search:" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="18" FontWeight="Bold"/>
-                            <TextBox x:Name="tbxSearch" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Column="1" Grid.Row="0" FontSize="16"/>
+                            <TextBox x:Name="tbxSearch" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Column="1" Grid.Row="0" FontSize="16" TextChanged="tbxSearch_TextChanged"/>
 
                         </Grid>
                         <StackPanel Margin="0,0,0.333,0" Orientation="Vertical"/>
@@ -97,7 +96,6 @@
                                 <RowDefinition Height="50"/>
                                 <RowDefinition Height="50"/>
                             </Grid.RowDefinitions>
-                            <Button x:Name="btnSearchEmp" Content="Search" Margin="15" Grid.Column="2" Grid.Row="0"/>
                             <Label x:Name="lblSearchEmp" Content="Search:" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="18" FontWeight="Bold"/>
                             <TextBox x:Name="tbxSearchEmp" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Column="1" Grid.Row="0"/>
 
@@ -160,7 +158,6 @@
                                 <RowDefinition Height="50"/>
                                 <RowDefinition Height="50"/>
                             </Grid.RowDefinitions>
-                            <Button x:Name="btnSearchPub" Content="Search" Margin="15" Grid.Column="2" Grid.Row="0"/>
                             <Label x:Name="lblSearchPub" Content="Search:" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="18" FontWeight="Bold"/>
                             <TextBox x:Name="tbxSearchPub" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Column="1" Grid.Row="0"/>
 
@@ -218,7 +215,6 @@
                                 <RowDefinition Height="50"/>
                                 <RowDefinition Height="50"/>
                             </Grid.RowDefinitions>
-                            <Button x:Name="btnSearchAuth" Content="Search" Margin="15" Grid.Column="2" Grid.Row="0"/>
                             <Label x:Name="lblSearchAuth" Content="Search:" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="18" FontWeight="Bold"/>
                             <TextBox x:Name="tbxSearchAuth" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Column="1" Grid.Row="0"/>
 
@@ -272,7 +268,6 @@
                                 <RowDefinition Height="50"/>
                                 <RowDefinition Height="50"/>
                             </Grid.RowDefinitions>
-                            <Button x:Name="btnSearchMember" Content="Search" Margin="15" Grid.Column="2" Grid.Row="0"/>
                             <Label x:Name="lblSearchMember" Content="Search:" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="18" FontWeight="Bold"/>
                             <TextBox x:Name="tbxSearchMember" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Column="1" Grid.Row="0"/>
 
@@ -311,7 +306,12 @@
                 </Grid>
             </TabItem>
             <TabItem x:Name="BrowseTab" Header="Browse">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="283*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
             </TabItem>
         </TabControl>
 

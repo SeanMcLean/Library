@@ -195,6 +195,13 @@ namespace Libary
         /// 
         /// Item Methods & Events
         /// 
+
+        private void tbxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            itemsDB = new DBEntities();
+            itemDataGrid.ItemsSource = itemsDB.Items.Where(b => b.Title.Contains(tbxSearch.Text)).ToList();
+        }
+
         private void Item_Button_Click_Edit(object sender, RoutedEventArgs e)
         {
             itemsDB = new DBEntities();
@@ -410,7 +417,7 @@ namespace Libary
             if (accessLevel == 0)
             {
                 databaseEntity = new DBEntities();
-                itemDataGrid.ItemsSource = itemsDB.Items.ToList();
+                itemDataGrid.ItemsSource = databaseEntity.Items.ToList();
 
                 //hide the update and delete buttons of the datagrid by calling column IDs
                 itemDataGrid.Columns[8].Visibility = Visibility.Collapsed;
@@ -446,6 +453,7 @@ namespace Libary
                 MemberDataGrid.ItemsSource = databaseEntity.Members.ToList();
             }
         }
+
     }
 }
 
