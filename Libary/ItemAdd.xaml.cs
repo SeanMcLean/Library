@@ -68,8 +68,8 @@ namespace Libary
             tempItem.ISBN = txtISBN.Text.Trim();
             tempItem.Title = txtTitle.Text.Trim();
             tempItem.Genre = txtGenre.Text.Trim();
-            tempItem.AuthorId = cbAuthor.SelectedValue.ToString();
-            tempItem.PublisherId = cbPublisher.SelectedValue.ToString();
+            tempItem.AuthorId = cbAuthor.ItemsSource.ToString();
+            tempItem.PublisherId = cbPublisher.SelectedItem.ToString();
             tempItem.CopiesAvailable = Convert.ToInt32(txtCopiesAv.Text.Trim());
             tempItem.CopieOnLoan = 0;
             tempItem.PublicationDate = Convert.ToDateTime(dpPublicationDate.SelectedDate.Value.Date.ToShortDateString());

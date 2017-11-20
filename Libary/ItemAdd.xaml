@@ -10,8 +10,8 @@
 
     <Grid x:Name="Items">
 
-        <Label x:Name="lblISBN" Content="ISBN:" HorizontalAlignment="Left" Grid.Column="0" FontSize="12" Margin="0,81" Grid.RowSpan="3" FontFamily="Yu Gothic UI"/>
-        <Label x:Name="lblTitle" Content="Title:" HorizontalAlignment="Left" Grid.Column="3" FontSize="12" Margin="0,81" Grid.RowSpan="3" FontFamily="Yu Gothic UI" />
+        <Label x:Name="lblISBN" Content="ISBN:" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" FontSize="12"  Grid.RowSpan="3" FontFamily="Yu Gothic UI"/>
+        <Label x:Name="lblTitle" Content="Title:" HorizontalAlignment="Left" Grid.Column="3" Grid.Row="1" FontSize="12"  Grid.RowSpan="3" FontFamily="Yu Gothic UI" />
         <Label x:Name="lblGenre" Content="Genre:" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="3" FontSize="12"  FontFamily="Yu Gothic UI" />
         <Label x:Name="lblAuthor" Content="Author:" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="5" FontSize="12"  FontFamily="Yu Gothic UI" />
         <Label x:Name="lblCopiesAv" Content="Copies Available:" HorizontalAlignment="Left" Grid.Column="3" Grid.Row="3" FontSize="12" FontFamily="Yu Gothic UI" />
@@ -19,24 +19,27 @@
         <Label x:Name="lblPublisher" Content="Publisher:" HorizontalAlignment="Left" Grid.Column="3" Grid.Row="5" FontSize="12" FontFamily="Yu Gothic UI" />
 
 
-        <TextBox x:Name="txtISBN"  HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" FontSize="12" Margin="4.667,4.667,0,4.667" Width="85" Grid.ColumnSpan="2"  />
-        <TextBox x:Name="txtTitle"  HorizontalAlignment="Left" Grid.Column="4" Grid.Row="1" FontSize="12" Margin="4.667,4.667,-3,4.667" Width="101" Grid.ColumnSpan="3"   />
-        <TextBox x:Name="txtGenre"  HorizontalAlignment="Left" Grid.Column="1" Grid.Row="3" FontSize="12"  Margin="4.667,5,0,4.333" Width="85" Grid.ColumnSpan="2"  />
-        <TextBox x:Name="txtCopiesAv"  HorizontalAlignment="Left" Grid.Column="4" Grid.Row="3" FontSize="12" Margin="4.667,5.333,0,4" Width="85" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtISBN"  HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" FontSize="12"  Width="101" Grid.ColumnSpan="2"  />
+        <TextBox x:Name="txtTitle"  HorizontalAlignment="Left" Grid.Column="4" Grid.Row="1" FontSize="12" Width="101" Grid.ColumnSpan="3"   />
+        <TextBox x:Name="txtGenre"  HorizontalAlignment="Left" Grid.Column="1" Grid.Row="3" FontSize="12" Width="101" Grid.ColumnSpan="2"  />
+        <TextBox x:Name="txtCopiesAv"  HorizontalAlignment="Left" Grid.Column="3" Grid.Row="3" FontSize="12" Width="101" Grid.ColumnSpan="2" Margin="101,0,0,0"/>
 
-        <Button x:Name="btnAddItem" Content="Add" Margin="4.667,4.667,5,5" Grid.Column="4" Grid.Row="99" FontSize="12" Grid.ColumnSpan="3" Click="btnAddItem_Click" />
-        <DatePicker x:Name="dpPublicationDate" HorizontalAlignment="Left" Margin="4.667,5.333,-3,0" Grid.Row="7" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="101" Height="25" Grid.Column="1"/>
-        <ComboBox x:Name="cbAuthor"  SelectedValuePath="{Binding AuthorId}" SelectedItem="{Binding AuthorName}" DisplayMemberPath="AuthorName" SelectionChanged="comboBox_SelectionChanged"  Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Margin="4.667,5,-3,0" Grid.Row="5" VerticalAlignment="Top" Width="101" Height="30" />
-        <ComboBox x:Name="cbPublisher"  SelectedValuePath="{Binding PublisherId}" SelectedItem="{Binding Name}" DisplayMemberPath="Name" SelectionChanged="cbPublisher_SelectionChanged"  Grid.ColumnSpan="3" Grid.Column="4" HorizontalAlignment="Left" Margin="4.667,4.667,0,0" Grid.Row="5" VerticalAlignment="Top" Width="101" Height="30" />
+        <Button x:Name="btnAddItem" Content="Add" Grid.Column="4" Grid.Row="99" FontSize="12" Grid.ColumnSpan="3" Click="btnAddItem_Click" />
+        <DatePicker x:Name="dpPublicationDate" HorizontalAlignment="Left"  Grid.Row="7" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="101" Grid.Column="1"/>
+        <ComboBox x:Name="cbAuthor"  SelectedValuePath="{Binding AuthorId}" SelectedItem="{Binding AuthorName}" DisplayMemberPath="AuthorName" SelectionChanged="comboBox_SelectionChanged"  Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="5" VerticalAlignment="Top" Width="101" />
+        <ComboBox x:Name="cbPublisher"  SelectedValuePath="{Binding PublisherId}" SelectedItem="{Binding Name}" DisplayMemberPath="Name" SelectionChanged="cbPublisher_SelectionChanged"  Grid.ColumnSpan="3" Grid.Column="4" HorizontalAlignment="Left"  Grid.Row="5" VerticalAlignment="Top" Width="101"  />
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="84" Margin="10,10.333,-33.333,0" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="480" Grid.ColumnSpan="5" Visibility="Hidden"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="84" Margin="10,10.333,-33.333,0" Grid.Row="4" Stroke="Black" VerticalAlignment="Top" Width="480" Grid.ColumnSpan="5" Visibility="Hidden"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="10,10,-33.333,0" Grid.Row="6" Stroke="Black" VerticalAlignment="Top" Width="480" Grid.ColumnSpan="5" Visibility="Hidden"/>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="80*"/>
             <RowDefinition Height="80*"/>
+            <RowDefinition Height="120*"/>
             <RowDefinition Height="80*"/>
+            <RowDefinition Height="120*"/>
             <RowDefinition Height="80*"/>
-            <RowDefinition Height="80*"/>
-            <RowDefinition Height="80*"/>
-            <RowDefinition Height="80*"/>
+            <RowDefinition Height="120*"/>
             <RowDefinition Height="80*"/>
             <RowDefinition Height="80*"/>
             <RowDefinition Height="80*"/>

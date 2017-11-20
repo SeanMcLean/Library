@@ -28,8 +28,18 @@
                 <Label x:Name="lblUserName" Content="UserName:" HorizontalAlignment="Center"  VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="14"/>
                 <Label x:Name="lblPassword" Content="Password:" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2" FontSize="14"/>
                 <TextBox x:Name="tbxUserName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Column="1" Grid.Row="0"/>
-                <Button x:Name="btnLogin" Content="Login" Margin="5" Grid.Column="2" Grid.Row="5" Click="btnLogin_Click"/>
-                <Button x:Name="btnRegister" Content="Register" Margin="5" Grid.Column="0" Grid.Row="5" Click="btnRegister_Click"/>
+                <Button x:Name="btnLogin" Margin="5" Grid.Column="2" Grid.Row="5" Click="btnLogin_Click" >
+                    <StackPanel Orientation="Horizontal">
+                        <Label Padding="10">Login</Label>
+                        <Image Source="Images/585573-200.png"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnRegister"  Margin="5" Grid.Column="0" Grid.Row="5" Click="btnRegister_Click">
+                    <StackPanel Orientation="Horizontal">
+                    <Label Padding="10">Register</Label>
+                        <Image Source="Images/reg.png"/>
+                </StackPanel>
+                </Button>
                 <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" VerticalAlignment="Center" Width="180" Height="23" Grid.Column="1" Grid.Row="2"/>
             </Grid>
         </StackPanel>

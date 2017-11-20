@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Libary"
         mc:Ignorable="d"
-        Title="Registration" Height="800" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Background="#FF3AB2FF" FontFamily="Yu Gothic UI" WindowStyle="ToolWindow">
+        Title="Registration" Height="850" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Background="#FF3AB2FF" FontFamily="Yu Gothic UI" WindowStyle="ToolWindow">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -14,7 +14,7 @@
         </Grid.ColumnDefinitions>
         <StackPanel Margin="10,10,9.666,10" Grid.ColumnSpan="2">
             <TextBlock x:Name="tblkDescription" TextWrapping="Wrap" Text="Please enter your details below:" FontSize="20" FontWeight="Bold"/>
-            <Grid Height="710">
+            <Grid Height="750">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="5*" />
                     <ColumnDefinition Width="15*" />
@@ -42,7 +42,7 @@
                     <RowDefinition Height="140*" />
                     <RowDefinition Height="140*" />
                     <RowDefinition Height="140*" />
-                    <RowDefinition Height="210*" />
+                    <RowDefinition Height="250*" />
                 </Grid.RowDefinitions>
                 <Label x:Name="lblFirstName" Content="First Name:" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" FontSize="14"/>
                 <Label x:Name="lblLastName" Content="Last Name:" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="3" FontSize="14" />
@@ -56,8 +56,18 @@
                 <Label x:Name="lblPassword" Content="Password:" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="17" FontSize="14"/>
                 <Label x:Name="lblPasswordConfirm" Content="Confirm Password:" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="19" FontSize="14"/>
 
-                <Button x:Name="btnCancel" Content="Back" Margin="5" Grid.Column="1" Grid.Row="21" FontSize="14" Click="btnCancel_Click" />
-                <Button x:Name="btnRegister" Content="Register" Margin="5" Grid.Column="2" Grid.Row="21" FontSize="14" Click="btnRegister_Click"/>
+                <Button x:Name="btnCancel"  Margin="5" Grid.Column="1" Grid.Row="21" FontSize="14" Click="btnCancel_Click" >
+                    <StackPanel Orientation="Horizontal">
+                        <Label Padding="10">Back</Label>
+                        <Image Source="Images/back.png"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnRegister" Margin="5" Grid.Column="2" Grid.Row="21" FontSize="14" Click="btnRegister_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Padding="10">Register</Label>
+                        <Image Source="Images/reg.png"/>
+                    </StackPanel>
+                </Button>
 
                 <TextBox x:Name="tbxFirstName" Grid.Column="2" HorizontalAlignment="Left" Height="23"  Grid.Row="1" Grid.RowSpan="2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
                 <TextBox x:Name="tbxLastName" Grid.Column="2" HorizontalAlignment="Left" Height="23"  Grid.Row="3" Grid.RowSpan="2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
