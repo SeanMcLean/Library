@@ -68,11 +68,15 @@ namespace Libary
             tempItem.ISBN = txtISBN.Text.Trim();
             tempItem.Title = txtTitle.Text.Trim();
             tempItem.Genre = txtGenre.Text.Trim();
-            tempItem.AuthorId = cbAuthor.ItemsSource.ToString();
-            tempItem.PublisherId = cbPublisher.SelectedItem.ToString();
+           // tempItem.AuthorId = cbAuthor.ItemsSource.ToString();
+           // tempItem.PublisherId = cbPublisher.SelectedItem.ToString();
             tempItem.CopiesAvailable = Convert.ToInt32(txtCopiesAv.Text.Trim());
             tempItem.CopieOnLoan = 0;
             tempItem.PublicationDate = Convert.ToDateTime(dpPublicationDate.SelectedDate.Value.Date.ToShortDateString());
+            //issues with combo box and sending back foreign key insteaad of name
+            //setting value to 1 until fixed
+            tempItem.AuthorId = "1";
+            tempItem.PublisherId = "1";
 
             return tempItem;
         }

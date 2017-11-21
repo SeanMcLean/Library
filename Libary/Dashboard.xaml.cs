@@ -20,6 +20,7 @@ namespace Libary
     public partial class Dashboard : Window
     {
         //  DBEntities userDB;
+        //create new entitys for future data
         DBEntities databaseEntity;
         DBEntities userDB;
         DBEntities itemsDB;
@@ -29,9 +30,10 @@ namespace Libary
         DBEntities AuthorDB;
 
         LibraryMethods lm = new LibraryMethods();
-
+        //create new User instance to hold authentication level
         public User currentUser = new User();
 
+        //Initialise components 
         public Dashboard()
         {
             InitializeComponent();
@@ -46,20 +48,28 @@ namespace Libary
 
 
         ///////////////////////////////////////////////////////////////////////////////////////////// 
-        /// AuthorTab Methods & Events                                                               ///
+        /// AuthorTab Methods & Events                                                            ///
         ///////////////////////////////////////////////////////////////////////////////////////////// 
+        
+        //Click event to delete from Author table 
         private void Author_Button_Click_Delete(object sender, RoutedEventArgs e)
         {
+            //new author entity framework insntce for author connection 
             AuthorDB = new DBEntities();
+            //new author instance of selected row
             Author item = authorDataGrid.SelectedItem as Author;
-
             try
             {
+                //new author instance to query database to find selected item using authorID
                 Author author = AuthorDB.Authors.Where(b => b.AuthorId == item.AuthorId).Single();
+                //check if user wishes to remove item 
                 if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you wish to Delete", "Confirm", MessageBoxButton.YesNo))
                 {
+                    //remove item
                     AuthorDB.Authors.Remove(author);
+                    //save changes to db
                     AuthorDB.SaveChanges();
+                    //refesh grid 
                     refresAuthorGrid();
                 }
             }
@@ -68,19 +78,24 @@ namespace Libary
                 MessageBox.Show(ex.Message);
             }
         }
+        //Click event to update from Author table 
         private void Author_Button_Click_Edit(object sender, RoutedEventArgs e)
         {
+            //new author entity framework insntce for author connection 
             AuthorDB = new DBEntities();
+            //new author instance of selected row
             Author item = authorDataGrid.SelectedItem as Author;
-
+            //new author instance to query database to find selected item using authorID
             Author authorTemp = AuthorDB.Authors.Where(b => b.AuthorId == item.AuthorId).Single();
-
+            //check if user wishes to update item 
             if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you wish to Update", "Confirm", MessageBoxButton.YesNo))
             {
+                //retirev details from cell and set in author instance
                 authorTemp.AuthorName = (authorDataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
                 
                 try
                 {
+                    //save changes
                     AuthorDB.SaveChanges();
                 }
                 catch (Exception ex)
@@ -93,10 +108,12 @@ namespace Libary
                 }
             }
         }
-
+        //refresh datagrid method
         private void refresAuthorGrid()
-        {
+        {  
+            //retrieve new data from grid
             authorDataGrid.ItemsSource = AuthorDB.Authors.ToList();
+            //refresh the grid with info
             authorDataGrid.Items.Refresh();
         }
 
