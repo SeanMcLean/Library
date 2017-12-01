@@ -22,10 +22,9 @@ namespace Libary
     {
         //Create a new instance of SQL database connection
         DBEntities db = new DBEntities();
+
         //Global list used to contain all users
         List<User> userList = new List<User>();
-
-        User currentUser = new User();
 
         public MainWindow()
         {
@@ -75,7 +74,7 @@ namespace Libary
                 //then the user exists
                 if (user.UserName == username && user.Password == password)
                 {
-                    //put the details of the verified user into the verifiedUser instance
+                    //put the details of the verified user into the verifiedUser object
                     verifiedUser = user;
                 }
             }
