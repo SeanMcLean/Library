@@ -538,13 +538,14 @@ namespace Libary
 
             if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you wish to Update Data", "Confirm", MessageBoxButton.YesNo))
             {
-                tempUser.FirstName = (userDataGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                tempUser.LastName = (userDataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
-                tempUser.Address = (userDataGrid.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
-                tempUser.TelephoneNo = (userDataGrid.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
-                tempUser.Email = (userDataGrid.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
-                tempUser.Password = (userDataGrid.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text;
-                tempUser.AccessLevel = int.Parse((userDataGrid.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text);
+                tempUser.UserName = (userDataGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text.ToLower();
+                tempUser.FirstName = (userDataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+                tempUser.LastName = (userDataGrid.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
+                tempUser.Address = (userDataGrid.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
+                tempUser.TelephoneNo = (userDataGrid.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
+                tempUser.Email = (userDataGrid.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text;
+                tempUser.Password = (userDataGrid.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text;
+                tempUser.AccessLevel = int.Parse((userDataGrid.SelectedCells[7].Column.GetCellContent(item) as TextBlock).Text);
 
                 try
                 {

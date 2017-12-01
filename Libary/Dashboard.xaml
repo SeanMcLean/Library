@@ -405,6 +405,7 @@
                         <StackPanel Margin="5"/>
                         <DataGrid x:Name="userDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" Height="250">
                             <DataGrid.Columns>
+                                <DataGridTextColumn x:Name="UserNameColumnUser" Binding="{Binding FirstName}" Header="User Name" Width="auto"/>
                                 <DataGridTextColumn x:Name="firstNameColumnUser" Binding="{Binding FirstName}" Header="First Name" Width="auto"/>
                                 <DataGridTextColumn x:Name="lastNameColumnUser" Binding="{Binding LastName}" Header="Last Name" Width="auto"/>
                                 <DataGridTextColumn x:Name="addressColumnUser" Binding="{Binding Address}" Header="Address" Width="SizeToCells"/>

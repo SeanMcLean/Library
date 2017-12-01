@@ -42,7 +42,7 @@ namespace Libary
                 //Password box is accessed using different commands to textbox
                 string password = passwordBox.Password;
                 //Check if inoutted credentials are in SQL database        
-                user = VerifyUserDetails(username, password);
+                user = VerifyUserDetails(username.ToLower(), password);
                 if (user.AccessLevel > 0) //user exists
                 {
                     //create a new instance of the Dashboard window
