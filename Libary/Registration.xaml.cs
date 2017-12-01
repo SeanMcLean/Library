@@ -79,9 +79,8 @@ namespace Libary
             tempUser.TelephoneNo = tbxTelephoneNo.Text.Trim();
             tempUser.Email = tbxEmailAddress.Text.Trim();
             tempUser.Password = password;
-            tempUser.UserName = tbxUserName.Text.Trim();
             //sets username to lower case to remove Upper/Lower case issues
-            tempUser.UserName.ToLower();
+            tempUser.UserName = tbxUserName.Text.Trim().ToLower();
             tempUser.AccessLevel = 1;
 
             return tempUser;
