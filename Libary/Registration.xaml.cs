@@ -20,6 +20,9 @@ namespace Libary
     public partial class Registration : Window
     {
         DBEntities db = new DBEntities();
+        int parsedValue;
+        string blankTextBox = "";
+
         public Registration()
         {
             InitializeComponent();
@@ -33,14 +36,67 @@ namespace Libary
             win.Show();
             Close();
         }
-
+ 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
+            //check to see if passwords match
             if (passwordBox.Password == passwordBoxConfirm.Password)
             {
-                mtdAddUser();
-                MessageBox.Show("Your details have been Registered. You will be notified when registration is complete.");
-                mtdClearUserDetails();
+                if (int.TryParse(tbxTelephoneNo.Text, out parsedValue))
+                {
+                    if (!string.IsNullOrWhiteSpace(tbxFirstName.Text)
+                    & !string.IsNullOrWhiteSpace(tbxLastName.Text)
+                    & !string.IsNullOrWhiteSpace(tbxAddress1.Text)
+                    & !string.IsNullOrWhiteSpace(tbxAddress2.Text)
+                    & !string.IsNullOrWhiteSpace(tbxAddress3.Text)
+                    & !string.IsNullOrWhiteSpace(tbxEmailAddress.Text)
+                    & !string.IsNullOrWhiteSpace(tbxUserName.Text))
+                    {
+                        mtdAddUser();
+                        MessageBox.Show("Your details have been Registered. You will be notified when registration is complete.");
+                        mtdClearUserDetails();
+                    }
+
+                    //check to see if text box is empty
+                    else if (string.IsNullOrWhiteSpace(tbxFirstName.Text))
+                    {
+                        MessageBox.Show("Missing First Name");
+                    }
+                    else if (string.IsNullOrWhiteSpace(tbxLastName.Text))
+                    {
+                        MessageBox.Show("Missing Last Name");
+                    }
+                    else if (string.IsNullOrWhiteSpace(tbxAddress1.Text))
+                    {
+                        MessageBox.Show("Missing Address Line1 Name");
+                    }
+                    else if (string.IsNullOrWhiteSpace(tbxAddress2.Text))
+                    {
+                        MessageBox.Show("Missing Address Line2 Name");
+                    }
+                    else if (string.IsNullOrWhiteSpace(tbxAddress3.Text))
+                    {
+                        MessageBox.Show("Missing Address Line3 Name");
+                    }
+
+                    else if (string.IsNullOrWhiteSpace(tbxEmailAddress.Text))
+                    {
+                        MessageBox.Show("Missing email Addresse");
+                    }
+                }
+
+                else
+                {
+                    MessageBox.Show("This is a number only field, please enter telephone No");
+                }
+
+               /* else if(!int.TryParse(tbxTelephoneNo.Text, out parsedValue))
+                {
+                    MessageBox.Show("This is a number only field, please enter telephone No");
+                    return;
+                }*/
+                //if no textboxes are empty
+
             }
             else
             {
