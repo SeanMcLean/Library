@@ -40,7 +40,7 @@ namespace Libary
             
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        public void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ShowDashboard(currentUser.AccessLevel);
         }
@@ -52,7 +52,7 @@ namespace Libary
         ///////////////////////////////////////////////////////////////////////////////////////////// 
         
         //Click event to delete from Author table 
-        private void Author_Button_Click_Delete(object sender, RoutedEventArgs e)
+        public void Author_Button_Click_Delete(object sender, RoutedEventArgs e)
         {
             //new author entity framework insntce for author connection 
             AuthorDB = new DBEntities();
@@ -79,7 +79,7 @@ namespace Libary
             }
         }
         //Click event to update from Author table 
-        private void Author_Button_Click_Edit(object sender, RoutedEventArgs e)
+        public void Author_Button_Click_Edit(object sender, RoutedEventArgs e)
         {
             //new author entity framework insntce for author connection 
             AuthorDB = new DBEntities();
@@ -109,7 +109,7 @@ namespace Libary
             }
         }
         //refresh datagrid method
-        private void refresAuthorGrid()
+        public void refresAuthorGrid()
         {  
             //retrieve new data from grid
             authorDataGrid.ItemsSource = AuthorDB.Authors.ToList();
@@ -117,7 +117,7 @@ namespace Libary
             authorDataGrid.Items.Refresh();
         }
 
-        private void btnAuthorAdd_Click(object sender, RoutedEventArgs e)
+        public void btnAuthorAdd_Click(object sender, RoutedEventArgs e)
         {
             frAuthor.Content = new AuthorAdd();
             frAuthor.Visibility = Visibility.Visible;
@@ -125,7 +125,7 @@ namespace Libary
             btnAuthorClose.Visibility = Visibility.Visible;
        
         }
-        private void btnAuthorClose_Click(object sender, RoutedEventArgs e)
+        public void btnAuthorClose_Click(object sender, RoutedEventArgs e)
         {
             btnAuthorAdd.Visibility = Visibility.Visible;
             btnAuthorClose.Visibility = Visibility.Hidden;
@@ -133,7 +133,7 @@ namespace Libary
             refresAuthorGrid();
         }
 
-        private void tbxSearchAuth_TextChanged(object sender, TextChangedEventArgs e)
+        public void tbxSearchAuth_TextChanged(object sender, TextChangedEventArgs e)
         {
             AuthorDB = new DBEntities();
             authorDataGrid.ItemsSource = AuthorDB.Authors.Where(b => b.AuthorName.Contains(tbxSearchAuth.Text)).ToList();
@@ -141,7 +141,7 @@ namespace Libary
         ///////////////////////////////////////////////////////////////////////////////////////////// 
         /// MemberTab Methods & Events                                                               ///
         ///////////////////////////////////////////////////////////////////////////////////////////// 
-        private void Member_Button_Click_Delete(object sender, RoutedEventArgs e)
+        public void Member_Button_Click_Delete(object sender, RoutedEventArgs e)
         {
             MemberDB = new DBEntities();
             Member item = MemberDataGrid.SelectedItem as Member;
@@ -162,7 +162,7 @@ namespace Libary
             }
         }
 
-        private void Member_Button_Click_Edit(object sender, RoutedEventArgs e)
+        public void Member_Button_Click_Edit(object sender, RoutedEventArgs e)
         {
             MemberDB = new DBEntities();
             Member item = MemberDataGrid.SelectedItem as Member;
@@ -188,13 +188,13 @@ namespace Libary
             }
         }
 
-        private void refresMemberGrid()
+        public void refresMemberGrid()
         {
             MemberDataGrid.ItemsSource = MemberDB.Members.ToList();
             MemberDataGrid.Items.Refresh();
         }
 
-        private void btnMemberAdd_Click(object sender, RoutedEventArgs e)
+        public void btnMemberAdd_Click(object sender, RoutedEventArgs e)
         {
             frMember.Content = new MemberAdd();
             frMember.Visibility = Visibility.Visible;
@@ -202,7 +202,7 @@ namespace Libary
             btnMemberClose.Visibility = Visibility.Visible;
 
         }
-        private void btnMemberClose_Click(object sender, RoutedEventArgs e)
+        public void btnMemberClose_Click(object sender, RoutedEventArgs e)
         {
             btnMemberAdd.Visibility = Visibility.Visible;
             btnMemberClose.Visibility = Visibility.Hidden;
@@ -210,7 +210,7 @@ namespace Libary
             refresMemberGrid();
         }
 
-        private void tbxSearchMember_TextChanged(object sender, TextChangedEventArgs e)
+        public void tbxSearchMember_TextChanged(object sender, TextChangedEventArgs e)
         {
             MemberDB = new DBEntities();
             MemberDataGrid.ItemsSource = MemberDB.Members.Where(b => b.FirstName.Contains(tbxSearchMember.Text) || b.LastName.Contains(tbxSearchMember.Text)).ToList();
@@ -219,13 +219,13 @@ namespace Libary
         /// SearchTab/Item Methods & Events                                                                 ///
         ///////////////////////////////////////////////////////////////////////////////////////////// 
 
-        private void tbxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        public void tbxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             itemsDB = new DBEntities();
             itemDataGrid.ItemsSource = itemsDB.Items.Where(b => b.Title.Contains(tbxSearch.Text)).ToList();
         }
 
-        private void Item_Button_Click_Edit(object sender, RoutedEventArgs e)
+        public void Item_Button_Click_Edit(object sender, RoutedEventArgs e)
         {
             itemsDB = new DBEntities();
             Item item = itemDataGrid.SelectedItem as Item;
@@ -255,7 +255,7 @@ namespace Libary
             }
         }
 
-        private void Item_Button_Click_Reserve(object sender, RoutedEventArgs e)
+        public void Item_Button_Click_Reserve(object sender, RoutedEventArgs e)
         {
             itemsDB = new DBEntities();
             Item item = itemDataGrid.SelectedItem as Item;
@@ -288,7 +288,7 @@ namespace Libary
 
         }
 
-        private void Item_Button_Click_Delete(object sender, RoutedEventArgs e)
+        public void Item_Button_Click_Delete(object sender, RoutedEventArgs e)
         {
             itemsDB = new DBEntities();
 
@@ -319,7 +319,7 @@ namespace Libary
             itemDataGrid.Items.Refresh();
         }
 
-        private void btnItemAdd_Click(object sender, RoutedEventArgs e)
+        public void btnItemAdd_Click(object sender, RoutedEventArgs e)
         {
             frItem.Content = new ItemAdd();
             frItem.Visibility = Visibility.Visible;
@@ -327,7 +327,7 @@ namespace Libary
             btnItemClose.Visibility = Visibility.Visible;
 
         }
-        private void btnItemClose_Click(object sender, RoutedEventArgs e)
+        public void btnItemClose_Click(object sender, RoutedEventArgs e)
         {
             btnItemAdd.Visibility = Visibility.Visible;
             btnItemClose.Visibility = Visibility.Hidden;
@@ -337,7 +337,7 @@ namespace Libary
         ///////////////////////////////////////////////////////////////////////////////////////////// 
         /// PublisherTab Methods & Events                                                            ///
         ///////////////////////////////////////////////////////////////////////////////////////////// 
-        private void Publisher_Button_Click_Delete(object sender, RoutedEventArgs e)
+        public void Publisher_Button_Click_Delete(object sender, RoutedEventArgs e)
         {
             PublisherDB = new DBEntities();
 
@@ -362,7 +362,7 @@ namespace Libary
             }
         }
 
-        private void Publisher_Button_Click_Edit(object sender, RoutedEventArgs e)
+        public void Publisher_Button_Click_Edit(object sender, RoutedEventArgs e)
         {
             PublisherDB = new DBEntities();
             Publisher item = publisherDataGrid.SelectedItem as Publisher;
@@ -387,13 +387,13 @@ namespace Libary
 
         }
 
-        private void refresPublisherGrid()
+        public void refresPublisherGrid()
         {
             publisherDataGrid.ItemsSource = PublisherDB.Publishers.ToList();
             publisherDataGrid.Items.Refresh();
         }
 
-        private void btnPublisherAdd_Click(object sender, RoutedEventArgs e)
+        public void btnPublisherAdd_Click(object sender, RoutedEventArgs e)
         {
             frPublisher.Content = new PublisherAdd();
             frPublisher.Visibility = Visibility.Visible;
@@ -401,14 +401,14 @@ namespace Libary
             btnPublisherClose.Visibility = Visibility.Visible;
 
         }
-        private void btnPublisherClose_Click(object sender, RoutedEventArgs e)
+        public void btnPublisherClose_Click(object sender, RoutedEventArgs e)
         {
             btnPublisherAdd.Visibility = Visibility.Visible;
             btnPublisherClose.Visibility = Visibility.Hidden;
             frPublisher.Visibility = Visibility.Hidden;
             refresPublisherGrid();
         }
-        private void tbxSearchPub_TextChanged(object sender, TextChangedEventArgs e)
+        public void tbxSearchPub_TextChanged(object sender, TextChangedEventArgs e)
         {
             PublisherDB = new DBEntities();
             publisherDataGrid.ItemsSource = PublisherDB.Publishers.Where(b => b.Name.Contains(tbxSearchPub.Text)).ToList();
@@ -416,7 +416,7 @@ namespace Libary
         ///////////////////////////////////////////////////////////////////////////////////////////// 
         /// EmployeeTab Methods & Events                                                             ///
         ///////////////////////////////////////////////////////////////////////////////////////////// 
-        private void Employee_Button_Click_Delete(object sender, RoutedEventArgs e)
+        public void Employee_Button_Click_Delete(object sender, RoutedEventArgs e)
         {
             EmployeeDB = new DBEntities();
             Employee item = DatagridEmployee.SelectedItem as Employee;
@@ -440,7 +440,7 @@ namespace Libary
             }
         }
 
-        private void Employee_Button_Click_Edit(object sender, RoutedEventArgs e)
+        public void Employee_Button_Click_Edit(object sender, RoutedEventArgs e)
         {
             EmployeeDB = new DBEntities();
             Employee item = DatagridEmployee.SelectedItem as Employee;
@@ -475,14 +475,14 @@ namespace Libary
         }
 
 
-        private void refresEmployeeGrid()
+        public void refresEmployeeGrid()
         {
             DatagridEmployee.ItemsSource = EmployeeDB.Employees.ToList();
             DatagridEmployee.Items.Refresh();
         }
 
 
-        private void btnEmployeeAdd_Click(object sender, RoutedEventArgs e)
+        public void btnEmployeeAdd_Click(object sender, RoutedEventArgs e)
         {
             frEmployee.Content = new EmployeeAdd();
             frEmployee.Visibility = Visibility.Visible;
@@ -490,14 +490,14 @@ namespace Libary
             btnEmployeeClose.Visibility = Visibility.Visible;
 
         }
-        private void btnEmployeeClose_Click(object sender, RoutedEventArgs e)
+        public void btnEmployeeClose_Click(object sender, RoutedEventArgs e)
         {
             btnEmployeeAdd.Visibility = Visibility.Visible;
             btnEmployeeClose.Visibility = Visibility.Hidden;
             frEmployee.Visibility = Visibility.Hidden;
             refresEmployeeGrid();
         }
-        private void tbxSearchEmp_TextChanged(object sender, TextChangedEventArgs e)
+        public void tbxSearchEmp_TextChanged(object sender, TextChangedEventArgs e)
         {
             EmployeeDB = new DBEntities();
             DatagridEmployee.ItemsSource = EmployeeDB.Employees.Where(b => b.FirstName.Contains(tbxSearchEmp.Text) || b.LastName.Contains(tbxSearchEmp.Text)).ToList();
@@ -506,7 +506,7 @@ namespace Libary
         ///////////////////////////////////////////////////////////////////////////////////////////// 
         /// AdminTab Methods & Events                                                             ///
         ///////////////////////////////////////////////////////////////////////////////////////////// 
-        private void User_Button_Click_Delete(object sender, RoutedEventArgs e)
+        public void User_Button_Click_Delete(object sender, RoutedEventArgs e)
         {
             userDB = new DBEntities();
             User item = userDataGrid.SelectedItem as User;
@@ -530,7 +530,7 @@ namespace Libary
             }
         }
 
-        private void User_Button_Click_Edit(object sender, RoutedEventArgs e)
+        public void User_Button_Click_Edit(object sender, RoutedEventArgs e)
         {
             userDB = new DBEntities();
             User item = userDataGrid.SelectedItem as User;
@@ -561,12 +561,12 @@ namespace Libary
         }
 
 
-        private void refresUserGrid()
+        public void refresUserGrid()
         {
             userDataGrid.ItemsSource = userDB.Users.ToList();
             userDataGrid.Items.Refresh();
         }
-        private void tbxSearchUser_TextChanged(object sender, TextChangedEventArgs e)
+        public void tbxSearchUser_TextChanged(object sender, TextChangedEventArgs e)
         {
 
             userDB = new DBEntities();
@@ -578,7 +578,7 @@ namespace Libary
         ///////////////////////////////////////////////////////////////////////////////////////////// 
 
         //Method to display different functionality depending on user permission
-        private void ShowDashboard(int accessLevel)
+        public void ShowDashboard(int accessLevel)
         {
             //only show items tab for student and hide additional functionality
             if (accessLevel == 1)

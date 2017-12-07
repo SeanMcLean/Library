@@ -32,7 +32,7 @@ namespace Libary
         }
 
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        public void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -66,7 +66,7 @@ namespace Libary
         }
 
         //method to check if user details are true and exist
-        private User VerifyUserDetails(string username, string password)
+        public User VerifyUserDetails(string username, string password)
         {
             User verifiedUser = new User();
             foreach (var user in userList)
@@ -82,8 +82,9 @@ namespace Libary
             //Return the user details to the calling method
             return verifiedUser;
         }
+
         //method to load users into list 
-        private void LoadUsers()
+        public void LoadUsers()
         {
             try
             {
@@ -102,13 +103,14 @@ namespace Libary
 
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        public void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //do this first before any user interaction is allowed with this window
             LoadUsers();
         }
+
         //method to open new regisitration window
-        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        public void btnRegister_Click(object sender, RoutedEventArgs e)
         {
             //create new instance of registration window
             Registration reg2 = new Registration();

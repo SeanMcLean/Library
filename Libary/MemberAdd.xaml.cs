@@ -27,7 +27,7 @@ namespace Libary
             InitializeComponent();
         }
         //method to add member
-        private void btnAddMember_Click(object sender, RoutedEventArgs e)
+        public void btnAddMember_Click(object sender, RoutedEventArgs e)
         {
             //check if all inputs are full
             if (!string.IsNullOrWhiteSpace(txtFirstName.Text)
@@ -76,7 +76,7 @@ namespace Libary
             }
         }
         //method to add new member to database
-        private void mtdAddMember()
+        public void mtdAddMember()
         {
             try
             {
@@ -94,7 +94,7 @@ namespace Libary
             }
         }
         //Method to retrieve user details from data fields 
-        private Member GetUserDetails()
+        public Member GetUserDetails()
         {
             Member tempMember = new Member();
 
@@ -108,7 +108,7 @@ namespace Libary
         }
 
         //method to clear data fields 
-        private void mtdClearMemberDetails()
+        public void mtdClearMemberDetails()
         {
             //clear all textboxes of values
             txtFirstName.Text = "";

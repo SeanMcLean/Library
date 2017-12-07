@@ -29,7 +29,7 @@ namespace Libary
         }
 
         //click event to add publisher
-        private void btnAddPublisher_Click(object sender, RoutedEventArgs e)
+        public void btnAddPublisher_Click(object sender, RoutedEventArgs e)
         {
             //check if the textboxes are empty 
             if (!string.IsNullOrWhiteSpace(txtName.Text)
@@ -80,7 +80,7 @@ namespace Libary
 
         }
         //mehtod to add publisher to database
-        private void mtdAddPublisher()
+        public void mtdAddPublisher()
         {
             try
             {
@@ -99,7 +99,7 @@ namespace Libary
         }
 
         //method to retrieve publisher details from data inputs
-        private Publisher GetUserDetails()
+        public Publisher GetUserDetails()
         {
             Publisher tempPublisher = new Publisher();
 
@@ -113,7 +113,7 @@ namespace Libary
         }
 
         //method to clear publisher details from inputs 
-        private void mtdClearPublisherDetails()
+        public void mtdClearPublisherDetails()
         {
             txtName.Text = "";
             txtEmail.Text = "";

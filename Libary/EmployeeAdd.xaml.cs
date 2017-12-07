@@ -30,7 +30,7 @@ namespace Libary
         }
 
         //Click event to add Employee
-        private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
+        public void btnAddEmployee_Click(object sender, RoutedEventArgs e)
         {
 
                 //check if the textboxes are empty 
@@ -114,7 +114,7 @@ namespace Libary
         }
 
         //method to add Employee to database
-        private void mtdAddEmployee()
+        public void mtdAddEmployee()
         {
             try
             {
@@ -133,7 +133,7 @@ namespace Libary
         }
 
         //Method to retrieve employee details from input fields 
-        private Employee GetUserDetails()
+        public Employee GetUserDetails()
         {
             Employee tempEmployee = new Employee();
 
@@ -151,7 +151,7 @@ namespace Libary
         }
 
         //method to clear employee details 
-        private void mtdClearEmployeeDetails()
+        public void mtdClearEmployeeDetails()
         {
             txtFirstName.Text = "";
             txtLastName.Text = "";

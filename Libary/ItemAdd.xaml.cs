@@ -34,7 +34,7 @@ namespace Libary
         }
 
         //event to add item to database
-        private void btnAddItem_Click(object sender, RoutedEventArgs e)
+        public void btnAddItem_Click(object sender, RoutedEventArgs e)
         {
             //check if all data is inputted
             if (!string.IsNullOrWhiteSpace(txtISBN.Text)
@@ -83,7 +83,7 @@ namespace Libary
         }
 
         //method to add users to database
-        private void mtdAddItem()
+        public void mtdAddItem()
         {
             try
             {
@@ -102,7 +102,7 @@ namespace Libary
         }
 
         //method to retreive user details to send to database
-        private Item GetUserDetails()
+        public Item GetUserDetails()
         {
             //declare new item instance 
             Item tempItem = new Item();
@@ -133,7 +133,7 @@ namespace Libary
         }
 
         //method to clear datafields 
-        private void mtdClearItemDetails()
+        public void mtdClearItemDetails()
         {
             //clear values from datafields 
             txtISBN.Text = "";
@@ -150,12 +150,12 @@ namespace Libary
         }
 
 
-        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
-        private void cbPublisher_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public void cbPublisher_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

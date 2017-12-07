@@ -29,7 +29,7 @@ namespace Libary
         }
 
         //click event when user clicks add 
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        public void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace Libary
 
         }
         //method to save the new changes to 
-        private void mtdAddAuthor()
+        public void mtdAddAuthor()
         {
             try
             {
@@ -81,7 +81,7 @@ namespace Libary
             }
         }
         //method to retrieve details from textboxes 
-        private Author GetUserDetails()
+        public Author GetUserDetails()
         {
             //create new insrtance of author to hold details 
             Author tempAuthor = new Author();
@@ -95,7 +95,7 @@ namespace Libary
         }
 
         //method to clear input boxes
-        private void mtdClearAuthorDetails()
+        public void mtdClearAuthorDetails()
         {
             //sets the text box to remove any input
             txtName.Text = "";

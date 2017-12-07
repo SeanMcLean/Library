@@ -28,7 +28,7 @@ namespace Libary
         }
 
         //click event to return to login window
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        public void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             //crraste new MainWindow instance
             MainWindow win = new MainWindow();
@@ -41,7 +41,7 @@ namespace Libary
         }
  
         //click event to add used 
-        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        public void btnRegister_Click(object sender, RoutedEventArgs e)
         {
             //check to see if passwords match
             if (passwordBox.Password == passwordBoxConfirm.Password)
@@ -112,7 +112,7 @@ namespace Libary
         }
 
         //method to add user, to be called in other mehtods
-        private void mtdAddUser()
+        public void mtdAddUser()
         {
             try
             {
@@ -132,7 +132,7 @@ namespace Libary
         }
  
         //methods to retrieve user details from textboxes 
-        private User GetUserDetails ()
+        public User GetUserDetails ()
         {
             //create a new user instance 
             User tempUser = new User();
@@ -165,7 +165,7 @@ namespace Libary
         }
 
         //method to clear old details after add 
-        private void mtdClearUserDetails()
+        public void mtdClearUserDetails()
         {
             //set blank values to all input boxes
 
