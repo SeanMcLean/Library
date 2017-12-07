@@ -23,6 +23,7 @@ namespace Libary
         DBEntities db = new DBEntities();
         Dashboard dash = new Dashboard();
 
+        int parsedValue1;
         public ItemAdd()
         {
             InitializeComponent();
@@ -31,17 +32,56 @@ namespace Libary
             cbAuthor.ItemsSource = db.Authors.ToList();
             cbPublisher.ItemsSource = db.Publishers.ToList();
         }
-
+        //event to add item to database
         private void btnAddItem_Click(object sender, RoutedEventArgs e)
         {
+            //check if all data is inputted
+            if (!string.IsNullOrWhiteSpace(txtISBN.Text)
+                    & !string.IsNullOrWhiteSpace(txtTitle.Text)
+                    & !string.IsNullOrWhiteSpace(txtGenre.Text)
+                    & !string.IsNullOrWhiteSpace(dpPublicationDate.Text)
+                    & int.TryParse(txtCopiesAv.Text, out parsedValue1))
+            {
+                //call methods to add item 
                 mtdAddItem();
+                //Inform user that details have been added 
                 MessageBox.Show("New Item Added");
+                //clear old textbox data
                 mtdClearItemDetails();
+
+            }
+            //check to see if ISBN text box is empty
+            else if (string.IsNullOrWhiteSpace(txtISBN.Text))
+            {
+                MessageBox.Show("Missing ISBN");
+            }
+            //check to see if Title text box is empty
+            else if (string.IsNullOrWhiteSpace(txtTitle.Text))
+            {
+                MessageBox.Show("Missing Title ");
+            }
+            //check to see if Genre text box is empty
+            else if (string.IsNullOrWhiteSpace(txtGenre.Text))
+            {
+                MessageBox.Show("Missing Genre Name");
+            }
+            //check to see if Copies Available text box is empty or a character
+
+            else if (!int.TryParse(txtCopiesAv.Text, out parsedValue1))
+            {
+                MessageBox.Show("Invalid Copies Available Data");
+            }
+            //check to see if publication is empty
+            else if (string.IsNullOrWhiteSpace(dpPublicationDate.Text))
+            {
+                MessageBox.Show("Missing Publication Date");
+            }
 
           //  dash.refresItemGrid();
 
         }
 
+        //method to add users to database
         private void mtdAddItem()
         {
             try
@@ -60,18 +100,28 @@ namespace Libary
             }
         }
 
+        //method to retreive user details to send to database
         private Item GetUserDetails()
         {
+            //declare new item instance 
             Item tempItem = new Item();
 
+            //new randon unique primary key 
             tempItem.ItemId = Guid.NewGuid().ToString();
+            //set tempItem ISBN from txtISBN
             tempItem.ISBN = txtISBN.Text.Trim();
+            //set tempItem Title from txtTitle
             tempItem.Title = txtTitle.Text.Trim();
+            //set tempItem Genre from txtGenre
             tempItem.Genre = txtGenre.Text.Trim();
-           // tempItem.AuthorId = cbAuthor.ItemsSource.ToString();
-           // tempItem.PublisherId = cbPublisher.SelectedItem.ToString();
+            // tempItem.AuthorId = cbAuthor.ItemsSource.ToString();
+            // tempItem.PublisherId = cbPublisher.SelectedItem.ToString();
+
+            //set tempItem CopiesAvailable from txtCopiesAv
             tempItem.CopiesAvailable = Convert.ToInt32(txtCopiesAv.Text.Trim());
+            //set CopiesOnLoan to zero since nothing should be on loan ifit dosent exist
             tempItem.CopieOnLoan = 0;
+            //set tempItem PublicationDate from dpPublicationDate
             tempItem.PublicationDate = Convert.ToDateTime(dpPublicationDate.SelectedDate.Value.Date.ToShortDateString());
             //issues with combo box and sending back foreign key insteaad of name
             //setting value to 1 until fixed
@@ -81,16 +131,23 @@ namespace Libary
             return tempItem;
         }
 
+        //method to clear datafields 
         private void mtdClearItemDetails()
         {
+            //clear values from datafields 
             txtISBN.Text = "";
             txtTitle.Text = "";
             txtGenre.Text = "";
             txtCopiesAv.Text = "";
-         //   txtAuthor.Text = "";
+            //txtAuthor.Text = "";
             txtCopiesAv.Text = "";
-            dpPublicationDate.Text = "" ;
+            //dpPublicationDate.Text = "";
+
+            cbAuthor.SelectedIndex = -1;
+            cbPublisher.Text = "";
+            dpPublicationDate.SelectedDate = null;
         }
+
 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
