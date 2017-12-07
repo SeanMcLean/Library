@@ -65,6 +65,7 @@ namespace Libary
             }
         }
 
+        //method to check if user details are true and exist
         private User VerifyUserDetails(string username, string password)
         {
             User verifiedUser = new User();
@@ -81,12 +82,14 @@ namespace Libary
             //Return the user details to the calling method
             return verifiedUser;
         }
-
+        //method to load users into list 
         private void LoadUsers()
         {
             try
             {
+                //clear list of any ciurrent users
                 userList.Clear();
+                //iterate through users in database and add to lsit
                 foreach (var user in db.Users)
                 {
                     userList.Add(user);
@@ -104,11 +107,14 @@ namespace Libary
             //do this first before any user interaction is allowed with this window
             LoadUsers();
         }
-
+        //method to open new regisitration window
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
+            //create new instance of registration window
             Registration reg2 = new Registration();
+            //Display new instance 
             reg2.Show();
+            //close this login window
             this.Close();
         }
 

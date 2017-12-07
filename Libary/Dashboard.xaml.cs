@@ -593,6 +593,16 @@ namespace Libary
                 itemDataGrid.Columns[8].Visibility = Visibility.Collapsed;
                 itemDataGrid.Columns[9].Visibility = Visibility.Collapsed;
 
+                //make the colums uneditable for the student
+                itemDataGrid.Columns[0].IsReadOnly = true;
+                itemDataGrid.Columns[1].IsReadOnly = true;
+                itemDataGrid.Columns[2].IsReadOnly = true;
+                itemDataGrid.Columns[3].IsReadOnly = true;
+                itemDataGrid.Columns[4].IsReadOnly = true;
+                itemDataGrid.Columns[5].IsReadOnly = true;
+                itemDataGrid.Columns[6].IsReadOnly = true;
+                itemDataGrid.Columns[7].IsReadOnly = true;
+
                 //hide the tabs the student should not have access to
                 MemberTab.Visibility = Visibility.Hidden;
                 EmployeeTab.Visibility = Visibility.Hidden;
