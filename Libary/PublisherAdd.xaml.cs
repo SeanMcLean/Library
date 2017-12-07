@@ -21,19 +21,65 @@ namespace Libary
     public partial class PublisherAdd : Page
     {
         DBEntities db = new DBEntities();
+        int parsedValue;
 
         public PublisherAdd()
         {
             InitializeComponent();
         }
+
+        //click event to add publisher
         private void btnAddPublisher_Click(object sender, RoutedEventArgs e)
         {
-            mtdAddPublisher();
-            MessageBox.Show("New Publisher Added");
-            mtdClearPublisherDetails();
+            //check if the textboxes are empty 
+            if (!string.IsNullOrWhiteSpace(txtName.Text)
+            & !string.IsNullOrWhiteSpace(txtAddress1.Text)
+            & !string.IsNullOrWhiteSpace(txtAddress2.Text)
+            & !string.IsNullOrWhiteSpace(txtAddress3.Text)
+            & !string.IsNullOrWhiteSpace(txtEmail.Text)
+            &int.TryParse(txtTelephone.Text, out parsedValue))
+            {
+                //call methods to add Publisher 
+                mtdAddPublisher();
+                //Inform user that details have been added 
+                MessageBox.Show("New Publisher Added");
+                //clear old textbox data
+                mtdClearPublisherDetails();
+
+            }
+            //check to see if  Name text box is empty
+            else if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                MessageBox.Show("Missing First Name");
+            }
+            //check to see if Address text box is empty
+            else if (string.IsNullOrWhiteSpace(txtAddress1.Text))
+            {
+                MessageBox.Show("Missing Address Line1 Name");
+            }
+            //check to see if Address text box is empty
+            else if (string.IsNullOrWhiteSpace(txtAddress2.Text))
+            {
+                MessageBox.Show("Missing Address Line2 Name");
+            }
+            //check to see if Address text box is empty
+            else if (string.IsNullOrWhiteSpace(txtAddress3.Text))
+            {
+                MessageBox.Show("Missing Address Line3 Name");
+            }
+            //check to see if Email text box is empty
+            else if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                MessageBox.Show("Missing Email Name");
+            }
+            //check to see if Telephone text box is empty
+            else if (!int.TryParse(txtTelephone.Text, out parsedValue))
+            {
+                MessageBox.Show("Invlid Telephone No");
+            }
 
         }
-
+        //mehtod to add publisher to database
         private void mtdAddPublisher()
         {
             try
@@ -52,6 +98,7 @@ namespace Libary
             }
         }
 
+        //method to retrieve publisher details from data inputs
         private Publisher GetUserDetails()
         {
             Publisher tempPublisher = new Publisher();
@@ -65,6 +112,7 @@ namespace Libary
             return tempPublisher;
         }
 
+        //method to clear publisher details from inputs 
         private void mtdClearPublisherDetails()
         {
             txtName.Text = "";

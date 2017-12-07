@@ -33,12 +33,21 @@ namespace Libary
         {
             try
             {
-                //call the add author method 
-                mtdAddAuthor();
-                //tell user author has been added 
-                MessageBox.Show("New Author Added");
-                //clear the textboxes
-                mtdClearAuthorDetails();
+                if(!string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                    //call the add author method 
+                    mtdAddAuthor();
+                    //tell user author has been added 
+                    MessageBox.Show("New Author Added");
+                    //clear the textboxes
+                    mtdClearAuthorDetails();
+
+                }
+            //check to see if  Name text box is empty
+            else if (string.IsNullOrWhiteSpace(txtName.Text))
+                {
+                    MessageBox.Show("Missing Author Name");
+                }
             }
             catch (Exception)
             {

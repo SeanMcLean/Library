@@ -26,14 +26,56 @@ namespace Libary
         {
             InitializeComponent();
         }
+        //method to add member
         private void btnAddMember_Click(object sender, RoutedEventArgs e)
         {
-            mtdAddMember();
-            MessageBox.Show("New Member Added");
-            mtdClearMemberDetails();
+            //check if all inputs are full
+            if (!string.IsNullOrWhiteSpace(txtFirstName.Text)
+            & !string.IsNullOrWhiteSpace(txtLastName.Text)
+            & !string.IsNullOrWhiteSpace(txtAddress1.Text)
+            & !string.IsNullOrWhiteSpace(txtAddress2.Text)
+            & !string.IsNullOrWhiteSpace(txtAddress3.Text)
+            & !string.IsNullOrWhiteSpace(txtClassification.Text))
+            {
+                //call methods to add Publisher 
+                mtdAddMember();
+                //Inform user that details have been added 
+                MessageBox.Show("New Member Added");
+                //clear old textbox data
+                mtdClearMemberDetails();
 
+            }
+            //check to see if  Name text box is empty
+            else if (string.IsNullOrWhiteSpace(txtFirstName.Text))
+            {
+                MessageBox.Show("Missing First Name");
+            }
+            else if (string.IsNullOrWhiteSpace(txtLastName.Text))
+            {
+                MessageBox.Show("Missing Last Name");
+            }
+            //check to see if Address text box is empty
+            else if (string.IsNullOrWhiteSpace(txtAddress1.Text))
+            {
+                MessageBox.Show("Missing Address Line1 Name");
+            }
+            //check to see if Address text box is empty
+            else if (string.IsNullOrWhiteSpace(txtAddress2.Text))
+            {
+                MessageBox.Show("Missing Address Line2 Name");
+            }
+            //check to see if Address text box is empty
+            else if (string.IsNullOrWhiteSpace(txtAddress3.Text))
+            {
+                MessageBox.Show("Missing Address Line3 Name");
+            }
+            //check to see if Classification text box is empty
+            else if (string.IsNullOrWhiteSpace(txtClassification.Text))
+            {
+                MessageBox.Show("Missing Classification");
+            }
         }
-
+        //method to add new member to database
         private void mtdAddMember()
         {
             try
@@ -51,7 +93,7 @@ namespace Libary
                 MessageBox.Show("Wrong Details");
             }
         }
-
+        //Method to retrieve user details from data fields 
         private Member GetUserDetails()
         {
             Member tempMember = new Member();
@@ -65,8 +107,10 @@ namespace Libary
             return tempMember;
         }
 
+        //method to clear data fields 
         private void mtdClearMemberDetails()
         {
+            //clear all textboxes of values
             txtFirstName.Text = "";
             txtLastName.Text = "";
             txtClassification.Text = "";

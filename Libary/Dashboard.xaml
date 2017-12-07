@@ -249,9 +249,8 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="32*"/>
                         <ColumnDefinition Width="103*"/>
-                        <ColumnDefinition Width="82*"/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel Margin="5,5,5.333,4.667" Grid.ColumnSpan="3">
+                    <StackPanel Margin="5,5,5.333,4.667" Grid.ColumnSpan="2">
                         <TextBlock x:Name="tblkAuth" HorizontalAlignment="Left" Margin="5" TextWrapping="Wrap" Text="Search Author" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" FontStyle="Italic"/>
                         <Grid Height="100">
                             <Grid.ColumnDefinitions>

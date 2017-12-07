@@ -32,6 +32,7 @@ namespace Libary
             cbAuthor.ItemsSource = db.Authors.ToList();
             cbPublisher.ItemsSource = db.Publishers.ToList();
         }
+
         //event to add item to database
         private void btnAddItem_Click(object sender, RoutedEventArgs e)
         {

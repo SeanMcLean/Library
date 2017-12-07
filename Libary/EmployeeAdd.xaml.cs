@@ -21,19 +21,99 @@ namespace Libary
     public partial class EmployeeAdd : Page
     {
         DBEntities db = new DBEntities();
+        int parsedValue;
+        int parsedValueSAl;
 
         public EmployeeAdd()
         {
             InitializeComponent();
         }
+
+        //Click event to add Employee
         private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
         {
-            mtdAddEmployee();
-            MessageBox.Show("New Employee Added");
-            mtdClearEmployeeDetails();
 
+                //check if the textboxes are empty 
+                if (!string.IsNullOrWhiteSpace(txtFirstName.Text)
+                & !string.IsNullOrWhiteSpace(txtLastName.Text)
+                & !string.IsNullOrWhiteSpace(txtAddress1.Text)
+                & !string.IsNullOrWhiteSpace(txtAddress2.Text)
+                & !string.IsNullOrWhiteSpace(txtAddress3.Text)
+                & !string.IsNullOrWhiteSpace(txtEmail.Text)
+                & int.TryParse(txtSalary.Text, out parsedValueSAl)
+                & int.TryParse(txtTelephone.Text, out parsedValue)
+                & !string.IsNullOrWhiteSpace(txtRole.Text)
+                &!string.IsNullOrWhiteSpace(dpHireDate.Text))
+
+                {
+
+
+                    //call methods to add Employee 
+                    mtdAddEmployee();
+                    //Inform user that details have been added 
+                    MessageBox.Show("New Employee Added");
+                    //clear old textbox data
+                    mtdClearEmployeeDetails();
+                }
+
+                //check to see if First Name text box is empty
+                else if (string.IsNullOrWhiteSpace(txtFirstName.Text))
+                {
+                    MessageBox.Show("Missing First Name");
+                }
+                //check to see if First Last text box is empty
+                else if (string.IsNullOrWhiteSpace(txtLastName.Text))
+                {
+                    MessageBox.Show("Missing Last Name");
+                }
+                //check to see if Address text box is empty
+                else if (string.IsNullOrWhiteSpace(txtAddress1.Text))
+                {
+                    MessageBox.Show("Missing Address Line1 Name");
+                }
+                //check to see if Address text box is empty
+                else if (string.IsNullOrWhiteSpace(txtAddress2.Text))
+                {
+                    MessageBox.Show("Missing Address Line2 Name");
+                }
+                //check to see if Address text box is empty
+                else if (string.IsNullOrWhiteSpace(txtAddress3.Text))
+                {
+                    MessageBox.Show("Missing Address Line3 Name");
+                }
+                //check to see if Email text box is empty
+                else if (string.IsNullOrWhiteSpace(txtEmail.Text))
+                {
+                    MessageBox.Show("Missing Email Name");
+                }
+                //check to see if Role text box is empty
+                else if (string.IsNullOrWhiteSpace(txtRole.Text))
+                {
+                    MessageBox.Show("Missing Role Name");
+                }
+                //check to see if Address text box is empty
+                else if (string.IsNullOrWhiteSpace(txtAddress3.Text))
+                {
+                    MessageBox.Show("Missing Address Line3 Name");
+                }
+            //check to see if Salary text box is empty
+            else if (!int.TryParse(txtSalary.Text, out parsedValueSAl))
+            {
+                MessageBox.Show("Invalid Salary Data");
+            }
+            //check to see if Telephone text box is empty
+            else if (!int.TryParse(txtTelephone.Text, out parsedValue))
+            {
+                MessageBox.Show("Invlid Telephone No");
+            }
+            //check to see if date text box is empty
+            else if (string.IsNullOrWhiteSpace(dpHireDate.Text))
+            {
+                MessageBox.Show("Missing Date");
+            }
         }
 
+        //method to add Employee to database
         private void mtdAddEmployee()
         {
             try
@@ -52,6 +132,7 @@ namespace Libary
             }
         }
 
+        //Method to retrieve employee details from input fields 
         private Employee GetUserDetails()
         {
             Employee tempEmployee = new Employee();
@@ -69,6 +150,7 @@ namespace Libary
             return tempEmployee;
         }
 
+        //method to clear employee details 
         private void mtdClearEmployeeDetails()
         {
             txtFirstName.Text = "";
@@ -80,6 +162,7 @@ namespace Libary
             txtEmail.Text = "";
             txtSalary.Text = "";
             txtRole.Text = "";
+            dpHireDate.SelectedDate = null;
         }
     }
 }
