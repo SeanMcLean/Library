@@ -310,6 +310,7 @@ namespace LibraryTest
             //This test does not run as expected
             Assert.AreEqual(expected.Password, actual.Password, "Error when extracting Assessor from database");
         }
+       
     }
 }
 

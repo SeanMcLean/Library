@@ -21,7 +21,8 @@ namespace Libary
     public partial class AuthorAdd : Page
     {
         DBEntities db = new DBEntities();
-        
+        int saveState;
+
         //call components
         public AuthorAdd()
         {
@@ -58,7 +59,7 @@ namespace Libary
 
         }
         //method to save the new changes to 
-        public void mtdAddAuthor()
+        public int mtdAddAuthor()
         {
             try
             {
@@ -69,16 +70,20 @@ namespace Libary
                 //get database to call the GetUserDetails() method and add with entiystate
                 db.Entry(GetUserDetails()).State = System.Data.Entity.EntityState.Added;
                 //save changes to db
-                db.SaveChanges();
+                saveState = db.SaveChanges();
                 //set database configuration to autodetect changes 
                 db.Configuration.AutoDetectChangesEnabled = true;
                 //set database to  ValidateOnSaveEnabled
                 db.Configuration.ValidateOnSaveEnabled = true;
+
+
             }
             catch (Exception)
             {
                 MessageBox.Show("Wrong Details");
             }
+
+            return saveState;
         }
         //method to retrieve details from textboxes 
         public Author GetUserDetails()
@@ -100,6 +105,7 @@ namespace Libary
             //sets the text box to remove any input
             txtName.Text = "";
         }
+
 
     }
 }
