@@ -69,7 +69,7 @@ namespace Libary
         public User VerifyUserDetails(string username, string password)
         {
             User verifiedUser = new User();
-            foreach (var user in userList)
+            foreach (var user in db.Users)
             {
                 //If current user in userList List has ther same username and password
                 //then the user exists

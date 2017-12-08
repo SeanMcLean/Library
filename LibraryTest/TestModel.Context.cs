@@ -13,10 +13,10 @@ namespace LibraryTest
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SeanDBEntities : DbContext
+    public partial class TestDBEntities : DbContext
     {
-        public SeanDBEntities()
-            : base("name=SeanDBEntities")
+        public TestDBEntities()
+            : base("name=TestDBEntities")
         {
         }
     
