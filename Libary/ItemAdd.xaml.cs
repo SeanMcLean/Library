@@ -149,6 +149,18 @@ namespace Libary
             dpPublicationDate.SelectedDate = null;
         }
 
+        public Item VerifyItemDB()
+        {
+            Item verifieditem = new Item();
+            foreach (var item in db.Items)
+            {
+
+                verifieditem = item;
+
+            }
+            //Return the user details to the calling method
+            return verifieditem;
+        }
 
         public void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

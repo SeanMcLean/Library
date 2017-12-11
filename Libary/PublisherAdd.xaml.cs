@@ -122,6 +122,18 @@ namespace Libary
             txtAddress2.Text = "";
             txtAddress3.Text = "";
         }
+        public Publisher VerifPublisherDB()
+        {
+            Publisher verifiedpub = new Publisher();
+            foreach (var pub in db.Publishers)
+            {
+
+                verifiedpub = pub;
+
+            }
+            //Return the user details to the calling method
+            return verifiedpub;
+        }
     }
 }
 

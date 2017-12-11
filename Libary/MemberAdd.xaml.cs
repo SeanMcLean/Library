@@ -118,6 +118,18 @@ namespace Libary
             txtAddress2.Text = "";
             txtAddress3.Text = "";
         }
+        public Member VerifMemberDB()
+        {
+            Member verifiedMember = new Member();
+            foreach (var member in db.Members)
+            {
+
+                verifiedMember = member;
+
+            }
+            //Return the user details to the calling method
+            return verifiedMember;
+        }
     }
 }
 
