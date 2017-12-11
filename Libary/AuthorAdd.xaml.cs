@@ -106,6 +106,19 @@ namespace Libary
             txtName.Text = "";
         }
 
+        //method to for testing to check db connection to author
+        public Author VerifyAuthorDB()
+        {
+            Author verifiedAuthor = new Author();
+            foreach (var author in db.Authors)
+            {
+
+                verifiedAuthor = author;
+
+            }
+            //Return the user details to the calling method
+            return verifiedAuthor;
+        }
 
     }
 }

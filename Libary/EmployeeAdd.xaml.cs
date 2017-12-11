@@ -164,6 +164,19 @@ namespace Libary
             txtRole.Text = "";
             dpHireDate.SelectedDate = null;
         }
+
+        public Employee VerifyEmployeeDB()
+        {
+            Employee verifiedEmployee = new Employee();
+            foreach (var employee in db.Employees)
+            {
+
+                verifiedEmployee = employee;
+
+            }
+            //Return the user details to the calling method
+            return verifiedEmployee;
+        }
     }
 }
 
